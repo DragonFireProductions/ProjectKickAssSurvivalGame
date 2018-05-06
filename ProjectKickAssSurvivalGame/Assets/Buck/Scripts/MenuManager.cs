@@ -9,8 +9,13 @@ public class MenuManager : MonoBehaviour
         //Load Level name when created
     }
 
-    public void PauseMenu()
+    public void OptionsMenu()
     {
+        //Hide all other menues and enable options menu
+    }
 
+    public void CreditsMenu()
+    {
+        //Hide all other menues and enable credits menu
     }
 }
