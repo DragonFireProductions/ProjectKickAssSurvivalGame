@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -13,9 +12,12 @@ public class PlayerController : MonoBehaviour
     float runSpeed;
 
     [SerializeField]
-    int maxHealth;
+    float maxHealth;
 
-    int curHealth;
+    public float curHealth;
+
+    [SerializeField]
+    Image healthBar;
 
 	// Use this for initialization
 	void Start ()
@@ -62,5 +64,23 @@ public class PlayerController : MonoBehaviour
                 transform.Translate(0.0f, 0.0f, moveZ * runSpeed * Time.deltaTime, Space.World);
             }
         }
+    }
+
+    public void TakeDamage(float amount)
+    {
+        curHealth -= amount;
+
+        //sets the health to alway start at 1 and end at 0
+        healthBar.fillAmount = curHealth / maxHealth;
+
+        if (curHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        //PLAY DEATH ANIMATION AND END GAME
     }
 }
