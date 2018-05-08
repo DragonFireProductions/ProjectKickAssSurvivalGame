@@ -7,8 +7,16 @@ TagManager:
   - Grass
   - Fire
   - Bullet
+<<<<<<< HEAD
   - Wood_Resource
   - Stone_Resource
+=======
+  - Dirt
+  - Enemy
+  - Weapon
+  - Wall
+  - Coin
+>>>>>>> f9798fdd035f5ef17ae69f8edc45265458fa7986
   layers:
   - Default
   - TransparentFX
@@ -19,7 +27,7 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
+  - Shootable
   - 
   - 
   - 
