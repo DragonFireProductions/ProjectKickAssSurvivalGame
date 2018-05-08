@@ -9,6 +9,7 @@ TagManager:
   - Bullet
   - Dirt
   - Enemy
+  - Weapon
   layers:
   - Default
   - TransparentFX
