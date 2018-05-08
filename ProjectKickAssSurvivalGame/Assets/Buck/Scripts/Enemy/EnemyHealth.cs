@@ -26,12 +26,15 @@ public class EnemyHealth : MonoBehaviour
 
     //This can be called from other scripts that would apply
     //Damage to the enemy
-    public void TakeDamage(float amount)
+    public void TakeDamage(float amount, Vector3 hitPoint)
     {
         curHealth -= amount;
 
         //sets the health to alway start at 1 and end at 0
         healthBar.fillAmount = curHealth / maxHealth;
+
+        //hitParticles.transform.positon = hitPoint;
+        //hitPartcles.Play();
 
         if (curHealth <= 0)
         {

@@ -10,17 +10,44 @@ public class BaseWeapon : MonoBehaviour
     [HideInInspector]
     public int curClipSize;
 
-    //fireRate
+    public float fireRate;
 
-    //fireTimer
+    public float range;
+
+    public float damagePerShot;
+
+    [HideInInspector]
+    public float fireTimer;
 
     [Header("UnitySettings")]
 
-    public GameObject bulletPrefab;
-
     public Transform firePoint;
 
+    [HideInInspector]
+    public Ray shootRay;
+
+    [HideInInspector]
+    RaycastHit shootHit;
+
+    int shootableMask;
+
+    public LineRenderer gunLR;
+
+    //ParticleSystem
+
+    //Light
+
+    //AudioSource
+
+    float effectDisplayTime;
+
     bool noAmmo;
+
+    void Awake()
+    {
+        shootableMask = LayerMask.GetMask("Shootable");
+        gunLR = GetComponent<LineRenderer>();
+    }
 
     void Start()
     {
@@ -31,17 +58,41 @@ public class BaseWeapon : MonoBehaviour
 
     public void Fire()
     {
-        if (Input.GetMouseButtonDown(0) && noAmmo == false)
+        if (Input.GetButton("Fire1") && fireTimer >= fireRate && noAmmo == false)
         {
-            Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
 
             curClipSize--;
+
+            gunLR.enabled = true;
+            gunLR.SetPosition(0, firePoint.position);
+
+            shootRay.origin = firePoint.position;
+            shootRay.direction = firePoint.forward;
+
+            if (Physics.Raycast(shootRay, out shootHit, range, shootableMask))
+            {
+                EnemyHealth enemyHealth = shootHit.collider.GetComponent<EnemyHealth>();
+                if (enemyHealth != null)
+                {
+                    enemyHealth.TakeDamage(damagePerShot, shootHit.point);
+                }
+                gunLR.SetPosition(1, shootHit.point);
+            }
+            else
+            {
+                gunLR.SetPosition(1, shootRay.origin + shootRay.direction * range);
+            }
 
             if (curClipSize == 0)
             {
                 noAmmo = true;
                 return;
             }
+        }
+
+        if (fireTimer >= fireRate * effectDisplayTime)
+        {
+            DisableEffects();
         }
     }
 
@@ -62,6 +113,11 @@ public class BaseWeapon : MonoBehaviour
                 return;
             }
         }
+    }
+
+    public void DisableEffects()
+    {
+        gunLR.enabled = false;
     }
 
 }
