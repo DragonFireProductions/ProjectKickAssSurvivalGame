@@ -7,6 +7,8 @@ TagManager:
   - Grass
   - Fire
   - Bullet
+  - Wood_Resource
+  - Stone_Resource
   layers:
   - Default
   - TransparentFX

@@ -4,31 +4,20 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    private int wood_resource;
-    private int stone_resource;
-
-	// Use this for initialization
-	void Start ()
-    {
-		
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-		
-	}
+    public int wood_resource, stone_resource;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (gameObject.tag == "Wood_Resource")
+        if (other.gameObject.tag == "Wood_Resource")
         {
             wood_resource++;
+            Destroy(other.gameObject);
         }
 
-        if (gameObject.tag == "Stone_Resource")
+        if (other.gameObject.tag == "Stone_Resource")
         {
             stone_resource++;
+            Destroy(other.gameObject);
         }
     }
 
@@ -37,17 +26,13 @@ public class Inventory : MonoBehaviour
         if (gameObject.tag == "Wood_Resource")
         {
             wood_resource++;
+            Destroy(other.gameObject);
         }
 
         if (gameObject.tag == "Stone_Resource")
         {
             stone_resource++;
+            Destroy(other.gameObject);
         }
     }
-
-    //public WoodResource()
-    //{
-    //    return wood_resource;
-    //}
-
 }
