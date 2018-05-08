@@ -35,6 +35,7 @@ public class GameOver : MonoBehaviour
     public void Retry()
     {
         //Do the retry and stuff
+        SceneManager.LoadScene("TestScene");
     }
 
     public void MainMenu()
