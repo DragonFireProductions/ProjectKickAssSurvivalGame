@@ -11,10 +11,7 @@ public class PlayerUI : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI woodText;
 
-    [Header("Resources")]
-    public Resource wood;
-
-    public Resource coin;
+    PlayeInventory inventoryRef;
 
     [Header("UIElements")]
     [SerializeField]
@@ -27,8 +24,8 @@ public class PlayerUI : MonoBehaviour
 
     void Awake()
     {
-        coinsText.text = "COINS: " + Mathf.Round(coin.amount).ToString();
-        woodText.text = "WOOD: " + Mathf.Round(wood.amount).ToString();
+        coinsText.text = "COINS: " + Mathf.Round(inventoryRef.coin).ToString();
+        woodText.text = "WOOD: " + Mathf.Round(inventoryRef.wood).ToString();
         playerInventoryScreen.SetActive(false);
     }
 
