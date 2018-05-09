@@ -184,7 +184,7 @@ public class PlayerDrone : MonoBehaviour
 
         if (Physics.Raycast(shootRay, out shootHit, range, shootableMask))
         {
-            EnemyHealth enemyHealth = shootHit.collider.GetComponent<EnemyHealth>();
+            BaseEnemy enemyHealth = shootHit.collider.GetComponent<BaseEnemy>();
             if (enemyHealth != null)
             {
                 enemyHealth.TakeDamage(damagePerShot, shootHit.point);

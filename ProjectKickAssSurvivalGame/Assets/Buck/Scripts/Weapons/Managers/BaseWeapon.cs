@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicGun : MonoBehaviour
+public class BaseWeapon : MonoBehaviour
 {
     [Header("WeaponStats")]
+
     public int maxClipSize;
 
     [HideInInspector]
@@ -12,12 +13,14 @@ public class BasicGun : MonoBehaviour
 
     public float fireRate;
 
+    [HideInInspector]
+    public float fireTimer;
+
     public float range;
 
     public float damagePerShot;
 
-    [HideInInspector]
-    public float fireTimer;
+    public float effectDisplayTime;
 
     [Header("UnitySettings")]
 
@@ -25,13 +28,16 @@ public class BasicGun : MonoBehaviour
 
     public LineRenderer gunLR;
 
+    public Light gunLight;
+
     [HideInInspector]
     public Ray shootRay;
 
     [HideInInspector]
-    RaycastHit shootHit;
+    public RaycastHit shootHit;
 
-    int shootableMask;
+    [HideInInspector]
+    public int shootableMask;
 
     //ParticleSystem
 
@@ -39,41 +45,9 @@ public class BasicGun : MonoBehaviour
 
     //AudioSource
 
-    [SerializeField]
-    float effectDisplayTime;
+    [HideInInspector]
+    public bool noAmmo;
 
-    bool noAmmo;
-
-    void Awake()
-    {
-        shootableMask = LayerMask.GetMask("Shootable");
-        gunLR = GetComponent<LineRenderer>();
-    }
-
-    void Start()
-    {
-        noAmmo = false;
-
-        curClipSize = maxClipSize;
-    }
-
-    void Update()
-    {
-        fireTimer += Time.deltaTime;
-
-        if (Input.GetButton("Fire1") && fireTimer >= fireRate && noAmmo == false)
-        {
-            Fire();
-        }
-
-        if (fireTimer >= fireRate * effectDisplayTime)
-        {
-            DisableEffects();
-        }
-
-        Reload();
-
-    }
 
     public void Fire()
     {
@@ -82,14 +56,16 @@ public class BasicGun : MonoBehaviour
         curClipSize--;
 
         gunLR.enabled = true;
-        gunLR.SetPosition(0, transform.position);
+        gunLight.enabled = true;
 
-        shootRay.origin = transform.position;
-        shootRay.direction = transform.forward;
+        gunLR.SetPosition(0, firePoint.position);
+
+        shootRay.origin = firePoint.position;
+        shootRay.direction = firePoint.forward;
 
         if (Physics.Raycast(shootRay, out shootHit, range, shootableMask))
         {
-            EnemyHealth enemyHealth = shootHit.collider.GetComponent<EnemyHealth>();
+            BaseEnemy enemyHealth = shootHit.collider.GetComponent<BaseEnemy>();
             if (enemyHealth != null)
             {
                 enemyHealth.TakeDamage(damagePerShot, shootHit.point);
@@ -127,12 +103,11 @@ public class BasicGun : MonoBehaviour
         }
     }
 
-    void DisableEffects()
+    public void DisableEffects()
     {
         gunLR.enabled = false;
         //Particles
         //Audio
-        //Lights
+        gunLight.enabled = false;
     }
-
 }
