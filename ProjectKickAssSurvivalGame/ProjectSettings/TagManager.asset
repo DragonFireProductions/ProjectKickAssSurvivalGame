@@ -3,20 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Grass
-  - Fire
-  - Bullet
-<<<<<<< HEAD
-  - Wood_Resource
-  - Stone_Resource
-=======
-  - Dirt
-  - Enemy
-  - Weapon
-  - Wall
-  - Coin
->>>>>>> f9798fdd035f5ef17ae69f8edc45265458fa7986
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -26,8 +13,8 @@ TagManager:
   - UI
   - 
   - 
-  - PostProcessing
-  - Shootable
+  - 
+  - 
   - 
   - 
   - 
