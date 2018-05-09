@@ -9,7 +9,9 @@ TagManager:
   - Fire
   - Wall
   - Enemy
-  - Coin
+  - Wood_Resource
+  - Stone_Resource
+  - Coin_Resource
   layers:
   - Default
   - TransparentFX

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public int wood_resource, stone_resource;
+    public int wood_resource, stone_resource, coin_resource;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -17,6 +17,12 @@ public class Inventory : MonoBehaviour
         if (other.gameObject.tag == "Stone_Resource")
         {
             stone_resource++;
+            Destroy(other.gameObject);
+        }
+
+        if(other.gameObject.tag == "Coin_Resource")
+        {
+            coin_resource++;
             Destroy(other.gameObject);
         }
     }
@@ -32,6 +38,12 @@ public class Inventory : MonoBehaviour
         if (gameObject.tag == "Stone_Resource")
         {
             stone_resource++;
+            Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.tag == "Coin_Resource")
+        {
+            coin_resource++;
             Destroy(other.gameObject);
         }
     }
