@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 23076146450771358}
   - component: {fileID: 136351972598198844}
   - component: {fileID: 54082058522406174}
+  - component: {fileID: 114851739440307692}
   m_Layer: 0
   m_Name: Wood Pickup
   m_TagString: Wood_Resource
@@ -100,6 +101,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &114851739440307692
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1956063921924040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ef9dcb9793f8bc49b25d35fe52ef063, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resource: {fileID: 1956063921924040}
+  amount: 0
 --- !u!136 &136351972598198844
 CapsuleCollider:
   m_ObjectHideFlags: 1

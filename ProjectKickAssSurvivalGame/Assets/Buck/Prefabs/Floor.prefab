@@ -9,18 +9,18 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1240597700830614}
+  m_RootGameObject: {fileID: 1175064684364814}
   m_IsPrefabParent: 1
---- !u!1 &1240597700830614
+--- !u!1 &1175064684364814
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4527535148539294}
-  - component: {fileID: 33494074553475710}
-  - component: {fileID: 64023008787478298}
+  - component: {fileID: 4842844719889710}
+  - component: {fileID: 33530136792229096}
+  - component: {fileID: 64308614337592832}
   m_Layer: 8
   m_Name: Floor
   m_TagString: Untagged
@@ -28,12 +28,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4527535148539294
+--- !u!4 &4842844719889710
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1240597700830614}
+  m_GameObject: {fileID: 1175064684364814}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 12.2, y: 0, z: -10.3}
   m_LocalScale: {x: 50, y: 50, z: 1}
@@ -41,19 +41,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!33 &33494074553475710
+--- !u!33 &33530136792229096
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1240597700830614}
+  m_GameObject: {fileID: 1175064684364814}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!64 &64023008787478298
+--- !u!64 &64308614337592832
 MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1240597700830614}
+  m_GameObject: {fileID: 1175064684364814}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
