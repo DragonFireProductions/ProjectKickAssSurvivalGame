@@ -36,7 +36,7 @@ public class Crafting : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                Instantiate(G_WoodFence, transform.position + new Vector3(0,0,5), transform.rotation);
+                Instantiate(G_WoodFence, transform.forward + new Vector3(0,0,2), transform.rotation);
                 Inv.wood_resource--;
             }
         }
@@ -58,7 +58,7 @@ public class Crafting : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                Instantiate(G_StoneFence, transform.position + new Vector3(0, 0, 5), transform.rotation);
+                Instantiate(G_StoneFence, transform.forward + new Vector3(0, 0, 2), transform.rotation);
                 Inv.stone_resource--;
             }
         }
