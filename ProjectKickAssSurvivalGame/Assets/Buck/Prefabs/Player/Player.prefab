@@ -43,6 +43,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1508786798670202
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4833728132519030}
+  m_Layer: 0
+  m_Name: DroneSlot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1657238119089404
 GameObject:
   m_ObjectHideFlags: 1
@@ -93,7 +108,6 @@ GameObject:
   - component: {fileID: 114894076323816914}
   - component: {fileID: 114348940882170822}
   - component: {fileID: 114972359852607110}
-  - component: {fileID: 114525773500062524}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -126,8 +140,22 @@ Transform:
   m_Children:
   - {fileID: 224190039353980968}
   - {fileID: 4476045019033024}
+  - {fileID: 4833728132519030}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4833728132519030
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1508786798670202}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.5, y: 0.75, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4635912489052844}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23664315729457562
 MeshRenderer:
@@ -258,8 +286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 5
-  runSpeed: 6.5
-  rotateSpeed: 50
+  runSpeed: 10
 --- !u!114 &114454781298474734
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -303,22 +330,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114525773500062524
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1956338513186380}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e053e17b0d4a6745acf23986158e02f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coinText: {fileID: 0}
-  coin: 0
-  wood: 0
-  stone: 0
-  playerInventory: {fileID: 0}
 --- !u!114 &114894076323816914
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -330,7 +341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43c3c4a34b2d9cc4d8c9e58812c11c83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
+  maxHealth: 1
   curHealth: 0
   healthBar: {fileID: 114047032920996960}
 --- !u!114 &114972359852607110

@@ -10,15 +10,21 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     float runSpeed;
 
-    [SerializeField]
-    float rotateSpeed;
+    Rigidbody playerRB;
 
-    void Update()
+    Vector3 movement;
+
+    float camRayLength = 100f;
+
+    int floorMask;
+
+    void Awake()
     {
-        PlayerMove();
+        floorMask = LayerMask.GetMask("Floor");
+        playerRB = GetComponent<Rigidbody>();
     }
 
-    void PlayerMove()
+    void FixedUpdate()
     {
         //Move Left/Right
         float moveX = Input.GetAxisRaw("Horizontal");
@@ -26,39 +32,41 @@ public class PlayerMovement : MonoBehaviour
         //Move Forward/Backward
         float moveZ = Input.GetAxisRaw("Vertical");
 
-        //Move Character Left/Right
-        float mouseX = Input.GetAxisRaw("Mouse X");
+        PlayerMove(moveX, moveZ);
+        PlayerTurning();
+    }
 
-        if (moveX != 0)
+    void PlayerMove(float x, float z)
+    {
+        //This is the functionallity for walking
+        movement.Set(x, 0f, z);
+
+        movement = movement.normalized * walkSpeed * Time.deltaTime;
+
+        playerRB.MovePosition(transform.position + movement);
+
+        //This is the functionallit for sprinting
+        if (Input.GetKey(KeyCode.LeftShift))
         {
-            //Player walk
-            transform.Translate(moveX * walkSpeed * Time.deltaTime, 0.0f, 0.0f, Space.Self);
+            movement = movement.normalized * runSpeed * Time.deltaTime;
 
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                //Player sprint
-                transform.Translate(moveX * runSpeed * Time.deltaTime, 0.0f, 0.0f, Space.Self);
-            }
-
+            playerRB.MovePosition(transform.position + movement);
         }
+    }
 
-        if (moveZ != 0)
+    void PlayerTurning()
+    {
+        Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        RaycastHit floorHit;
+
+        if (Physics.Raycast(camRay, out floorHit, camRayLength, floorMask))
         {
-            //Move game object Forward or Backward by walkSpeed amount
-            transform.Translate(0.0f, 0.0f, moveZ * walkSpeed * Time.deltaTime, Space.Self);
+            Vector3 playerToMouse = floorHit.point - transform.position;
+            playerToMouse.y = 0f;
 
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                //Player sprint
-                transform.Translate(0.0f, 0.0f, moveZ * runSpeed * Time.deltaTime, Space.Self);
-            }
-        }
-
-        if (mouseX != 0)
-        {
-            //Rotate the player by rotate speed then the mouse is moved
-            transform.Rotate(0.0f, mouseX * rotateSpeed * Time.deltaTime, 0.0f, Space.World);
-            transform.LookAt(transform.forward + transform.position);
+            Quaternion newRotation = Quaternion.LookRotation(playerToMouse);
+            playerRB.MoveRotation(newRotation);
         }
     }
 }
