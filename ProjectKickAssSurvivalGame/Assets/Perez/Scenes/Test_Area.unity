@@ -235,7 +235,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4999482727416344, guid: 38c00a5c69280d44ea4a51f9ea3d911e, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 38c00a5c69280d44ea4a51f9ea3d911e, type: 2}
@@ -348,7 +348,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4315105712025276, guid: f42783561774a3a41a67a7e7804e70de, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f42783561774a3a41a67a7e7804e70de, type: 2}
@@ -528,12 +528,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1928035449}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 970ddbc885c01754a8b0289e41ab95ec, type: 3}
+  m_Script: {fileID: 11500000, guid: 1203ce27886378f449b36e52e0ecf3e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 12
   runSpeed: 24
-  maxHealth: 0
+  rotateSpeed: 60
 --- !u!136 &1928035451
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -601,7 +601,7 @@ Transform:
   m_Children:
   - {fileID: 1784231309}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1928035455
 MonoBehaviour:
@@ -627,4 +627,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7291c0e292a41e4eb2bc0984470ed73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WoodenFence: {fileID: 0}
+  CanCraft_WoodFence: 0
+  CanCraft_StoneFence: 0
+  G_WoodFence: {fileID: 1049464750924372, guid: dbece2db71289964f90deaf9d0265111,
+    type: 2}
+  G_StoneFence: {fileID: 1049464750924372, guid: 46aec9fbf8baf9d4c961ae606e172af5,
+    type: 2}
