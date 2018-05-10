@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class PlayeInventory : MonoBehaviour
+public class PlayerInventory : MonoBehaviour
 {
     [Header("Resources")]
 
@@ -15,19 +14,6 @@ public class PlayeInventory : MonoBehaviour
     public int iron;
     [HideInInspector]
     public int coin;
-
-
-	// Use this for initialization
-	void Start ()
-    {
-		
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-		
-	}
 
     void OnTriggerEnter(Collider resource)
     {
@@ -46,6 +32,16 @@ public class PlayeInventory : MonoBehaviour
 
     void OntriggerEnter(Collider resource)
     {
+        if (resource.tag == "Wood_Resource")
+        {
+            wood++;
+            Destroy(resource.gameObject);
+        }
 
+        if (resource.tag == "Coin_Resource")
+        {
+            coin++;
+            Destroy(resource.gameObject);
+        }
     }
 }
