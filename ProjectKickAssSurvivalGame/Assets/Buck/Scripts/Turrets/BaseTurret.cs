@@ -12,8 +12,6 @@ public class BaseTurret : MonoBehaviour
 
     public float damagePerShot;
 
-    public float effectsDisplayTime;
-
     public float rotateSpeed;
 
     [HideInInspector]
@@ -33,6 +31,8 @@ public class BaseTurret : MonoBehaviour
     public LineRenderer turretLR;
 
     public Light turretLight;
+
+    public float effectsDisplayTime;
 
     SphereCollider turretRange;
 
@@ -54,9 +54,6 @@ public class BaseTurret : MonoBehaviour
         floorMask = LayerMask.GetMask("Floor");
         turretLR = GetComponentInChildren<LineRenderer>();
         turretLight = GetComponentInChildren<Light>();
-        turretRange = GetComponent<SphereCollider>();
-
-        turretRange.radius = range;
     }
 
     public void UpdateTurretTarget()
@@ -116,9 +113,6 @@ public class BaseTurret : MonoBehaviour
     public void Fire()
     {
         fireTimer = 0;
-
-        firePoint.LookAt(target);
-        turretHead.LookAt(target);
 
         turretLR.enabled = true;
         turretLight.enabled = true;

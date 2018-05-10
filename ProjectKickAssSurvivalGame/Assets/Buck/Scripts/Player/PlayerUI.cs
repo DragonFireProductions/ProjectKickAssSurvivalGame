@@ -35,7 +35,6 @@ public class PlayerUI : MonoBehaviour
         woodText.text = "WOOD: " + Mathf.Round(inventoryRef.wood).ToString();
         stoneText.text = "STONE: " + Mathf.Round(inventoryRef.stone).ToString();
         ironText.text = "IRON: " + Mathf.Round(inventoryRef.iron).ToString();
-        playerInventoryScreen.SetActive(false);
     }
 
     // Update is called once per frame

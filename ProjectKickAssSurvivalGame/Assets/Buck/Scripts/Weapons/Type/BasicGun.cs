@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BasicGun : BaseWeapon
 {
@@ -25,6 +26,10 @@ public class BasicGun : BaseWeapon
 
         if (Input.GetButton("Fire1") && fireTimer >= fireRate && noAmmo == false)
         {
+            //if (EventSystem.current.IsPointingOverGameObject())
+            //{
+
+            //}
             Fire();
         }
 
