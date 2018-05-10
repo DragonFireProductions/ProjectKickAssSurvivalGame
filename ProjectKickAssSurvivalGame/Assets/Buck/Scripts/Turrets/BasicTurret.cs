@@ -15,7 +15,7 @@ public class BasicTurret : BaseTurret
 
         if (fireTimer >= fireRate && target != null)
         {
-            Fire();
+            CheckForEnemy();
         }
         if (fireTimer >= fireRate * effectsDisplayTime)
         {

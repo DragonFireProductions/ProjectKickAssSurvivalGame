@@ -6,11 +6,11 @@ public class BasicEnemy : BaseEnemy
 {
     void Awake()
     {
+        curHealth = maxHealth;
+
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
 
         playerFire = GameObject.FindGameObjectWithTag("Fire").transform;
-
-        curHealth = maxHealth;
 
         player = GameObject.FindGameObjectWithTag("Player");
         playerHealth = player.GetComponent<PlayerHealth>();

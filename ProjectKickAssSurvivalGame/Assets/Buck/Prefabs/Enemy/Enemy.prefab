@@ -203,7 +203,7 @@ MonoBehaviour:
   attackDamage: 1
   attackSpeed: 1
   attackTimer: 0
-  moveSpeed: 1
+  moveSpeed: 2
   maxHealth: 5
   curHealth: 0
   minCoins: 3
@@ -216,10 +216,11 @@ MonoBehaviour:
   target: {fileID: 0}
   playerTransform: {fileID: 0}
   playerFire: {fileID: 0}
-  healthBar: {fileID: 114368247098727536}
-  coin: {fileID: 1272052713922210, guid: 86dba87b002da2a46a94c7979891f2fe, type: 2}
   playerInRange: 0
   fireInRange: 0
+  turretInRange: 0
+  healthBar: {fileID: 114368247098727536}
+  coin: {fileID: 1272052713922210, guid: 86dba87b002da2a46a94c7979891f2fe, type: 2}
 --- !u!114 &114368247098727536
 MonoBehaviour:
   m_ObjectHideFlags: 1
