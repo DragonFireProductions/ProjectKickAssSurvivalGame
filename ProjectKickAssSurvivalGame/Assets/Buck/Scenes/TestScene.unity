@@ -12746,65 +12746,12 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 265860676}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &266189514
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 266189515}
-  - component: {fileID: 266189516}
-  - component: {fileID: 266189517}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &266189515
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 266189514}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &266189516
+--- !u!114 &266189516 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 266189514}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
+  m_PrefabParentObject: {fileID: 114583744642490090, guid: 2904d1474e887884094d8aeec1b10dd6,
+    type: 2}
+  m_PrefabInternal: {fileID: 1639663011}
   m_Script: {fileID: 11500000, guid: ac1bf0c72241f7b4ebbe911dc3a6c39e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameOverMenu: {fileID: 925331173}
---- !u!114 &266189517
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 266189514}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49ce6ac5c2c680d40a5c0325fca1f72c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coinsText: {fileID: 963311672}
-  woodText: {fileID: 2051005064}
-  stoneText: {fileID: 1643567361}
-  ironText: {fileID: 987923311}
-  playerInventoryScreen: {fileID: 1965721810}
-  playerToolBelt: {fileID: 204406716}
 --- !u!1 &267775030
 GameObject:
   m_ObjectHideFlags: 0
@@ -72673,6 +72620,83 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1639068964}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1639663011
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4932046120081374, guid: 2904d1474e887884094d8aeec1b10dd6, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4932046120081374, guid: 2904d1474e887884094d8aeec1b10dd6, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4932046120081374, guid: 2904d1474e887884094d8aeec1b10dd6, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4932046120081374, guid: 2904d1474e887884094d8aeec1b10dd6, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4932046120081374, guid: 2904d1474e887884094d8aeec1b10dd6, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4932046120081374, guid: 2904d1474e887884094d8aeec1b10dd6, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4932046120081374, guid: 2904d1474e887884094d8aeec1b10dd6, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4932046120081374, guid: 2904d1474e887884094d8aeec1b10dd6, type: 2}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 114583744642490090, guid: 2904d1474e887884094d8aeec1b10dd6,
+        type: 2}
+      propertyPath: gameOverMenu
+      value: 
+      objectReference: {fileID: 925331173}
+    - target: {fileID: 114211185699227190, guid: 2904d1474e887884094d8aeec1b10dd6,
+        type: 2}
+      propertyPath: coinsText
+      value: 
+      objectReference: {fileID: 963311672}
+    - target: {fileID: 114211185699227190, guid: 2904d1474e887884094d8aeec1b10dd6,
+        type: 2}
+      propertyPath: woodText
+      value: 
+      objectReference: {fileID: 2051005064}
+    - target: {fileID: 114211185699227190, guid: 2904d1474e887884094d8aeec1b10dd6,
+        type: 2}
+      propertyPath: stoneText
+      value: 
+      objectReference: {fileID: 1643567361}
+    - target: {fileID: 114211185699227190, guid: 2904d1474e887884094d8aeec1b10dd6,
+        type: 2}
+      propertyPath: ironText
+      value: 
+      objectReference: {fileID: 987923311}
+    - target: {fileID: 114211185699227190, guid: 2904d1474e887884094d8aeec1b10dd6,
+        type: 2}
+      propertyPath: playerInventoryScreen
+      value: 
+      objectReference: {fileID: 1965721810}
+    - target: {fileID: 114211185699227190, guid: 2904d1474e887884094d8aeec1b10dd6,
+        type: 2}
+      propertyPath: playerToolBelt
+      value: 
+      objectReference: {fileID: 204406716}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 2904d1474e887884094d8aeec1b10dd6, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1642807671
 GameObject:
   m_ObjectHideFlags: 0
