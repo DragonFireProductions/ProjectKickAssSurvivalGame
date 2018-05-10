@@ -11,10 +11,11 @@ public class PlayerUI : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI woodText;
 
-    [Header("Resources")]
-    public Resource wood;
+    [SerializeField]
+    TextMeshProUGUI stoneText;
 
-    public Resource coin;
+    [SerializeField]
+    TextMeshProUGUI ironText;
 
     [Header("UIElements")]
     [SerializeField]
@@ -23,12 +24,17 @@ public class PlayerUI : MonoBehaviour
     [SerializeField]
     GameObject playerToolBelt;
 
+    PlayerInventory inventoryRef;
+
     bool inventoryOpened;
 
     void Awake()
     {
-        coinsText.text = "COINS: " + Mathf.Round(coin.amount).ToString();
-        woodText.text = "WOOD: " + Mathf.Round(wood.amount).ToString();
+        inventoryRef = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>();
+        coinsText.text = "COINS: " + Mathf.Round(inventoryRef.coin).ToString();
+        woodText.text = "WOOD: " + Mathf.Round(inventoryRef.wood).ToString();
+        stoneText.text = "STONE: " + Mathf.Round(inventoryRef.stone).ToString();
+        ironText.text = "IRON: " + Mathf.Round(inventoryRef.iron).ToString();
         playerInventoryScreen.SetActive(false);
     }
 
@@ -36,6 +42,15 @@ public class PlayerUI : MonoBehaviour
     void Update()
     {
         OpenInventoryScreen();
+        CheckResourceAmounts();
+    }
+
+    void CheckResourceAmounts()
+    {
+        coinsText.text = "COINS: " + Mathf.Round(inventoryRef.coin).ToString();
+        woodText.text = "WOOD: " + Mathf.Round(inventoryRef.wood).ToString();
+        stoneText.text = "STONE: " + Mathf.Round(inventoryRef.stone).ToString();
+        ironText.text = "IRON: " + Mathf.Round(inventoryRef.iron).ToString();
     }
 
     void OpenInventoryScreen()
