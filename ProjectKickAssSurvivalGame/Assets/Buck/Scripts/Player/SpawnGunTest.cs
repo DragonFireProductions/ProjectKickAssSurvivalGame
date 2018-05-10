@@ -30,6 +30,7 @@ public class SpawnGunTest : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
+
             GameObject gun = Instantiate(basicGun, itemSlot.position, itemSlot.rotation) as GameObject;
 
             gun.transform.parent = itemSlot;

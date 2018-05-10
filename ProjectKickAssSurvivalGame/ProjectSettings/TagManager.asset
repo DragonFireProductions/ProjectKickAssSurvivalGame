@@ -12,6 +12,8 @@ TagManager:
   - Wood_Resource
   - Stone_Resource
   - Coin_Resource
+  - Iron_Resource
+  - Turret
   layers:
   - Default
   - TransparentFX
