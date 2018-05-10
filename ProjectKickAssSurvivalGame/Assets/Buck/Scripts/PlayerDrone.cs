@@ -52,7 +52,7 @@ public class PlayerDrone : MonoBehaviour
     [SerializeField]
     Light droneLight;
 
-    SphereCollider turretRange;
+    SphereCollider droneRange;
 
     [SerializeField]
     string enemytag = "Enemy";
@@ -76,9 +76,9 @@ public class PlayerDrone : MonoBehaviour
         droneRB = GetComponent<Rigidbody>();
         droneLR = GetComponentInChildren<LineRenderer>();
         droneLight = GetComponentInChildren<Light>();
-        turretRange = GetComponent<SphereCollider>();
+        droneRange = GetComponent<SphereCollider>();
 
-        turretRange.radius = range;
+        droneRange.radius = range;
     }
 	// Update is called once per frame
 	void Update ()

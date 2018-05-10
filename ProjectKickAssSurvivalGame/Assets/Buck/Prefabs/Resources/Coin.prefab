@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33926575165186552}
   - component: {fileID: 23817960152810488}
   - component: {fileID: 135456796672315926}
-  - component: {fileID: 114245844829231096}
+  - component: {fileID: 114454366598936896}
   m_Layer: 0
   m_Name: Coin
   m_TagString: Coin_Resource
@@ -85,7 +85,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1272052713922210}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114245844829231096
+--- !u!114 &114454366598936896
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -93,11 +93,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1272052713922210}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ef9dcb9793f8bc49b25d35fe52ef063, type: 3}
+  m_Script: {fileID: 11500000, guid: 7e5404c289ae618409a296534688e4b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resource: {fileID: 1272052713922210}
-  amount: 0
+  distanceFromPlayer: 7.5
+  vaccumSpeed: 20
 --- !u!135 &135456796672315926
 SphereCollider:
   m_ObjectHideFlags: 1
