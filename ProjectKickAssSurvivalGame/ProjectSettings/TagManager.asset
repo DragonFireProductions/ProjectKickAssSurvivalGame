@@ -15,6 +15,7 @@ TagManager:
   - Iron_Resource
   - Turret
   - Sun
+  - EnemySpawner
   layers:
   - Default
   - TransparentFX

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using TMPro;
 
 public class PlayerUI : MonoBehaviour
@@ -17,6 +18,9 @@ public class PlayerUI : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI ironText;
 
+    [SerializeField]
+    TextMeshProUGUI dayCounter;
+
     [Header("UIElements")]
     [SerializeField]
     GameObject playerInventoryScreen;
@@ -26,15 +30,19 @@ public class PlayerUI : MonoBehaviour
 
     PlayerInventory inventoryRef;
 
+    WaveSpawner dayRef;
+
     bool inventoryOpened;
 
     void Awake()
     {
         inventoryRef = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>();
+        dayRef = GameObject.FindGameObjectWithTag("EnemySpawner").GetComponent<WaveSpawner>();
         coinsText.text = "COINS: " + Mathf.Round(inventoryRef.coin).ToString();
         woodText.text = "WOOD: " + Mathf.Round(inventoryRef.wood).ToString();
         stoneText.text = "STONE: " + Mathf.Round(inventoryRef.stone).ToString();
         ironText.text = "IRON: " + Mathf.Round(inventoryRef.iron).ToString();
+        dayCounter.text = "DAY: " + Mathf.Round(dayRef.daysPassed).ToString();
     }
 
     // Update is called once per frame
@@ -42,6 +50,7 @@ public class PlayerUI : MonoBehaviour
     {
         OpenInventoryScreen();
         CheckResourceAmounts();
+        CheckDaysSurvived();
     }
 
     void CheckResourceAmounts()
@@ -50,6 +59,11 @@ public class PlayerUI : MonoBehaviour
         woodText.text = "WOOD: " + Mathf.Round(inventoryRef.wood).ToString();
         stoneText.text = "STONE: " + Mathf.Round(inventoryRef.stone).ToString();
         ironText.text = "IRON: " + Mathf.Round(inventoryRef.iron).ToString();
+    }
+
+    void CheckDaysSurvived()
+    {
+        dayCounter.text = "DAY: " + Mathf.Round(dayRef.daysPassed).ToString();
     }
 
     void OpenInventoryScreen()
