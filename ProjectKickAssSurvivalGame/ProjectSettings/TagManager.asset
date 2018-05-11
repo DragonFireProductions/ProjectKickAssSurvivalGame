@@ -15,6 +15,15 @@ TagManager:
   - Iron_Resource
   - Turret
   - Sun
+  - Sand_Resource
+  - Rope_Resource
+  - Grass_Resource
+  - Flint_Resource
+  - Stick_Resource
+  - Honey_Resource
+  - Hide_Resource
+  - Leather_Resource
+  - Charcoal_Resource
   layers:
   - Default
   - TransparentFX

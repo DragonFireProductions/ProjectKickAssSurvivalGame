@@ -22,34 +22,39 @@ public class PlayerUI : MonoBehaviour
     GameObject playerInventoryScreen;
 
     [SerializeField]
+    GameObject playerCraftingScreen;
+
+    [SerializeField]
     GameObject playerToolBelt;
 
-    PlayerInventory inventoryRef;
+    Inventory inventoryRef;
 
     bool inventoryOpened;
+    bool craftingOpened;
 
     void Awake()
     {
-        inventoryRef = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>();
-        coinsText.text = "COINS: " + Mathf.Round(inventoryRef.coin).ToString();
-        woodText.text = "WOOD: " + Mathf.Round(inventoryRef.wood).ToString();
-        stoneText.text = "STONE: " + Mathf.Round(inventoryRef.stone).ToString();
-        ironText.text = "IRON: " + Mathf.Round(inventoryRef.iron).ToString();
+        inventoryRef = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+        coinsText.text = "COINS: " + Mathf.Round(inventoryRef.coin_resource).ToString();
+        woodText.text = "WOOD: " + Mathf.Round(inventoryRef.wood_resource).ToString();
+        stoneText.text = "STONE: " + Mathf.Round(inventoryRef.stone_resource).ToString();
+        ironText.text = "IRON: " + Mathf.Round(inventoryRef.metal_resource).ToString();
     }
 
     // Update is called once per frame
     void Update()
     {
         OpenInventoryScreen();
+        OpenCraftingScreen();
         CheckResourceAmounts();
     }
 
     void CheckResourceAmounts()
     {
-        coinsText.text = "COINS: " + Mathf.Round(inventoryRef.coin).ToString();
-        woodText.text = "WOOD: " + Mathf.Round(inventoryRef.wood).ToString();
-        stoneText.text = "STONE: " + Mathf.Round(inventoryRef.stone).ToString();
-        ironText.text = "IRON: " + Mathf.Round(inventoryRef.iron).ToString();
+        coinsText.text = "COINS: " + Mathf.Round(inventoryRef.coin_resource).ToString();
+        woodText.text = "WOOD: " + Mathf.Round(inventoryRef.wood_resource).ToString();
+        stoneText.text = "STONE: " + Mathf.Round(inventoryRef.stone_resource).ToString();
+        ironText.text = "IRON: " + Mathf.Round(inventoryRef.metal_resource).ToString();
     }
 
     void OpenInventoryScreen()
@@ -59,8 +64,19 @@ public class PlayerUI : MonoBehaviour
             if (inventoryOpened == false)
             {
                 playerInventoryScreen.SetActive(true);
+                playerCraftingScreen.SetActive(false);
                 playerToolBelt.SetActive(false);
                 inventoryOpened = true;
+            }
+
+            else if (craftingOpened == true)
+            {
+                craftingOpened = false;
+            }
+
+            else if (inventoryOpened == false && craftingOpened == true)
+            {
+                playerToolBelt.SetActive(false);
             }
 
             else if (inventoryOpened == true)
@@ -71,5 +87,36 @@ public class PlayerUI : MonoBehaviour
             }
         }
 
+    }
+
+    void OpenCraftingScreen()
+    {
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            if (craftingOpened == false)
+            {
+                playerInventoryScreen.SetActive(false);
+                playerCraftingScreen.SetActive(true);
+                playerToolBelt.SetActive(false);
+                craftingOpened = true;
+            }
+
+            else if (inventoryOpened == true)
+            {
+                inventoryOpened = false;
+            }
+
+            else if (craftingOpened == false && inventoryOpened == true)
+            {
+                playerToolBelt.SetActive(false);
+            }
+
+            else if (craftingOpened == true)
+            {
+                playerCraftingScreen.SetActive(false);
+                playerToolBelt.SetActive(true);
+                craftingOpened = false;
+            }
+        }
     }
 }
