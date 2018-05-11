@@ -46,10 +46,6 @@ public class PlayerUI : MonoBehaviour
         woodText.text = "WOOD: " + Mathf.Round(inventoryRef.wood_resource).ToString();
         stoneText.text = "STONE: " + Mathf.Round(inventoryRef.stone_resource).ToString();
         dayCounter.text = "DAY: " + Mathf.Round(dayRef.daysPassed).ToString();
-        inventoryRef = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
-        coinsText.text = "COINS: " + Mathf.Round(inventoryRef.coin_resource).ToString();
-        woodText.text = "WOOD: " + Mathf.Round(inventoryRef.wood_resource).ToString();
-        stoneText.text = "STONE: " + Mathf.Round(inventoryRef.stone_resource).ToString();
         ironText.text = "IRON: " + Mathf.Round(inventoryRef.metal_resource).ToString();
     }
 
