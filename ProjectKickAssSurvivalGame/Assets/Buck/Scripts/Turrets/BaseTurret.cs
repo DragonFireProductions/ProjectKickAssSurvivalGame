@@ -39,6 +39,8 @@ public class BaseTurret : MonoBehaviour
 
     public Light turretLight;
 
+    public GameObject turretSpotLight;
+
     public float effectsDisplayTime;
 
     SphereCollider turretRange;
@@ -55,14 +57,43 @@ public class BaseTurret : MonoBehaviour
 
     float camRayLength = 100f;
 
+    //[SerializeField]
+    DayNightCycle dayRef;
+
+    //[SerializeField]
+    GameObject sun;
+
     void Awake()
     {
         shootableMask = LayerMask.GetMask("Shootable");
         floorMask = LayerMask.GetMask("Floor");
+        sun = GameObject.FindGameObjectWithTag("Sun");
+        dayRef = sun.GetComponent<DayNightCycle>();
         turretLR = GetComponentInChildren<LineRenderer>();
         turretLight = GetComponentInChildren<Light>();
+        Light turretSpotLight = gameObject.GetComponent<Light>();
 
         curHealth = maxHealth;
+    }
+
+    public void CheckTime()
+    {
+        if (dayRef.GetMeridiem() == DayNightCycle.Meridiem.AM)
+        {
+             turretSpotLight.SetActive(false);
+
+            if (dayRef.GetHour() <= 6f)
+            {
+                turretSpotLight.SetActive(true);
+            }
+        }
+        else
+        {
+            if (dayRef.GetHour() >= 6f)
+            {
+                turretSpotLight.SetActive(true);
+            }
+        }
     }
 
     public void UpdateTurretTarget()

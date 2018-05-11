@@ -14,6 +14,7 @@ TagManager:
   - Coin_Resource
   - Iron_Resource
   - Turret
+  - Sun
   layers:
   - Default
   - TransparentFX
