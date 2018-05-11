@@ -46,7 +46,7 @@ public class PlayerUI : MonoBehaviour
         woodText.text = "WOOD: " + Mathf.Round(inventoryRef.wood_resource).ToString();
         stoneText.text = "STONE: " + Mathf.Round(inventoryRef.stone_resource).ToString();
         dayCounter.text = "DAY: " + Mathf.Round(dayRef.daysPassed).ToString();
-        ironText.text = "IRON: " + Mathf.Round(inventoryRef.metal_resource).ToString();
+        ironText.text = "IRON: " + Mathf.Round(inventoryRef.iron_resource).ToString();
     }
 
     // Update is called once per frame
@@ -63,7 +63,7 @@ public class PlayerUI : MonoBehaviour
         coinsText.text = "COINS: " + Mathf.Round(inventoryRef.coin_resource).ToString();
         woodText.text = "WOOD: " + Mathf.Round(inventoryRef.wood_resource).ToString();
         stoneText.text = "STONE: " + Mathf.Round(inventoryRef.stone_resource).ToString();
-        ironText.text = "IRON: " + Mathf.Round(inventoryRef.metal_resource).ToString();
+        ironText.text = "IRON: " + Mathf.Round(inventoryRef.iron_resource).ToString();
     }
 
     void CheckDaysSurvived()
@@ -75,20 +75,20 @@ public class PlayerUI : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            if (inventoryOpened == false)
-            {
-                playerInventoryScreen.SetActive(true);
-                playerCraftingScreen.SetActive(false);
-                playerToolBelt.SetActive(false);
-                inventoryOpened = true;
-            }
+            //if (inventoryOpened == false)
+            //{
 
+            //}
+            playerInventoryScreen.SetActive(true);
+            playerCraftingScreen.SetActive(false);
+            playerToolBelt.SetActive(false);
+            inventoryOpened = true;
             //else if (inventoryOpened == false && craftingOpened == true)
             //{
             //    playerToolBelt.SetActive(false);
             //}
 
-            else if (inventoryOpened == true)
+            if (inventoryOpened == true)
             {
                 playerInventoryScreen.SetActive(false);
                 playerToolBelt.SetActive(true);

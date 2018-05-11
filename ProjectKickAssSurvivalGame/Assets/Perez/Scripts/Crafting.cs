@@ -210,7 +210,7 @@ public class Crafting : MonoBehaviour
 
     private void MetalFence()
     {
-        if (Inv.metal_resource >= 1)
+        if (Inv.iron_resource >= 1)
         {
             CanCraft_MetalFence = true;
         }
@@ -220,11 +220,11 @@ public class Crafting : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 Instantiate(G_MetalFence, transform.position + (transform.forward * 5), transform.rotation);
-                Inv.metal_resource--;
+                Inv.iron_resource--;
             }
         }
 
-        if (Inv.metal_resource <= 0)
+        if (Inv.iron_resource <= 0)
         {
             CanCraft_MetalFence = false;
         }
@@ -276,7 +276,7 @@ public class Crafting : MonoBehaviour
 
     private void MetalTurret()
     {
-        if (Inv.metal_resource >= 1)
+        if (Inv.iron_resource >= 1)
         {
             CanCraft_MetalTurret = true;
         }
@@ -286,11 +286,11 @@ public class Crafting : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 Instantiate(G_MetalTurret, transform.position + (transform.forward * 5), transform.rotation);
-                Inv.metal_resource--;
+                Inv.iron_resource--;
             }
         }
 
-        if (Inv.metal_resource <= 0)
+        if (Inv.iron_resource <= 0)
         {
             CanCraft_MetalTurret = false;
         }

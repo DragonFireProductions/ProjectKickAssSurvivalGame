@@ -6,7 +6,7 @@ public class Inventory : MonoBehaviour
 {
     #region//Resources_ Public Ints
 
-    public int wood_resource, stone_resource, coin_resource, metal_resource, grass_resource, sand_resource, flint_resource,
+    public int wood_resource, stone_resource, coin_resource, iron_resource, grass_resource, sand_resource, flint_resource,
     stick_resource, honey_resource, hide_resource, rope_resource, leather_resource, charcoal_resource;
 
     #endregion
@@ -39,9 +39,9 @@ public class Inventory : MonoBehaviour
             Destroy(other.gameObject);
         }
 
-        if (other.gameObject.tag == "Metal_Resource")
+        if (other.gameObject.tag == "Iron_Resource")
         {
-            metal_resource++;
+            iron_resource++;
             Destroy(other.gameObject);
         }
 
@@ -120,9 +120,9 @@ public class Inventory : MonoBehaviour
             Destroy(other.gameObject);
         }
 
-        if (other.gameObject.tag == "Metal_Resource")
+        if (other.gameObject.tag == "Iron_Resource")
         {
-            metal_resource++;
+            iron_resource++;
             Destroy(other.gameObject);
         }
 
