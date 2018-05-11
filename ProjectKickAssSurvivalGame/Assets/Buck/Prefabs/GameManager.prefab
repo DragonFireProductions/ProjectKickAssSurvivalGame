@@ -57,6 +57,7 @@ MonoBehaviour:
   stoneText: {fileID: 0}
   ironText: {fileID: 0}
   playerInventoryScreen: {fileID: 0}
+  playerCraftingScreen: {fileID: 0}
   playerToolBelt: {fileID: 0}
 --- !u!114 &114583744642490090
 MonoBehaviour:
