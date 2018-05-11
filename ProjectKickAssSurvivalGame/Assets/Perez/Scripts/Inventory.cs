@@ -12,7 +12,7 @@ public class Inventory : MonoBehaviour
     #endregion
 
 
-    #region
+    #region//Crafted Item Count
 
     public int craftedBurlapWall, craftedWoodFence, craftedStoneFence, craftedMetalFence, craftedWoodTurret, craftedStoneTurret, craftedMetalTurret, 
     craftedBurlapArmor, craftedWoodArmor, craftedStoneArmor, craftedMetalArmor, craftedSpikeTrap, craftedBearTrap;

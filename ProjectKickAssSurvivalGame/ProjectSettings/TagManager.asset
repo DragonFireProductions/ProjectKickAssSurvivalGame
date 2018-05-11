@@ -15,7 +15,19 @@ TagManager:
   - Iron_Resource
   - Turret
   - Sun
+<<<<<<< HEAD
   - EnemySpawner
+=======
+  - Sand_Resource
+  - Rope_Resource
+  - Grass_Resource
+  - Flint_Resource
+  - Stick_Resource
+  - Honey_Resource
+  - Hide_Resource
+  - Leather_Resource
+  - Charcoal_Resource
+>>>>>>> 16195f09f8ff4a2cdfb9888d5270e1f9620f96cc
   layers:
   - Default
   - TransparentFX
