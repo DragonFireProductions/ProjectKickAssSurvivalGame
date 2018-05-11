@@ -56,6 +56,7 @@ MonoBehaviour:
   woodText: {fileID: 0}
   stoneText: {fileID: 0}
   ironText: {fileID: 0}
+  dayCounter: {fileID: 0}
   playerInventoryScreen: {fileID: 0}
   playerCraftingScreen: {fileID: 0}
   playerToolBelt: {fileID: 0}
