@@ -40,21 +40,17 @@ public class PlayerUI : MonoBehaviour
 
     void Awake()
     {
-<<<<<<< HEAD
-        inventoryRef = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>();
+        inventoryRef = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
         dayRef = GameObject.FindGameObjectWithTag("EnemySpawner").GetComponent<WaveSpawner>();
-        coinsText.text = "COINS: " + Mathf.Round(inventoryRef.coin).ToString();
-        woodText.text = "WOOD: " + Mathf.Round(inventoryRef.wood).ToString();
-        stoneText.text = "STONE: " + Mathf.Round(inventoryRef.stone).ToString();
-        ironText.text = "IRON: " + Mathf.Round(inventoryRef.iron).ToString();
+        coinsText.text = "COINS: " + Mathf.Round(inventoryRef.coin_resource).ToString();
+        woodText.text = "WOOD: " + Mathf.Round(inventoryRef.wood_resource).ToString();
+        stoneText.text = "STONE: " + Mathf.Round(inventoryRef.stone_resource).ToString();
         dayCounter.text = "DAY: " + Mathf.Round(dayRef.daysPassed).ToString();
-=======
         inventoryRef = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
         coinsText.text = "COINS: " + Mathf.Round(inventoryRef.coin_resource).ToString();
         woodText.text = "WOOD: " + Mathf.Round(inventoryRef.wood_resource).ToString();
         stoneText.text = "STONE: " + Mathf.Round(inventoryRef.stone_resource).ToString();
         ironText.text = "IRON: " + Mathf.Round(inventoryRef.metal_resource).ToString();
->>>>>>> 16195f09f8ff4a2cdfb9888d5270e1f9620f96cc
     }
 
     // Update is called once per frame
