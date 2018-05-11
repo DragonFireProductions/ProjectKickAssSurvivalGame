@@ -19,6 +19,8 @@ public class BaseEnemy : MonoBehaviour
 
     public float maxHealth;
 
+    public int spawnCost;
+
     [HideInInspector]
     public float curHealth;
 

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using TMPro;
 
 public class PlayerUI : MonoBehaviour
@@ -17,6 +18,9 @@ public class PlayerUI : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI ironText;
 
+    [SerializeField]
+    TextMeshProUGUI dayCounter;
+
     [Header("UIElements")]
     [SerializeField]
     GameObject playerInventoryScreen;
@@ -29,16 +33,28 @@ public class PlayerUI : MonoBehaviour
 
     Inventory inventoryRef;
 
+    WaveSpawner dayRef;
+
     bool inventoryOpened;
     bool craftingOpened;
 
     void Awake()
     {
+<<<<<<< HEAD
+        inventoryRef = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>();
+        dayRef = GameObject.FindGameObjectWithTag("EnemySpawner").GetComponent<WaveSpawner>();
+        coinsText.text = "COINS: " + Mathf.Round(inventoryRef.coin).ToString();
+        woodText.text = "WOOD: " + Mathf.Round(inventoryRef.wood).ToString();
+        stoneText.text = "STONE: " + Mathf.Round(inventoryRef.stone).ToString();
+        ironText.text = "IRON: " + Mathf.Round(inventoryRef.iron).ToString();
+        dayCounter.text = "DAY: " + Mathf.Round(dayRef.daysPassed).ToString();
+=======
         inventoryRef = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
         coinsText.text = "COINS: " + Mathf.Round(inventoryRef.coin_resource).ToString();
         woodText.text = "WOOD: " + Mathf.Round(inventoryRef.wood_resource).ToString();
         stoneText.text = "STONE: " + Mathf.Round(inventoryRef.stone_resource).ToString();
         ironText.text = "IRON: " + Mathf.Round(inventoryRef.metal_resource).ToString();
+>>>>>>> 16195f09f8ff4a2cdfb9888d5270e1f9620f96cc
     }
 
     // Update is called once per frame
@@ -47,6 +63,7 @@ public class PlayerUI : MonoBehaviour
         OpenInventoryScreen();
         OpenCraftingScreen();
         CheckResourceAmounts();
+        CheckDaysSurvived();
     }
 
     void CheckResourceAmounts()
@@ -55,6 +72,11 @@ public class PlayerUI : MonoBehaviour
         woodText.text = "WOOD: " + Mathf.Round(inventoryRef.wood_resource).ToString();
         stoneText.text = "STONE: " + Mathf.Round(inventoryRef.stone_resource).ToString();
         ironText.text = "IRON: " + Mathf.Round(inventoryRef.metal_resource).ToString();
+    }
+
+    void CheckDaysSurvived()
+    {
+        dayCounter.text = "DAY: " + Mathf.Round(dayRef.daysPassed).ToString();
     }
 
     void OpenInventoryScreen()
