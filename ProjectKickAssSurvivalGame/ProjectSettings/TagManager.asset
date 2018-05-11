@@ -21,6 +21,9 @@ TagManager:
   - Hide_Resource
   - Leather_Resource
   - Charcoal_Resource
+  - Bullet
+  - Undefined
+  - Sun
   layers:
   - Default
   - TransparentFX
