@@ -87,15 +87,10 @@ public class PlayerUI : MonoBehaviour
                 inventoryOpened = true;
             }
 
-            else if (craftingOpened == true)
-            {
-                craftingOpened = false;
-            }
-
-            else if (inventoryOpened == false && craftingOpened == true)
-            {
-                playerToolBelt.SetActive(false);
-            }
+            //else if (inventoryOpened == false && craftingOpened == true)
+            //{
+            //    playerToolBelt.SetActive(false);
+            //}
 
             else if (inventoryOpened == true)
             {
@@ -119,15 +114,10 @@ public class PlayerUI : MonoBehaviour
                 craftingOpened = true;
             }
 
-            else if (inventoryOpened == true)
-            {
-                inventoryOpened = false;
-            }
-
-            else if (craftingOpened == false && inventoryOpened == true)
-            {
-                playerToolBelt.SetActive(false);
-            }
+            //else if (craftingOpened == false && inventoryOpened == true)
+            //{
+            //    playerToolBelt.SetActive(false);
+            //}
 
             else if (craftingOpened == true)
             {
