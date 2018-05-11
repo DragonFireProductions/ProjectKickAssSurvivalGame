@@ -75,20 +75,20 @@ public class PlayerUI : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            //if (inventoryOpened == false)
-            //{
+            if (inventoryOpened == false)
+            {
+                playerInventoryScreen.SetActive(true);
+                playerCraftingScreen.SetActive(false);
+                playerToolBelt.SetActive(false);
+                inventoryOpened = true;
+            }
 
-            //}
-            playerInventoryScreen.SetActive(true);
-            playerCraftingScreen.SetActive(false);
-            playerToolBelt.SetActive(false);
-            inventoryOpened = true;
             //else if (inventoryOpened == false && craftingOpened == true)
             //{
             //    playerToolBelt.SetActive(false);
             //}
 
-            if (inventoryOpened == true)
+            else if (inventoryOpened == true)
             {
                 playerInventoryScreen.SetActive(false);
                 playerToolBelt.SetActive(true);
