@@ -3,7 +3,24 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - EnemySpawner
+  - Wood_Resource
+  - Stone_Resource
+  - Iron_Resource
+  - Turret
+  - Fire
+  - Enemy
+  - Grass_Resource
+  - Sand_Resource
+  - Rope_Resource
+  - Coin_Resource
+  - Flint_Resource
+  - Stick_Resource
+  - Honey_Resource
+  - Hide_Resource
+  - Leather_Resource
+  - Charcoal_Resource
   layers:
   - Default
   - TransparentFX
@@ -13,8 +30,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Shootable
+  - Floor
   - 
   - 
   - 
