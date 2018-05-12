@@ -40,7 +40,7 @@ public class DayNightCycle : MonoBehaviour {
 
     [Header("Time")]
     [SerializeField]
-    [Range(0, 11)]
+    [Range(1, 12)]
     int m_hour = 6;
     [SerializeField]
     [Range(0, 59)]
@@ -79,8 +79,8 @@ public class DayNightCycle : MonoBehaviour {
                 m_minute = 0;
 
                 m_hour += 1;
-                if (m_hour > 11) {
-                    m_hour = 0;
+                if (m_hour > 12) {
+                    m_hour = 1;
 
                     switch (m_meridiem) {
                         case Meridiem.AM: { 
@@ -110,11 +110,11 @@ public class DayNightCycle : MonoBehaviour {
     public void SetHour(int hour) {
         m_hour = hour;
 
-        if (m_hour > 11) {
-            m_hour = 11;
+        if (m_hour > 12) {
+            m_hour = 12;
         }
-        else if (m_hour < 0) {
-            m_hour = 0;
+        else if (m_hour < 1) {
+            m_hour = 1;
         }
 
         AdjustMeridiem();

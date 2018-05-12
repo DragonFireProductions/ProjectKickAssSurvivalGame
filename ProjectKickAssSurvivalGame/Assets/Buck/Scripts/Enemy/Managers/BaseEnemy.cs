@@ -19,6 +19,8 @@ public class BaseEnemy : MonoBehaviour
 
     public float maxHealth;
 
+    public int spawnCost;
+
     [HideInInspector]
     public float curHealth;
 
@@ -28,9 +30,9 @@ public class BaseEnemy : MonoBehaviour
 
     [Header("UnitySettigns")]
 
-    //[HideInInspector]
+    [HideInInspector]
     public GameObject player;
-    //[HideInInspector]
+    [HideInInspector]
     public PlayerHealth playerHealth;
 
     [HideInInspector]
@@ -50,17 +52,19 @@ public class BaseEnemy : MonoBehaviour
     [HideInInspector]
     public Transform playerFire;
 
+    [HideInInspector]
+    public bool playerInRange;
+    [HideInInspector]
+    public bool fireInRange;
+    [HideInInspector]
+    public bool turretInRange;
+
     [SerializeField]
     Image healthBar;
 
     public GameObject coin;
 
     NavMeshAgent agent;
-
-    //[HideInInspector]
-    public bool playerInRange;
-    [HideInInspector]
-    public bool fireInRange;
 
     public void LocateTarget()
     {
@@ -73,28 +77,16 @@ public class BaseEnemy : MonoBehaviour
 
     public void Navigation()
     {
-        RaycastHit hit;
-
         agent.SetDestination(target.transform.position);
 
         agent.speed = moveSpeed;
-
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
-        {
-
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.green);
-        }
-        else
-        {
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.red);
-        }
     }
 
     public void UpdateTarget()
     {
         float playerDistance = Vector3.Distance(playerTransform.position, transform.position);
 
-        float fireDistance = Vector3.Distance(playerFire.transform.position, transform.position);
+        float fireDistance = Vector3.Distance(playerFire.position, transform.position);
 
         if (target != null)
         {
@@ -103,7 +95,7 @@ public class BaseEnemy : MonoBehaviour
                 target = playerFire;
             }
 
-            else if (playerDistance < fireDistance)
+            if (playerDistance < fireDistance)
             {
                 target = playerTransform;
             }

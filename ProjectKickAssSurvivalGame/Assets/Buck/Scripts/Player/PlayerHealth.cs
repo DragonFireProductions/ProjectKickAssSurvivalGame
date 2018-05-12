@@ -3,14 +3,13 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField]
-    float maxHealth;
+    public float maxHealth;
 
     [HideInInspector]
     public float curHealth;
 
-    [SerializeField]
-    Image healthBar;
+    public Image healthBar;
+
 
     void Start()
     {
@@ -23,7 +22,7 @@ public class PlayerHealth : MonoBehaviour
 
         healthBar.fillAmount = curHealth / maxHealth;
 
-        if(curHealth <= 0)
+        if (curHealth <= 0)
         {
             curHealth = 0;
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BaseTurret : MonoBehaviour
 {
@@ -13,6 +14,12 @@ public class BaseTurret : MonoBehaviour
     public float damagePerShot;
 
     public float rotateSpeed;
+
+    public float maxHealth;
+
+    public float curHealth;
+
+    public Image healthBar;
 
     [HideInInspector]
     public float fireTimer;
@@ -32,6 +39,8 @@ public class BaseTurret : MonoBehaviour
 
     public Light turretLight;
 
+    public GameObject turretSpotLight;
+
     public float effectsDisplayTime;
 
     SphereCollider turretRange;
@@ -48,12 +57,43 @@ public class BaseTurret : MonoBehaviour
 
     float camRayLength = 100f;
 
+    //[SerializeField]
+    DayNightCycle dayRef;
+
+    //[SerializeField]
+    GameObject sun;
+
     void Awake()
     {
         shootableMask = LayerMask.GetMask("Shootable");
         floorMask = LayerMask.GetMask("Floor");
+        sun = GameObject.FindGameObjectWithTag("Sun");
+        dayRef = sun.GetComponent<DayNightCycle>();
         turretLR = GetComponentInChildren<LineRenderer>();
         turretLight = GetComponentInChildren<Light>();
+        Light turretSpotLight = gameObject.GetComponent<Light>();
+
+        curHealth = maxHealth;
+    }
+
+    public void CheckTime()
+    {
+        if (dayRef.GetMeridiem() == DayNightCycle.Meridiem.AM)
+        {
+             turretSpotLight.SetActive(false);
+
+            if (dayRef.GetHour() <= 6f)
+            {
+                turretSpotLight.SetActive(true);
+            }
+        }
+        else
+        {
+            if (dayRef.GetHour() >= 6f)
+            {
+                turretSpotLight.SetActive(true);
+            }
+        }
     }
 
     public void UpdateTurretTarget()
@@ -110,6 +150,21 @@ public class BaseTurret : MonoBehaviour
         }
     }
 
+    public void CheckForEnemy()
+    {
+        shootRay.origin = firePoint.position;
+        shootRay.direction = firePoint.forward;
+
+        if (Physics.Raycast(shootRay, out shootHit, range, shootableMask) && shootHit.collider.tag == enemytag)
+        {
+            Fire();
+        }
+        else
+        {
+            Debug.DrawRay(firePoint.position, firePoint.forward * 1000f, Color.red);
+        }
+    }
+
     public void Fire()
     {
         fireTimer = 0;
@@ -135,6 +190,42 @@ public class BaseTurret : MonoBehaviour
         {
             turretLR.SetPosition(1, shootRay.origin + shootRay.direction * range);
         }
+    }
+
+    //This can be called from other scripts that would apply
+    //Damage to the turret
+    public void TakeDamage(float amount /*, Vector3 hitPoint*/)
+    {
+        curHealth -= amount;
+
+        //if (curHealth == maxHealth)
+        //{
+        //    healthBar.enabled = false;
+        //}
+        //else
+        //{
+        //    healthBar.enabled = true;
+        //}
+
+        //sets the health to alway start at 1 and end at 0
+        healthBar.fillAmount = curHealth / maxHealth;
+
+        //hitParticles.transform.positon = hitPoint;
+        //hitPartcles.Play();
+
+        if (curHealth <= 0)
+        {
+            curHealth = 0;
+
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        //PLAY BREAK ANIMATION DESTROY AFTER SO 
+        //MANY SECONDS
+        Destroy(gameObject);
     }
 
     public void DisableEffects()

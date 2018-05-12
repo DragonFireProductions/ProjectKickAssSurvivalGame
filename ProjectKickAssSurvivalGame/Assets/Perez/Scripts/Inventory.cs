@@ -4,7 +4,20 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public int wood_resource, stone_resource, coin_resource;
+    #region//Resources_ Public Ints
+
+    public int wood_resource, stone_resource, coin_resource, iron_resource, grass_resource, sand_resource, flint_resource,
+    stick_resource, honey_resource, hide_resource, rope_resource, leather_resource, charcoal_resource;
+
+    #endregion
+
+
+    #region//Crafted Item Count
+
+    public int craftedBurlapWall, craftedWoodFence, craftedStoneFence, craftedMetalFence, craftedWoodTurret, craftedStoneTurret, craftedMetalTurret, 
+    craftedBurlapArmor, craftedWoodArmor, craftedStoneArmor, craftedMetalArmor, craftedSpikeTrap, craftedBearTrap;
+
+    #endregion
 
     private void OnTriggerEnter(Collider other)
     {
@@ -23,6 +36,66 @@ public class Inventory : MonoBehaviour
         if(other.gameObject.tag == "Coin_Resource")
         {
             coin_resource++;
+            Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.tag == "Iron_Resource")
+        {
+            iron_resource++;
+            Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.tag == "Grass_Resource")
+        {
+            grass_resource++;
+            Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.tag == "Sand_Resource")
+        {
+            sand_resource++;
+            Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.tag == "Flint_Resource")
+        {
+            flint_resource++;
+            Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.tag == "Stick_Resource")
+        {
+            stick_resource++;
+            Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.tag == "Honey_Resource")
+        {
+            honey_resource++;
+            Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.tag == "Hide_Resource")
+        {
+            hide_resource++;
+            Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.tag == "Rope_Resource")
+        {
+           rope_resource++;
+            Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.tag == "Leather_Resource")
+        {
+            leather_resource++;
+            Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.tag == "Charcoal_Resource")
+        {
+            charcoal_resource++;
             Destroy(other.gameObject);
         }
     }
@@ -46,5 +119,67 @@ public class Inventory : MonoBehaviour
             coin_resource++;
             Destroy(other.gameObject);
         }
+
+        if (other.gameObject.tag == "Iron_Resource")
+        {
+            iron_resource++;
+            Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.tag == "Grass_Resource")
+        {
+            grass_resource++;
+            Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.tag == "Sand_Resource")
+        {
+            sand_resource++;
+            Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.tag == "Flint_Resource")
+        {
+            flint_resource++;
+            Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.tag == "Stick_Resource")
+        {
+            stick_resource++;
+            Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.tag == "Honey_Resource")
+        {
+            honey_resource++;
+            Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.tag == "Hide_Resource")
+        {
+            hide_resource++;
+            Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.tag == "Rope_Resource")
+        {
+            rope_resource++;
+            Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.tag == "Leather_Resource")
+        {
+            leather_resource++;
+            Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.tag == "Charcoal_Resource")
+        {
+            charcoal_resource++;
+            Destroy(other.gameObject);
+        }
     }
+
+
 }
