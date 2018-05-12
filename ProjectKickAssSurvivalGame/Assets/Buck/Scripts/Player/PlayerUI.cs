@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class PlayerUI : MonoBehaviour
@@ -21,6 +22,9 @@ public class PlayerUI : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI dayCounter;
 
+    [SerializeField]
+    TextMeshProUGUI clockCounter;
+
     [Header("UIElements")]
     [SerializeField]
     GameObject playerInventoryScreen;
@@ -31,9 +35,30 @@ public class PlayerUI : MonoBehaviour
     [SerializeField]
     GameObject playerToolBelt;
 
+    [SerializeField]
+    Image playerHealthBar;
+
+    [SerializeField]
+    GameObject clock;
+
+    [Header("PlayerHealthBarSettings")]
+
+    [SerializeField]
+    float fillAmount;
+
+    [SerializeField]
+    float lerpSpeed;
+
+    [SerializeField]
+    Color fullColor, emptyColor;
+
+    PlayerHealth healthRef;
+
     Inventory inventoryRef;
 
     WaveSpawner dayRef;
+
+    DayNightCycle timeRef;
 
     bool inventoryOpened;
     bool craftingOpened;
@@ -41,12 +66,17 @@ public class PlayerUI : MonoBehaviour
     void Awake()
     {
         inventoryRef = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+        healthRef = GameObject.Find("Player").GetComponent<PlayerHealth>();
         dayRef = GameObject.FindGameObjectWithTag("EnemySpawner").GetComponent<WaveSpawner>();
+        timeRef = GameObject.FindGameObjectWithTag("Sun").GetComponent<DayNightCycle>();
         coinsText.text = "COINS: " + Mathf.Round(inventoryRef.coin_resource).ToString();
         woodText.text = "WOOD: " + Mathf.Round(inventoryRef.wood_resource).ToString();
         stoneText.text = "STONE: " + Mathf.Round(inventoryRef.stone_resource).ToString();
-        dayCounter.text = "DAY: " + Mathf.Round(dayRef.daysPassed).ToString();
         ironText.text = "IRON: " + Mathf.Round(inventoryRef.iron_resource).ToString();
+        dayCounter.text = "DAY: " + Mathf.Round(dayRef.daysPassed).ToString();
+        clockCounter.text = "0" + Mathf.Abs(timeRef.GetHour()) + " : " + "0" + Mathf.Abs(timeRef.GetMinute()).ToString();
+
+        playerHealthBar.color = fullColor;
     }
 
     // Update is called once per frame
@@ -56,7 +86,21 @@ public class PlayerUI : MonoBehaviour
         OpenCraftingScreen();
         CheckResourceAmounts();
         CheckDaysSurvived();
+        CheckClock();
+        //HandlePlayerHealthBar();
     }
+
+    //NEEDS MORE COWBELL BEFORE COMPLETE FUK ALL DIS SHIT, I'M GOING TO BED
+    //void HandlePlayerHealthBar()
+    //{
+    //    playerHealthBar.fillAmount = healthRef.healthBar.fillAmount;
+
+    //    if (fillAmount != playerHealthBar.fillAmount)
+    //    {
+    //        playerHealthBar.fillAmount = Mathf.Lerp(playerHealthBar.fillAmount, fillAmount, Time.deltaTime * lerpSpeed);
+    //    }
+
+    //}
 
     void CheckResourceAmounts()
     {
@@ -69,6 +113,24 @@ public class PlayerUI : MonoBehaviour
     void CheckDaysSurvived()
     {
         dayCounter.text = "DAY: " + Mathf.Round(dayRef.daysPassed).ToString();
+    }
+
+    void CheckClock()
+    {
+        if (timeRef.GetHour() < 10f && timeRef.GetMinute() <= 10f)
+        {
+            clockCounter.text = "0" + Mathf.Abs(timeRef.GetHour()) + " : " + "0" + Mathf.Abs(timeRef.GetMinute()).ToString();
+        }
+
+        if (timeRef.GetHour() < 10f && timeRef.GetMinute() >= 10f)
+        {
+            clockCounter.text = "0" + Mathf.Abs(timeRef.GetHour()) + " : " + Mathf.Abs(timeRef.GetMinute()).ToString();
+        }
+
+        if(timeRef.GetHour() >= 10f && timeRef.GetMinute() >= 10f)
+        {
+            clockCounter.text = Mathf.Abs(timeRef.GetHour()) + " : " + Mathf.Abs(timeRef.GetMinute()).ToString();
+        }
     }
 
     void OpenInventoryScreen()
