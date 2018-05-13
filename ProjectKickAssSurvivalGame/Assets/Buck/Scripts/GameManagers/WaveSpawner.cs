@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class WaveSpawner : MonoBehaviour
 {
-    PlayerHealth playerHealth;
+    PlayerController playerHealth;
 
     [SerializeField]
     List<Transform> spawnLocations = new List<Transform>();

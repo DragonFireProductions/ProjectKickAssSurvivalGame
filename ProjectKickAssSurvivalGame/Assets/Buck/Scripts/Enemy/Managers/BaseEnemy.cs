@@ -33,7 +33,7 @@ public class BaseEnemy : MonoBehaviour
     [HideInInspector]
     public GameObject player;
     [HideInInspector]
-    public PlayerHealth playerHealth;
+    public PlayerController playerHealth;
 
     [HideInInspector]
     public GameObject fire;
@@ -143,9 +143,9 @@ public class BaseEnemy : MonoBehaviour
     {
         attackTimer += Time.deltaTime;
 
-        if (playerHealth.curHealth > 0)
+        if (playerHealth.health.CurValue > 0)
         {
-            playerHealth.TakeDamage(attackDamage);
+            //playerHealth.TakeDamage(attackDamage);
         }
 
         attackTimer = 0f;

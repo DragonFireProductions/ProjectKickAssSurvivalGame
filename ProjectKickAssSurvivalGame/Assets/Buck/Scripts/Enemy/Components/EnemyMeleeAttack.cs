@@ -16,7 +16,7 @@ public class EnemyMeleeAttack : MonoBehaviour
     public float attackTimer;
 
     GameObject player;
-    PlayerHealth playerHealth;
+    PlayerController playerHealth;
 
     GameObject fire;
     FireHealth fireHealth;
@@ -26,7 +26,7 @@ public class EnemyMeleeAttack : MonoBehaviour
     void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        playerHealth = player.GetComponent<PlayerHealth>();
+        playerHealth = player.GetComponent<PlayerController>();
 
         fire = GameObject.FindGameObjectWithTag("Fire");
         fireHealth = fire.GetComponent<FireHealth>();
@@ -79,9 +79,9 @@ public class EnemyMeleeAttack : MonoBehaviour
     {
         attackTimer += Time.deltaTime;
 
-        if (playerHealth.curHealth > 0)
+        if (playerHealth.health.CurValue > 0)
         {
-            playerHealth.TakeDamage(attackDamage);
+            //playerHealth.TakeDamage(attackDamage);
         }
 
         attackTimer = 0f;

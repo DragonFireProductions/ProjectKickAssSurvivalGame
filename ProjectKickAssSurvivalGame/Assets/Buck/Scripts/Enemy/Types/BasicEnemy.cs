@@ -13,7 +13,7 @@ public class BasicEnemy : BaseEnemy
         playerFire = GameObject.FindGameObjectWithTag("Fire").transform;
 
         player = GameObject.FindGameObjectWithTag("Player");
-        playerHealth = player.GetComponent<PlayerHealth>();
+        playerHealth = player.GetComponent<PlayerController>();
 
         fire = GameObject.FindGameObjectWithTag("Fire");
         fireHealth = fire.GetComponent<FireHealth>();

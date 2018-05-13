@@ -1,44 +1,48 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-    public GameObject MainMenu;
-
-    public GameObject OptionsMenu;
-
-    public GameObject CreditsMenu;
+    [SerializeField]
+    List<GameObject> menus = new List<GameObject>();
 
     void Start()
     {
-        MainMenu.SetActive(true);
-        OptionsMenu.SetActive(false);
-        CreditsMenu.SetActive(false);
+        menus[0].SetActive(true);
+        menus[1].SetActive(false);
+        menus[2].SetActive(false);
     }
 
-    public void PlayGame()
+    public void PlayButton()
     {
-        //Load Level name when created
-        //Placeholder for now
-        SceneManager.LoadScene("TestScene");
+
     }
 
-    public void OptionsButon()
+    public void OptionsButton()
     {
-        MainMenu.SetActive(false);
-        CreditsMenu.SetActive(false);
-        OptionsMenu.SetActive(true);
+        menus[0].SetActive(false);
+        menus[1].SetActive(true);
+        menus[2].SetActive(false);
     }
 
     public void CreditsButton()
     {
-        //Hide all other menues and enable credits menu
+        menus[0].SetActive(false);
+        menus[1].SetActive(false);
+        menus[2].SetActive(true);
+    }
+
+    public void QuitButton()
+    {
+        Application.Quit();
     }
 
     public void BackButton()
     {
-        MainMenu.SetActive(true);
-        OptionsMenu.SetActive(false);
-        CreditsMenu.SetActive(false);
+        menus[0].SetActive(true);
+        menus[1].SetActive(false);
+        menus[2].SetActive(false);
     }
 }
