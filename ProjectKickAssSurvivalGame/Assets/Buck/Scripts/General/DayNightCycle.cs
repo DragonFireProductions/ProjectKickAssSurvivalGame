@@ -36,6 +36,9 @@ public class DayNightCycle : MonoBehaviour
     [SerializeField]
     int daysPassed = 1;
 
+    [SerializeField]
+    string mpartOfDay;
+
     //Elapsed minutes to seconds
     float elapsedMS = 0.0f;
 
@@ -103,6 +106,7 @@ public class DayNightCycle : MonoBehaviour
 
             AdjustMeridiem();
 
+            TrackPartOfDay();
         }
 	}
 
@@ -180,9 +184,14 @@ public class DayNightCycle : MonoBehaviour
         return dayMeridiem;
     }
 
-    public float GetMinuteTOSecond()
+    public float GetMinuteToSecond()
     {
         return dayMinuteToSecond;
+    }
+
+    public string GetPartOfDay()
+    {
+        return mpartOfDay;
     }
 
     void AdjustMeridiem()
@@ -204,6 +213,65 @@ public class DayNightCycle : MonoBehaviour
                 {
                     break;
                 }
+        }
+    }
+
+    void TrackPartOfDay()
+    {
+        if (dayMeridiem == Meridiem.AM)
+        {
+            if (dayHour > 12 && dayHour <= 5)
+            {
+                mpartOfDay = "dawn";
+            }
+
+            if (dayHour > 5 && dayHour <= 6)
+            {
+                mpartOfDay = "early morning";
+            }
+
+            if (dayHour > 6 && dayHour <= 9)
+            {
+                mpartOfDay = "morning";
+            }
+
+            if (dayHour > 9 && dayHour <= 11)
+            {
+                mpartOfDay = "mid-morning";
+            }
+
+            if (dayHour > 11 && dayHour <= 12)
+            {
+                mpartOfDay = "afternoon";
+            }
+        }
+
+        else if (dayMeridiem == Meridiem.PM)
+        {
+            if (dayHour > 12 && dayHour <= 2)
+            {
+                mpartOfDay = "afternoon";
+            }
+
+            if (dayHour > 2 && dayHour <= 5)
+            {
+                mpartOfDay = "evening";
+            }
+
+            if (dayHour > 5 && dayHour <= 8)
+            {
+                mpartOfDay = "dusk";
+            }
+
+            if (dayHour > 8 && dayHour <= 11)
+            {
+                mpartOfDay = "night";
+            }
+
+            if (dayHour > 11 && dayHour <= 12)
+            {
+                mpartOfDay = "mid-night";
+            }
         }
     }
 }

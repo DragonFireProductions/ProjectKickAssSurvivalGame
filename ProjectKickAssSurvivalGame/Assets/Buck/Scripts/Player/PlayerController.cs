@@ -17,7 +17,12 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     float loseStamina;
-    float staminaTimer;
+    [SerializeField]
+    float recoverStamina;
+
+    float recoverStamineTimer;
+
+    float loseStaminaTimer;
 
     [Header("UnitySettings")]
     Rigidbody playerRB;
@@ -52,7 +57,6 @@ public class PlayerController : MonoBehaviour
 
         if (health.CurValue <= 0)
         {
-
             Die();
         }
     }
@@ -67,26 +71,43 @@ public class PlayerController : MonoBehaviour
         playerRB.MovePosition(transform.position + movement);
 
         //NEED TO COME BACK AND FINISH SPRINTING IMPLEMENTATION
+        //NEEDS TO SUBTRACT ONLY WHEN MOVINGS
         if (Stamina.CurValue >= 0)
         {
             //This is the functionallit for sprinting
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                staminaTimer += Time.deltaTime;
+                loseStaminaTimer += Time.deltaTime;
 
-                movement = movement.normalized * runSpeed * Time.deltaTime;
+                if (Stamina.CurValue <= 0)
+                {
+                    movement = movement.normalized * walkSpeed * Time.deltaTime;
+                }
+                else
+                {
+                    movement = movement.normalized * runSpeed * Time.deltaTime;
+                }
 
                 playerRB.MovePosition(transform.position + movement);
 
-                if (staminaTimer >= loseStamina)
+                if (loseStaminaTimer >= loseStamina)
                 {
                     Stamina.CurValue -= 1;
-                    staminaTimer = 0;
+                    loseStaminaTimer = 0;
                 }
             }
             else
             {
-                Stamina.CurValue += 1;
+                recoverStamineTimer += Time.deltaTime;
+
+                if (Stamina.CurValue < Stamina.MaxValue)
+                {
+                    if (recoverStamineTimer >= recoverStamina)
+                    {
+                        Stamina.CurValue += 1;
+                        recoverStamineTimer = 0;
+                    }
+                }
             }
         }
     }

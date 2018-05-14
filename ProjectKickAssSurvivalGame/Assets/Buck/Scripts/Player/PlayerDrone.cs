@@ -9,17 +9,16 @@ public class PlayerDrone : MonoBehaviour
     [SerializeField]
     float fireRate;
 
+    float fireTimer;
+
     [SerializeField]
     float range;
 
     [SerializeField]
-    float damagePerShot;
+    int damagePerShot;
 
     [SerializeField]
     float moveSpeed;
-
-    [SerializeField]
-    float fireTimer;
 
     [Header("UnitySettings")]
 

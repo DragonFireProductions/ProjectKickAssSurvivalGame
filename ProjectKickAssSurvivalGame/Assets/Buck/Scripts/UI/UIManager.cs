@@ -49,6 +49,7 @@ public class UIManager : MonoBehaviour
         CheckDaysPassed();
         CheckClock();
         CheckGameOver();
+        CheckPartOfDay();
 	}
 
     void CheckDaysPassed()
@@ -72,6 +73,11 @@ public class UIManager : MonoBehaviour
         {
             uiText[5].text = Mathf.Abs(dayRef.GetHour()) + " : " + Mathf.Abs(dayRef.GetMinute()).ToString();
         }
+    }
+
+    void CheckPartOfDay()
+    {
+        uiText[6].text = dayRef.GetPartOfDay().ToString();
     }
 
     void CheckGameOver()

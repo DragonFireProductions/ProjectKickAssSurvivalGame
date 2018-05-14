@@ -14,7 +14,7 @@ public class ResourceVaccum : MonoBehaviour
 
     void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = FindObjectOfType<PlayerController>().transform;
     }
 
     // Update is called once per frame

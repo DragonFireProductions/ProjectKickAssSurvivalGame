@@ -1,72 +1,85 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class WaveSpawner : MonoBehaviour
 {
-    PlayerController playerHealth;
+    [SerializeField]
+    List<GameObject> enemyTypes;
 
     [SerializeField]
-    List<Transform> spawnLocations = new List<Transform>();
+    List<Transform> spawnLocations;
 
     [SerializeField]
-    List<GameObject> enemyTypes = new List<GameObject>();
-
-    public float spawnRate;
-
-    [SerializeField]
-    float spawnTimer;
-
-    int SpawnCurrency;
-
-    public int enemiesSpawned;
-
-    public int daysPassed;
+    List<GameObject> spawnedEnemies;
 
     DayNightCycle dayRef;
 
-    GameObject sun;
+    [SerializeField]
+    int spawnCurrency;
+
+    [SerializeField]
+    float spawnRate;
+
+    float spawnTimer;
+
+    bool nightComplete;
 
     void Awake()
     {
-        sun = GameObject.FindGameObjectWithTag("Sun");
-        dayRef = sun.GetComponent<DayNightCycle>();
-        daysPassed = 1;
+        dayRef = FindObjectOfType<DayNightCycle>();
     }
+
+    // Use this for initialization
+    void Start()
+    {
+
+    }
+
     // Update is called once per frame
-    void Update ()
+    void Update()
     {
         spawnTimer += Time.deltaTime;
 
-        if (dayRef.GetMeridiem() == DayNightCycle.Meridiem.PM)
+        if (!nightComplete)
         {
-            if (dayRef.GetHour() >= 8f)
+            if (dayRef.GetMeridiem() == DayNightCycle.Meridiem.PM)
             {
-                dayRef.SetCycle(false);
-            }
+                if (dayRef.GetHour() == 8)
+                {
+                    SetNightSpawnCurrency();
 
-            if (spawnTimer >= spawnRate)
-            {
-                SpawnEnemies();
+                    dayRef.SetCycle(false);
+
+                    if (spawnTimer >= spawnRate)
+                    {
+                        SpawnWave();
+                    }
+                }
             }
         }
 
-        if (enemiesSpawned >= 10)
+        if (spawnCurrency <= 0)
         {
             EndNight();
 
             if (dayRef.GetMeridiem() == DayNightCycle.Meridiem.AM)
             {
-                if (dayRef.GetHour() >= 6f)
+                if (dayRef.GetHour() >= 6)
                 {
-                    daysPassed++;
-                    dayRef.SetMinuteToSecond(1f);
-                    enemiesSpawned = 0;
+                    dayRef.SetMinuteToSecond(1.0f);
+                    nightComplete = false;
                 }
             }
         }
-	}
+    }
 
-    void SpawnEnemies()
+    void SetNightSpawnCurrency()
+    {
+        spawnCurrency = Mathf.RoundToInt(15 * dayRef.GetDaysPassed() * 0.75f);
+    }
+
+    void SpawnWave()
     {
         //Select a spawn location from the list of locations
         Transform currentSpawn = spawnLocations[Random.Range(0, spawnLocations.Count)];
@@ -79,17 +92,34 @@ public class WaveSpawner : MonoBehaviour
         //Create the baddie
         Instantiate(selectedEnemy, currentSpawnPosition, currentSpawnRotation);
 
-        spawnTimer = 0;
+        spawnedEnemies.Add(selectedEnemy);
 
-        enemiesSpawned++;
+        if (spawnedEnemies != null)
+        {
+            for (int i = 0; i < spawnedEnemies.Count; i++)
+            {
+                if (spawnedEnemies[i].GetComponent<BaseEnemy>() != null)
+                {
+                    spawnCurrency -= spawnedEnemies[i].GetComponent<BaseEnemy>().spawnCost;
+                }
+            }
+        }
+
+        spawnTimer = 0;
     }
 
     void EndNight()
     {
-        if (dayRef.GetMeridiem() == DayNightCycle.Meridiem.PM)
-        {
-            dayRef.SetCycle(true);
-            dayRef.SetMinuteToSecond(60f);
-        }
+        nightComplete = true;
+
+        //Need to figure out the for loop for this
+        //if (spawnedEnemies == null)
+        //{
+            if (dayRef.GetMeridiem() == DayNightCycle.Meridiem.PM)
+            {
+                dayRef.SetCycle(true);
+                dayRef.SetMinuteToSecond(60f);
+            }
+        //}
     }
 }

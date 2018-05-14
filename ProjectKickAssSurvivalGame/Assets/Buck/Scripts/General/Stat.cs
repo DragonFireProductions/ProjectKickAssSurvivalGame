@@ -11,7 +11,6 @@ public class Stat
     [SerializeField]
     float maxValue;
 
-    [SerializeField]
     float curValue;
 
     public float CurValue
@@ -45,6 +44,6 @@ public class Stat
     public void SetValues()
     {
         MaxValue = maxValue;
-        CurValue = curValue;
+        CurValue = maxValue;
     }
 }
