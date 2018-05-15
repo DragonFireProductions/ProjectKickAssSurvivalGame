@@ -73,6 +73,7 @@ public class WaveSpawner : MonoBehaviour
             {
                 if (dayRef.GetHour() >= 6)
                 {
+                    SetNightSpawnCurrency();
                     dayRef.SetMinuteToSecond(1.0f);
                     nightComplete = false;
                 }
@@ -99,6 +100,7 @@ public class WaveSpawner : MonoBehaviour
         Instantiate(selectedEnemy, currentSpawnPosition, currentSpawnRotation);
 
         spawnCurrency -= selectedEnemy.GetComponent<BaseEnemy>().spawnCost;
+
         if (spawnCurrency >= 0)
         {
             spawnedEnemies.Add(selectedEnemy);
@@ -112,9 +114,9 @@ public class WaveSpawner : MonoBehaviour
         nightComplete = true;
 
         //Need to figure out the for loop for this
-        if (spawnedEnemies == null)
+        if (spawnedEnemies.Count == 0)
         {
-            SetNightSpawnCurrency();
+            Debug.Log("Hallo");
             if (dayRef.GetMeridiem() == DayNightCycle.Meridiem.PM)
             {
                 dayRef.SetCycle(true);

@@ -16,6 +16,7 @@ public class BasicEnemy : BaseEnemy
 
         UpdateTarget();
         Navigation();
+        CheckForDamage();
 
         if (attackTimer >= attackSpeed && targetsInRange[0] == true && health.CurValue > 0)
         {

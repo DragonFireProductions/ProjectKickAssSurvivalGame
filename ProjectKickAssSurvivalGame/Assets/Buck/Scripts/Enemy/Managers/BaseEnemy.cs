@@ -66,6 +66,18 @@ public class BaseEnemy : MonoBehaviour
         waveSpawnerRef = FindObjectOfType<WaveSpawner>();
     }
 
+    public void CheckForDamage()
+    {
+        if (health.CurValue == health.MaxValue)
+        {
+            health.bar.gameObject.SetActive(false);
+        }
+        else
+        {
+            health.bar.gameObject.SetActive(true);
+        }
+    }
+
     public void LocateTarget()
     {
         //target = GameObject.FindGameObjectWithTag("Player").transform;

@@ -6,7 +6,7 @@ using UnityEngine;
 public class Stat
 {
     [SerializeField]
-    BarManger bar;
+    public BarManger bar;
 
     [SerializeField]
     float maxValue;

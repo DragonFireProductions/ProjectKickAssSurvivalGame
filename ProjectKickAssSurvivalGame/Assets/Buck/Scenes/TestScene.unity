@@ -688,6 +688,24 @@ Transform:
   m_PrefabParentObject: {fileID: 4241136449916114, guid: b9b83a67ec85e7d43b37a5038c920d06,
     type: 2}
   m_PrefabInternal: {fileID: 1672202604}
+--- !u!1 &23307587 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1956338513186380, guid: 017025f5b99e7c147a25718c06c3259c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1073887865}
+--- !u!114 &23307593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 23307587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaa80e7db15d32047a071e4a0d42d49c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  placeableObjectPrefabs:
+  - {fileID: 1507018250569136, guid: a0587e935c0e9014c8f43a3730830c9a, type: 2}
 --- !u!4 &26362691 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4241136449916114, guid: b9b83a67ec85e7d43b37a5038c920d06,
@@ -1594,7 +1612,7 @@ GameObject:
   m_Layer: 0
   m_Name: SpawnLocation (3)
   m_TagString: Untagged
-  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -15325,7 +15343,7 @@ GameObject:
   m_Layer: 0
   m_Name: SpawnLocation (4)
   m_TagString: Untagged
-  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -26349,7 +26367,7 @@ GameObject:
   m_Layer: 0
   m_Name: SpawnLocation
   m_TagString: Untagged
-  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -30306,11 +30324,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4635912489052844, guid: 017025f5b99e7c147a25718c06c3259c, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 46
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4635912489052844, guid: 017025f5b99e7c147a25718c06c3259c, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4635912489052844, guid: 017025f5b99e7c147a25718c06c3259c, type: 2}
       propertyPath: m_LocalPosition.z
@@ -34096,7 +34114,7 @@ GameObject:
   m_Layer: 0
   m_Name: SpawnLocation (1)
   m_TagString: Untagged
-  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -42423,7 +42441,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4842844719889710, guid: 04f6a793ab3ebcf46b384cfd5d7cc6f3, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4842844719889710, guid: 04f6a793ab3ebcf46b384cfd5d7cc6f3, type: 2}
       propertyPath: m_LocalPosition.z
@@ -45057,7 +45075,7 @@ GameObject:
   m_Layer: 0
   m_Name: SpawnLocation (2)
   m_TagString: Untagged
-  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
