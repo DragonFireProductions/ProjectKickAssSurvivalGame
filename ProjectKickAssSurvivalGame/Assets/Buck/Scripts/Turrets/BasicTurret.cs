@@ -15,6 +15,8 @@ public class BasicTurret : BaseTurret
 
         CheckTime();
 
+        CheckForDamage();
+
         if (fireTimer >= fireRate && target != null)
         {
             CheckForEnemy();

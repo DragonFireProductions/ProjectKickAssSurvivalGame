@@ -8,116 +8,112 @@ public class BaseEnemy : MonoBehaviour
 {
     [Header("EnemySettings")]
 
-    public float attackDamage;
+    public Stat health;
+
+    public int attackDamage;
 
     public float attackSpeed;
+
+    //Might be used later on
+    //public float attackRange;
 
     [HideInInspector]
     public float attackTimer;
 
     public float moveSpeed;
 
-    public float maxHealth;
-
     public int spawnCost;
-
-    [HideInInspector]
-    public float curHealth;
 
     public int minCoins;
 
     public int maxCoins;
 
-    [Header("UnitySettigns")]
+    [Header("UnitySettings")]
 
-    [HideInInspector]
-    public GameObject player;
-    [HideInInspector]
-    public PlayerHealth playerHealth;
+    PlayerController player;
 
-    [HideInInspector]
-    public GameObject fire;
-    [HideInInspector]
-    public FireHealth fireHealth;
+    Transform target;
 
-    [HideInInspector]
-    public BaseEnemy enemyHealth;
+    //Retrieves targetsRefs locations at runtime
+    public List<Transform> targetLocations;
 
-    [HideInInspector]
-    public Transform target;
+    //Still dont know what im gonna do with this one
+    public List<string> targetTags;
 
-    [HideInInspector]
-    public Transform playerTransform;
-
-    [HideInInspector]
-    public Transform playerFire;
-
-    [HideInInspector]
-    public bool playerInRange;
-    [HideInInspector]
-    public bool fireInRange;
-    [HideInInspector]
-    public bool turretInRange;
-
-    [SerializeField]
-    Image healthBar;
+    //Must be populated within inspector
+    public List<bool> targetsInRange;
 
     public GameObject coin;
 
     NavMeshAgent agent;
 
+    Ray attackRay;
+
+    RaycastHit attackHit;
+
+    WaveSpawner waveSpawnerRef;
+
+    //Accessors
+    public int GetSpawnCost()
+    {
+        return spawnCost;
+    }
+
+    void Awake()
+    {
+        health.SetValues();
+        player = FindObjectOfType<PlayerController>();
+        waveSpawnerRef = FindObjectOfType<WaveSpawner>();
+    }
+
+    public void CheckForDamage()
+    {
+        if (health.CurValue == health.MaxValue)
+        {
+            health.bar.gameObject.SetActive(false);
+        }
+        else
+        {
+            health.bar.gameObject.SetActive(true);
+        }
+    }
+
     public void LocateTarget()
     {
-        target = GameObject.FindGameObjectWithTag("Fire").transform;
+        //target = GameObject.FindGameObjectWithTag("Player").transform;
 
         agent = GetComponent<NavMeshAgent>();
 
-        agent.SetDestination(target.transform.position);
+        //agent.SetDestination(target.transform.position);
     }
 
     public void Navigation()
     {
-        agent.SetDestination(target.transform.position);
+        //agent.SetDestination(target.transform.position);
 
         agent.speed = moveSpeed;
     }
 
     public void UpdateTarget()
     {
-        float playerDistance = Vector3.Distance(playerTransform.position, transform.position);
+        //Transform player = GameObject.FindGameObjectWithTag(targetTags[0]).transform;
+        //Transform fire = GameObject.FindGameObjectWithTag(targetTags[1]).transform;
+        //Transform turret = GameObject.FindGameObjectWithTag(targetTags[2]).transform;
 
-        float fireDistance = Vector3.Distance(playerFire.position, transform.position);
-
-        if (target != null)
-        {
-            if (playerDistance >= fireDistance)
-            {
-                target = playerFire;
-            }
-
-            if (playerDistance < fireDistance)
-            {
-                target = playerTransform;
-            }
-        }
+        //targetLocations.Add(turret);
+        //targetLocations.Add(player);
+        //targetLocations.Add(fire);
     }
 
-    //This can be called from other scripts that would apply
-    //Damage to the enemy
-    public void TakeDamage(float amount, Vector3 hitPoint)
+    public void TakeDamage(int amount, Vector3 hitPoint)
     {
-        curHealth -= amount;
-
-        //sets the health to alway start at 1 and end at 0
-        healthBar.fillAmount = curHealth / maxHealth;
+        health.CurValue -= amount;
 
         //hitParticles.transform.positon = hitPoint;
         //hitPartcles.Play();
 
-        if (curHealth <= 0)
+        if (health.CurValue <= 0)
         {
-            curHealth = 0;
-
             Die();
         }
     }
@@ -135,6 +131,17 @@ public class BaseEnemy : MonoBehaviour
             //Make them coins
             Instantiate(coin, transform.position, transform.rotation);
         }
+        
+        List<GameObject> t = waveSpawnerRef.GetEnemies();
+
+        for (int i = 0; i < t.Count; i++)
+        {
+            if (gameObject.tag == "Enemy")
+            {
+                t.RemoveAt(i);
+                break;
+            }
+        }
         //Destroy that baddie
         Destroy(gameObject);
     }
@@ -143,23 +150,53 @@ public class BaseEnemy : MonoBehaviour
     {
         attackTimer += Time.deltaTime;
 
-        if (playerHealth.curHealth > 0)
-        {
-            playerHealth.TakeDamage(attackDamage);
-        }
+        attackRay.origin = transform.position;
+        attackRay.direction = transform.forward;
 
-        attackTimer = 0f;
+        if (Physics.Raycast(attackRay, out attackHit))
+        {
+            if (player.health.CurValue > 0)
+            {
+                player.TakeDamage(attackDamage, attackHit.point);
+            }
+        }
+        attackTimer = 0;
     }
 
-    public void AttackFire()
+    void OnTriggerEnter(Collider target)
     {
-        attackTimer += Time.deltaTime;
-
-        if (fireHealth.curHealth > 0)
+        if (target.tag == "Player")
         {
-            fireHealth.TakeDamage(attackDamage);
+            targetsInRange[0] = true;
         }
 
-        attackTimer = 0f;
+        if (target.tag == "Fire")
+        {
+            targetsInRange[1] = true;
+        }
+
+        if (target.tag == "Turret")
+        {
+            targetsInRange[2] = true;
+        }
     }
+
+    void OnTriggerExit(Collider target)
+    {
+        if (target.tag == "Player")
+        {
+            targetsInRange[0] = false;
+        }
+
+        if (target.tag == "Fire")
+        {
+            targetsInRange[1] = false;
+        }
+
+        if (target.tag == "Turret")
+        {
+            targetsInRange[2] = false;
+        }
+    }
+
 }

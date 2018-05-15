@@ -18,7 +18,7 @@ public class BaseWeapon : MonoBehaviour
 
     public float range;
 
-    public float damagePerShot;
+    public int damagePerShot;
 
     public float effectDisplayTime;
 

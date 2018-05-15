@@ -73,9 +73,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4376648366476500}
-  - component: {fileID: 114791179239597254}
   - component: {fileID: 135329119733243698}
   - component: {fileID: 54059155530851402}
+  - component: {fileID: 114070581632773560}
   m_Layer: 0
   m_Name: Drone
   m_TagString: Untagged
@@ -887,7 +887,7 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &114791179239597254
+--- !u!114 &114070581632773560
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -895,23 +895,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1488379086802168}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dda0ee4ce88c7614c93b6b38d3780a29, type: 3}
+  m_Script: {fileID: 11500000, guid: 0112c59685d8a1b4b90514128b487132, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 1
+  fireRate: 0.5
   range: 10
   damagePerShot: 1
-  moveSpeed: 7
-  fireTimer: 0
-  offset: {x: 0, y: 1, z: 5}
-  rotateSpeed: 10
-  effectsDisplayTime: 0.2
-  partToRotate: {fileID: 4430860726352634}
-  firePoint: {fileID: 4271076355150534}
-  drone: {fileID: 4376648366476500}
+  moveSpeed: 7.5
+  offset: {x: 0, y: 0, z: 0}
+  rotateSpeed: 0
+  effectsDisplayTime: 0
+  partToRotate: {fileID: 0}
+  firePoint: {fileID: 0}
+  drone: {fileID: 0}
   droneSlot: {fileID: 0}
-  droneLR: {fileID: 120279338722366378}
-  droneLight: {fileID: 108917983442818414}
+  droneLR: {fileID: 0}
+  droneLight: {fileID: 0}
   enemytag: Enemy
 --- !u!120 &120279338722366378
 LineRenderer:

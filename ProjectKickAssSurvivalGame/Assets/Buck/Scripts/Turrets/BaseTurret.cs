@@ -11,15 +11,17 @@ public class BaseTurret : MonoBehaviour
 
     public float range;
 
-    public float damagePerShot;
+    public int damagePerShot;
 
     public float rotateSpeed;
 
-    public float maxHealth;
+    public Stat health;
 
-    public float curHealth;
+    //public float maxHealth;
 
-    public Image healthBar;
+    //public float curHealth;
+
+    //public Image healthBar;
 
     [HideInInspector]
     public float fireTimer;
@@ -59,40 +61,50 @@ public class BaseTurret : MonoBehaviour
 
     //[SerializeField]
     DayNightCycle dayRef;
-
-    //[SerializeField]
-    GameObject sun;
-
     void Awake()
     {
         shootableMask = LayerMask.GetMask("Shootable");
         floorMask = LayerMask.GetMask("Floor");
-        sun = GameObject.FindGameObjectWithTag("Sun");
-        dayRef = sun.GetComponent<DayNightCycle>();
+        dayRef = FindObjectOfType<DayNightCycle>();
         turretLR = GetComponentInChildren<LineRenderer>();
         turretLight = GetComponentInChildren<Light>();
         Light turretSpotLight = gameObject.GetComponent<Light>();
-
-        curHealth = maxHealth;
+        health.SetValues();
     }
 
     public void CheckTime()
     {
         if (dayRef.GetMeridiem() == DayNightCycle.Meridiem.AM)
         {
-             turretSpotLight.SetActive(false);
+            if (dayRef.GetHour() < 6f)
+            {
+                turretSpotLight.SetActive(true);
+            }
 
-            if (dayRef.GetHour() <= 6f)
+            else if (dayRef.GetHour() >= 6f)
+            {
+                turretSpotLight.SetActive(false);
+            }
+        }
+
+        if (dayRef.GetMeridiem() == DayNightCycle.Meridiem.PM)
+        {
+            if (dayRef.GetHour() >= 6)
             {
                 turretSpotLight.SetActive(true);
             }
         }
+    }
+
+    public void CheckForDamage()
+    {
+        if (health.CurValue == health.MaxValue)
+        {
+            health.bar.gameObject.SetActive(false);
+        }
         else
         {
-            if (dayRef.GetHour() >= 6f)
-            {
-                turretSpotLight.SetActive(true);
-            }
+            health.bar.gameObject.SetActive(true);
         }
     }
 
@@ -194,29 +206,15 @@ public class BaseTurret : MonoBehaviour
 
     //This can be called from other scripts that would apply
     //Damage to the turret
-    public void TakeDamage(float amount /*, Vector3 hitPoint*/)
+    public void TakeDamage(float amount, Vector3 hitPoint)
     {
-        curHealth -= amount;
-
-        //if (curHealth == maxHealth)
-        //{
-        //    healthBar.enabled = false;
-        //}
-        //else
-        //{
-        //    healthBar.enabled = true;
-        //}
-
-        //sets the health to alway start at 1 and end at 0
-        healthBar.fillAmount = curHealth / maxHealth;
+        health.CurValue -= amount;
 
         //hitParticles.transform.positon = hitPoint;
         //hitPartcles.Play();
 
-        if (curHealth <= 0)
+        if (health.CurValue <= 0)
         {
-            curHealth = 0;
-
             Die();
         }
     }
