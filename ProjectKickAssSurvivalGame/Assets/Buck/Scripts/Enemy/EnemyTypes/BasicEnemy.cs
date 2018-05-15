@@ -12,15 +12,18 @@ public class BasicEnemy : BaseEnemy
 
     void Update()
     {
-        attackTimer += Time.deltaTime;
-
         UpdateTarget();
         Navigation();
         CheckForDamage();
 
-        if (attackTimer >= attackSpeed && targetsInRange[0] == true && health.CurValue > 0)
+        if (targetsInRange[0] == true)
         {
-            AttackPlayer();
+            attackTimer += Time.deltaTime;
+
+            if (attackTimer >= attackSpeed && targetsInRange[0] == true && health.CurValue > 0)
+            {
+                AttackPlayer();
+            }
         }
     }
 }
