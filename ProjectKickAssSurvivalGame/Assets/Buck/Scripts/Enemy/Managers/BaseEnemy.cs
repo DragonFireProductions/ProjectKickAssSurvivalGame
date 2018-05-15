@@ -51,6 +51,8 @@ public class BaseEnemy : MonoBehaviour
 
     RaycastHit attackHit;
 
+    WaveSpawner waveSpawnerRef;
+
     //Accessors
     public int GetSpawnCost()
     {
@@ -61,6 +63,19 @@ public class BaseEnemy : MonoBehaviour
     {
         health.SetValues();
         player = FindObjectOfType<PlayerController>();
+        waveSpawnerRef = FindObjectOfType<WaveSpawner>();
+    }
+
+    public void CheckForDamage()
+    {
+        if (health.CurValue == health.MaxValue)
+        {
+            health.bar.gameObject.SetActive(false);
+        }
+        else
+        {
+            health.bar.gameObject.SetActive(true);
+        }
     }
 
     public void LocateTarget()
@@ -115,6 +130,17 @@ public class BaseEnemy : MonoBehaviour
         {
             //Make them coins
             Instantiate(coin, transform.position, transform.rotation);
+        }
+        
+        List<GameObject> t = waveSpawnerRef.GetEnemies();
+
+        for (int i = 0; i < t.Count; i++)
+        {
+            if (gameObject.tag == "Enemy")
+            {
+                t.RemoveAt(i);
+                break;
+            }
         }
         //Destroy that baddie
         Destroy(gameObject);

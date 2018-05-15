@@ -58,7 +58,6 @@ GameObject:
   - component: {fileID: 23508267732547458}
   - component: {fileID: 65339771316370746}
   - component: {fileID: 54834350158428084}
-  - component: {fileID: 114791338299174652}
   m_Layer: 0
   m_Name: Fire
   m_TagString: Fire
@@ -241,20 +240,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114791338299174652
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1656790243861400}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79f4aa83be82c2a4ba9d1ef670564f6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 20
-  curHealth: 0
-  healthBar: {fileID: 114614087906911430}
 --- !u!114 &114912472845119992
 MonoBehaviour:
   m_ObjectHideFlags: 1
