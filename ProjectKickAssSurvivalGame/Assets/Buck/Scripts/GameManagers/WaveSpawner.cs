@@ -25,6 +25,11 @@ public class WaveSpawner : MonoBehaviour
 
     bool nightComplete;
 
+    public List<GameObject> GetEnemies()
+    {
+        return spawnedEnemies;
+    }
+
     void Awake()
     {
         dayRef = FindObjectOfType<DayNightCycle>();
@@ -33,23 +38,24 @@ public class WaveSpawner : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        SetNightSpawnCurrency();
     }
 
     // Update is called once per frame
     void Update()
     {
-        spawnTimer += Time.deltaTime;
-
         if (!nightComplete)
         {
+            spawnTimer += Time.deltaTime;
+
             if (dayRef.GetMeridiem() == DayNightCycle.Meridiem.PM)
             {
                 if (dayRef.GetHour() == 8)
                 {
-                    SetNightSpawnCurrency();
-
-                    dayRef.SetCycle(false);
+                    if (dayRef.CanCycle())
+                    {
+                        dayRef.SetCycle(false);
+                    }
 
                     if (spawnTimer >= spawnRate)
                     {
@@ -92,17 +98,10 @@ public class WaveSpawner : MonoBehaviour
         //Create the baddie
         Instantiate(selectedEnemy, currentSpawnPosition, currentSpawnRotation);
 
-        spawnedEnemies.Add(selectedEnemy);
-
-        if (spawnedEnemies != null)
+        spawnCurrency -= selectedEnemy.GetComponent<BaseEnemy>().spawnCost;
+        if (spawnCurrency >= 0)
         {
-            for (int i = 0; i < spawnedEnemies.Count; i++)
-            {
-                if (spawnedEnemies[i].GetComponent<BaseEnemy>() != null)
-                {
-                    spawnCurrency -= spawnedEnemies[i].GetComponent<BaseEnemy>().spawnCost;
-                }
-            }
+            spawnedEnemies.Add(selectedEnemy);
         }
 
         spawnTimer = 0;
@@ -113,13 +112,14 @@ public class WaveSpawner : MonoBehaviour
         nightComplete = true;
 
         //Need to figure out the for loop for this
-        //if (spawnedEnemies == null)
-        //{
+        if (spawnedEnemies == null)
+        {
+            SetNightSpawnCurrency();
             if (dayRef.GetMeridiem() == DayNightCycle.Meridiem.PM)
             {
                 dayRef.SetCycle(true);
                 dayRef.SetMinuteToSecond(60f);
             }
-        //}
+        }
     }
 }

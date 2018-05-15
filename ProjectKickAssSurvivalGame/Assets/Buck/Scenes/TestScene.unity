@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641252, b: 0.574817, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1594,7 +1594,7 @@ GameObject:
   m_Layer: 0
   m_Name: SpawnLocation (3)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -4976,7 +4976,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &185559033
 Transform:
   m_ObjectHideFlags: 0
@@ -15325,7 +15325,7 @@ GameObject:
   m_Layer: 0
   m_Name: SpawnLocation (4)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -18431,10 +18431,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0112c59685d8a1b4b90514128b487132, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 0.5
+  fireRate: 1
   range: 10
-  damagePerShot: 1
-  moveSpeed: 15
+  damagePerShot: 10
+  moveSpeed: 10
   offset: {x: 0, y: 2, z: 2}
   rotateSpeed: 5
   effectsDisplayTime: 0.1
@@ -26349,7 +26349,7 @@ GameObject:
   m_Layer: 0
   m_Name: SpawnLocation
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -30306,15 +30306,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4635912489052844, guid: 017025f5b99e7c147a25718c06c3259c, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 46
       objectReference: {fileID: 0}
     - target: {fileID: 4635912489052844, guid: 017025f5b99e7c147a25718c06c3259c, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4635912489052844, guid: 017025f5b99e7c147a25718c06c3259c, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 4635912489052844, guid: 017025f5b99e7c147a25718c06c3259c, type: 2}
       propertyPath: m_LocalRotation.x
@@ -34096,7 +34096,7 @@ GameObject:
   m_Layer: 0
   m_Name: SpawnLocation (1)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -45057,7 +45057,7 @@ GameObject:
   m_Layer: 0
   m_Name: SpawnLocation (2)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -53987,7 +53987,7 @@ MonoBehaviour:
   dayHour: 6
   dayMinute: 0
   dayMeridiem: 0
-  dayMinuteToSecond: 15
+  dayMinuteToSecond: 1
   canCycleDay: 1
   daysPassed: 1
   mpartOfDay: 
@@ -55235,13 +55235,13 @@ GameObject:
   m_Component:
   - component: {fileID: 2000420230}
   - component: {fileID: 2000420229}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WaveManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2000420229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55264,7 +55264,7 @@ MonoBehaviour:
   - {fileID: 530434447}
   spawnedEnemies: []
   spawnCurrency: 0
-  spawnRate: 1.5
+  spawnRate: 1
 --- !u!4 &2000420230
 Transform:
   m_ObjectHideFlags: 0
@@ -55272,7 +55272,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2000420228}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4, y: 1, z: -15}
+  m_LocalPosition: {x: 4, y: 6, z: -26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 955670090}
