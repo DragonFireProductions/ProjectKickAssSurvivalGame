@@ -105,8 +105,6 @@ GameObject:
   - component: {fileID: 23664315729457562}
   - component: {fileID: 65807925309000170}
   - component: {fileID: 54874709763477354}
-  - component: {fileID: 114894076323816914}
-  - component: {fileID: 114348940882170822}
   - component: {fileID: 114972359852607110}
   - component: {fileID: 114765235179405178}
   m_Layer: 0
@@ -275,17 +273,6 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
---- !u!114 &114348940882170822
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1956338513186380}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1203ce27886378f449b36e52e0ecf3e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114454781298474734
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -350,17 +337,6 @@ MonoBehaviour:
   runSpeed: 10
   loseStamina: 0.25
   recoverStamina: 0.25
---- !u!114 &114894076323816914
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1956338513186380}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43c3c4a34b2d9cc4d8c9e58812c11c83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114972359852607110
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -372,6 +348,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d16fd0860529fc74dbc6c6e68f5c9c21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemSlot: {fileID: 0}
+  basicGun: {fileID: 0}
 --- !u!222 &222036896804003886
 CanvasRenderer:
   m_ObjectHideFlags: 1
