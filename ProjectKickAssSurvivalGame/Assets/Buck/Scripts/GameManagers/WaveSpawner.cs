@@ -116,7 +116,6 @@ public class WaveSpawner : MonoBehaviour
         //Need to figure out the for loop for this
         if (spawnedEnemies.Count == 0)
         {
-            Debug.Log("Hallo");
             if (dayRef.GetMeridiem() == DayNightCycle.Meridiem.PM)
             {
                 dayRef.SetCycle(true);
