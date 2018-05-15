@@ -5,7 +5,7 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     #region//Resources_ Public Ints
-
+    
     public int wood_resource, stone_resource, coin_resource, iron_resource, grass_resource, sand_resource, flint_resource,
     stick_resource, honey_resource, hide_resource, rope_resource, leather_resource, charcoal_resource;
 
