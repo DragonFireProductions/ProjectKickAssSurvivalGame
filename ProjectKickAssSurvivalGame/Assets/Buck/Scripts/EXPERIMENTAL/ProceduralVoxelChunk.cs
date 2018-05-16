@@ -37,10 +37,6 @@ public class ProceduralVoxelChunk : MonoBehaviour
                 i++;
 
                 voxels[i] = GameObject.CreatePrimitive(PrimitiveType.Cube);
-<<<<<<< HEAD
-
-=======
->>>>>>> c1053c7821f4c13450d7531b36d3eed9929c81f1
                 oPos = transform.position;
                 oPos.y = 0f;
                 oPos.x -= xVoxels / 2 * voxelSize.x;
@@ -57,6 +53,8 @@ public class ProceduralVoxelChunk : MonoBehaviour
                 //Testing to see if it works correctly
                 oPos.y += Mathf.PerlinNoise((1000000f + (transform.position.x + oPos.x)) / gradient,
                     (seed + 1000000f + (transform.position.z + oPos.z)) / gradient) * height;
+
+                oPos.y = Mathf.Floor(oPos.y);
 
                 voxels[i].transform.position = oPos;
                 //Apply the voxel scale to every voxel
