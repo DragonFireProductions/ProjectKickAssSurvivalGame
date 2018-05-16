@@ -26,7 +26,7 @@ public class ProceduralVoxelChunk : MonoBehaviour
         GameObject[] voxels = new GameObject[xVoxels * zVoxels];
 
         //oPos = origin point that the voxel chunk is generated from
-        Vector3 oPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        Vector3 oPos = new Vector3(transform.position.x, transform.position.z);
 
         int i = -1;
 
@@ -37,7 +37,10 @@ public class ProceduralVoxelChunk : MonoBehaviour
                 i++;
 
                 voxels[i] = GameObject.CreatePrimitive(PrimitiveType.Cube);
+<<<<<<< HEAD
 
+=======
+>>>>>>> c1053c7821f4c13450d7531b36d3eed9929c81f1
                 oPos = transform.position;
                 oPos.y = 0f;
                 oPos.x -= xVoxels / 2 * voxelSize.x;

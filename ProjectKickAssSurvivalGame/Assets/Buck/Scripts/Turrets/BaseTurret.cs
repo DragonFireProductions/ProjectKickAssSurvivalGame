@@ -17,12 +17,6 @@ public class BaseTurret : MonoBehaviour
 
     public Stat health;
 
-    //public float maxHealth;
-
-    //public float curHealth;
-
-    //public Image healthBar;
-
     [HideInInspector]
     public float fireTimer;
 
@@ -59,8 +53,8 @@ public class BaseTurret : MonoBehaviour
 
     float camRayLength = 100f;
 
-    //[SerializeField]
     DayNightCycle dayRef;
+
     void Awake()
     {
         shootableMask = LayerMask.GetMask("Shootable");

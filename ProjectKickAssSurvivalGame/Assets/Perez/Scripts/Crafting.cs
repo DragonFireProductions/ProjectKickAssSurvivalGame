@@ -19,36 +19,10 @@ public class Crafting : MonoBehaviour
 
     #endregion
 
-    #region//Serialized Buttons
-
-    //[SerializeField] Button B_BurlapWall, B_WoodFence, B_StoneFence, B_MetalFence, B_WoodTurret,
-    //B_StoneTurret, B_MetalTurret, B_BurlapArmor, B_WoodArmor, B_StoneArmor, B_MetalArmor, B_SpikeTrap, B_BearTrap;
-
-    #endregion
-
-    #region//Button Colorblocks
-
-    //ColorBlock colors1 = B_BurlapWall.colors;
-    //ColorBlock colors2 = B_WoodFence.colors;
-    //ColorBlock colors3 = B_StoneFence.colors;
-    //ColorBlock colors4 = B_MetalFence.colors;
-    //ColorBlock colors5 = B_WoodTurret.colors;
-    //ColorBlock colors6 = B_StoneTurret.colors;
-    //ColorBlock colors7 = B_MetalTurret.colors;
-    //ColorBlock colors8 = B_BurlapArmor.colors;
-    //ColorBlock colors9 = B_WoodArmor.colors;
-    //ColorBlock colors10 = B_StoneArmor.colors;
-    //ColorBlock colors11 = B_MetalArmor.colors;
-    //ColorBlock colors12 = B_SpikeTrap.colors;
-    //ColorBlock colors13 = B_BearTrap.colors;
-
-    #endregion
-
     //Access to inventory script
 
     private Inventory Inv;
 
-    
 
     private void Start()
     {
@@ -71,78 +45,9 @@ public class Crafting : MonoBehaviour
         CanCraft_BearTrap = false;
 
         #endregion
-
-        #region//Set Button Colors To Red At Start
-
-        //colors1.normalColor = Color.red;
-        //colors1.highlightedColor = Color.red;
-        //B_BurlapWall.colors = colors1;
-
-        //colors2.normalColor = Color.red;
-        //colors2.highlightedColor = Color.red;
-        //B_WoodFence.colors = colors2;
-
-        //colors3.normalColor = Color.red;
-        //colors3.highlightedColor = Color.red;
-        //B_StoneFence.colors = colors3;
-
-        //colors4.normalColor = Color.red;
-        //colors4.highlightedColor = Color.red;
-        //B_MetalFence.colors = colors4;
-
-        //colors5.normalColor = Color.red;
-        //colors5.highlightedColor = Color.red;
-        //B_WoodTurret.colors = colors5;
-
-        //colors6.normalColor = Color.red;
-        //colors6.highlightedColor = Color.red;
-        //B_StoneTurret.colors = colors6;
-
-        //colors7.normalColor = Color.red;
-        //colors7.highlightedColor = Color.red;
-        //B_MetalTurret.colors = colors7;
-
-        //colors8.normalColor = Color.red;
-        //colors8.highlightedColor = Color.red;
-        //B_BurlapArmor.colors = colors8;
-
-        //colors9.normalColor = Color.red;
-        //colors9.highlightedColor = Color.red;
-        //B_WoodArmor.colors = colors9;
-
-        //colors10.normalColor = Color.red;
-        //colors10.highlightedColor = Color.red;
-        //B_StoneArmor.colors = colors10;
-
-        //colors11.normalColor = Color.red;
-        //colors11.highlightedColor = Color.red;
-        //B_MetalArmor.colors = colors11;
-
-        //colors12.normalColor = Color.red;
-        //colors12.highlightedColor = Color.red;
-        //B_SpikeTrap.colors = colors12;
-
-        //colors13.normalColor = Color.red;
-        //colors13.highlightedColor = Color.red;
-        //B_BearTrap.colors = colors13;
-
-        #endregion
     }
 
-    void Update ()
-    {
-        //SetButtonsToGreen();
-	}
-
-    //void SetButtonsToGreen()
-    //{
-    //    if (CanCraft_BurlapWall == true)
-    //    {
-    //        colors1.normalColor = Color.green;
-    //        colors1.highlightedColor = Color.green;
-    //        B_BurlapWall.colors = colors1;
-    //    }
-    //}
+    #region//Craftable Item Functions
 
     public void BurlapWall()
     {
@@ -153,9 +58,9 @@ public class Crafting : MonoBehaviour
 
         if (CanCraft_BurlapWall == true)
         {
-            Instantiate(G_BurlapWall, transform.position + (transform.forward * 5), transform.rotation);
             Inv.sand_resource--;
             Inv.rope_resource--;
+            Inv.craftedBurlapWall++;
         }
 
         if (Inv.sand_resource <= 0 && Inv.rope_resource <= 0)
@@ -164,157 +69,235 @@ public class Crafting : MonoBehaviour
         }
     }
 
-    private void WoodFence()
+    public void WoodFence()
     {
-        if (Inv.wood_resource >= 1)
+        if (Inv.wood_resource >= 3)
         {
             CanCraft_WoodFence = true;
         }
 
         if (CanCraft_WoodFence == true)
         {
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                Instantiate(G_WoodFence, transform.position + (transform.forward * 5), transform.rotation);
-                Inv.wood_resource--;
-            }
+            Inv.wood_resource = Inv.wood_resource - 3;
+            Inv.craftedWoodFence++;
         }
 
-        if (Inv.wood_resource <= 0)
+        if (Inv.wood_resource < 3)
         {
             CanCraft_WoodFence = false;
         }
     }
 
-    private void StoneFence()
+    public void StoneFence()
     {
-        if (Inv.stone_resource >= 1)
+        if (Inv.stone_resource >= 5)
         {
             CanCraft_StoneFence = true;
         }
 
         if (CanCraft_StoneFence == true)
         {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                Instantiate(G_StoneFence, transform.position + (transform.forward * 5), transform.rotation);
-                Inv.stone_resource--;
-            }
+            Inv.stone_resource = Inv.stone_resource - 5;
+            Inv.craftedStoneFence++;
         }
 
-        if (Inv.stone_resource <= 0)
+        if (Inv.stone_resource < 5)
         {
             CanCraft_StoneFence = false;
         }
     }
 
-    private void MetalFence()
+    public void MetalFence()
     {
-        if (Inv.iron_resource >= 1)
+        if (Inv.iron_resource >= 10)
         {
             CanCraft_MetalFence = true;
         }
 
         if (CanCraft_MetalFence == true)
         {
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                Instantiate(G_MetalFence, transform.position + (transform.forward * 5), transform.rotation);
-                Inv.iron_resource--;
-            }
+            Inv.iron_resource = Inv.iron_resource - 10;
+            Inv.craftedMetalFence++;
         }
 
-        if (Inv.iron_resource <= 0)
+        if (Inv.iron_resource < 10)
         {
             CanCraft_MetalFence = false;
         }
     }
 
-    private void WoodTurret()
+    public void WoodTurret()
     {
-        if (Inv.wood_resource >= 1)
+        if (Inv.wood_resource >= 21)
         {
             CanCraft_WoodTurret = true;
         }
 
         if (CanCraft_WoodTurret == true)
         {
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                Instantiate(G_WoodTurret, transform.position + (transform.forward * 5), transform.rotation);
-                Inv.wood_resource--;
-            }
+            Inv.wood_resource = Inv.wood_resource - 21;
+            Inv.craftedWoodTurret++;
         }
 
-        if (Inv.wood_resource <= 0)
+        if (Inv.wood_resource < 21)
         {
             CanCraft_WoodTurret = false;
         }
     }
 
-    private void StoneTurret()
+    public void StoneTurret()
     {
-        if (Inv.stone_resource >= 1)
+        if (Inv.stone_resource >= 35)
         {
             CanCraft_StoneTurret = true;
         }
 
         if (CanCraft_StoneTurret == true)
         {
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                Instantiate(G_StoneTurret, transform.position + (transform.forward * 5), transform.rotation);
-                Inv.stone_resource--;
-            }
+            Inv.stone_resource = Inv.stone_resource - 35;
+            Inv.craftedStoneTurret++;
         }
 
-        if (Inv.stone_resource <= 0)
+        if (Inv.stone_resource < 35)
         {
             CanCraft_StoneTurret = false;
         }
     }
 
-    private void MetalTurret()
+    public void MetalTurret()
     {
-        if (Inv.iron_resource >= 1)
+        if (Inv.iron_resource >= 70)
         {
             CanCraft_MetalTurret = true;
         }
 
         if (CanCraft_MetalTurret == true)
         {
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                Instantiate(G_MetalTurret, transform.position + (transform.forward * 5), transform.rotation);
-                Inv.iron_resource--;
-            }
+            Inv.iron_resource = Inv.iron_resource - 70;
+            Inv.craftedMetalTurret++;
         }
 
-        if (Inv.iron_resource <= 0)
+        if (Inv.iron_resource < 70)
         {
             CanCraft_MetalTurret = false;
         }
     }
 
-    private void BurlapArmor()
+    public void BurlapArmor()
     {
-        if (Inv.sand_resource >= 1 && Inv.rope_resource >= 1)
+        if (Inv.sand_resource >= 7 && Inv.rope_resource >= 7)
         {
             CanCraft_BurlapArmor = true;
         }
 
         if (CanCraft_BurlapArmor == true)
         {
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                Instantiate(G_BurlapArmor, transform.position + (transform.forward * 5), transform.rotation);
-                Inv.wood_resource--;
-            }
+            Inv.sand_resource = Inv.sand_resource - 7;
+            Inv.rope_resource = Inv.rope_resource - 7;
+            Inv.craftedBurlapArmor++;
         }
 
-        if (Inv.wood_resource <= 0)
+        if (Inv.sand_resource < 7 && Inv.rope_resource < 7)
         {
-            CanCraft_WoodTurret = false;
+            CanCraft_BurlapArmor = false;
         }
     }
+
+    public void WoodArmor()
+    {
+        if (Inv.wood_resource >= 10)
+        {
+            CanCraft_WoodArmor = true;
+        }
+
+        if (CanCraft_WoodArmor == true)
+        {
+            Inv.wood_resource = Inv.wood_resource - 10;
+            Inv.craftedWoodArmor++;
+        }
+
+        if (Inv.wood_resource < 10)
+        {
+            CanCraft_WoodArmor = false;
+        }
+    }
+
+    public void StoneArmor()
+    {
+        if (Inv.stone_resource >= 20)
+        {
+            CanCraft_StoneArmor = true;
+        }
+
+        if (CanCraft_StoneArmor == true)
+        {
+            Inv.stone_resource = Inv.stone_resource - 20;
+            Inv.craftedStoneArmor++;
+        }
+
+        if (Inv.stone_resource < 20)
+        {
+            CanCraft_StoneArmor = false;
+        }
+    }
+
+    public void MetalArmor()
+    {
+        if (Inv.iron_resource >= 50)
+        {
+            CanCraft_MetalArmor = true;
+        }
+
+        if (CanCraft_MetalArmor == true)
+        {
+            Inv.iron_resource = Inv.iron_resource - 50;
+            Inv.craftedMetalArmor++;
+        }
+
+        if (Inv.iron_resource < 50)
+        {
+            CanCraft_MetalArmor = false;
+        }
+    }
+
+    public void SpikeTrap()
+    {
+        if (Inv.iron_resource >= 15)
+        {
+            CanCraft_SpikeTrap = true;
+        }
+
+        if (CanCraft_SpikeTrap == true)
+        {
+            Inv.iron_resource = Inv.iron_resource - 15;
+            Inv.craftedSpikeTrap++;
+        }
+
+        if (Inv.iron_resource < 15)
+        {
+            CanCraft_SpikeTrap = false;
+        }
+    }
+
+    public void BearTrap()
+    {
+        if (Inv.iron_resource >= 25)
+        {
+            CanCraft_BearTrap = true;
+        }
+
+        if (CanCraft_BearTrap == true)
+        {
+            Inv.iron_resource = Inv.iron_resource - 25;
+            Inv.craftedBearTrap++;
+        }
+
+        if (Inv.iron_resource < 25)
+        {
+            CanCraft_BearTrap = false;
+        }
+    }
+
+    #endregion
+
 }
