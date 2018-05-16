@@ -32,6 +32,7 @@ public class BaseEnemy : MonoBehaviour
 
     PlayerController player;
 
+    [SerializeField]
     Transform target;
 
     //Retrieves targetsRefs locations at runtime
@@ -66,6 +67,11 @@ public class BaseEnemy : MonoBehaviour
         waveSpawnerRef = FindObjectOfType<WaveSpawner>();
     }
 
+    void Start()
+    {
+
+    }
+
     public void CheckForDamage()
     {
         if (health.CurValue == health.MaxValue)
@@ -80,29 +86,36 @@ public class BaseEnemy : MonoBehaviour
 
     public void LocateTarget()
     {
-        //target = GameObject.FindGameObjectWithTag("Player").transform;
+        target = GameObject.FindGameObjectWithTag("Player").transform;
 
         agent = GetComponent<NavMeshAgent>();
-
-        //agent.SetDestination(target.transform.position);
     }
 
     public void Navigation()
     {
-        //agent.SetDestination(target.transform.position);
+        agent.SetDestination(target.transform.position);
 
         agent.speed = moveSpeed;
     }
 
     public void UpdateTarget()
-    {
-        //Transform player = GameObject.FindGameObjectWithTag(targetTags[0]).transform;
-        //Transform fire = GameObject.FindGameObjectWithTag(targetTags[1]).transform;
-        //Transform turret = GameObject.FindGameObjectWithTag(targetTags[2]).transform;
+    { 
 
-        //targetLocations.Add(turret);
-        //targetLocations.Add(player);
-        //targetLocations.Add(fire);
+        Transform player = GameObject.FindGameObjectWithTag(targetTags[0]).transform;
+        Transform fire = GameObject.FindGameObjectWithTag(targetTags[1]).transform;
+
+        //if the list doesn't have the player in it
+        //Add it once
+        if (!targetLocations.Contains(player))
+        {
+            targetLocations.Add(player);
+        }
+
+        if (!targetLocations.Contains(fire))
+        {
+            targetLocations.Add(fire);
+        }
+
     }
 
     public void TakeDamage(int amount, Vector3 hitPoint)
@@ -148,8 +161,6 @@ public class BaseEnemy : MonoBehaviour
 
     public void AttackPlayer()
     {
-        attackTimer += Time.deltaTime;
-
         attackRay.origin = transform.position;
         attackRay.direction = transform.forward;
 

@@ -7,8 +7,6 @@ public class BasicTurret : BaseTurret
     // Update is called once per frame
     void Update()
     {
-        fireTimer += Time.deltaTime;
-
         UpdateTurretTarget();
 
         LockOnTarget();
@@ -17,9 +15,14 @@ public class BasicTurret : BaseTurret
 
         CheckForDamage();
 
-        if (fireTimer >= fireRate && target != null)
+        if (target != null)
         {
-            CheckForEnemy();
+            fireTimer += Time.deltaTime;
+
+            if (fireTimer >= fireRate)
+            {
+                CheckForEnemy();
+            }
         }
         if (fireTimer >= fireRate * effectsDisplayTime)
         {
