@@ -46,6 +46,8 @@ public class DayNightCycle : MonoBehaviour
 	void Start ()
     {
         AdjustMeridiem();
+
+        TrackPartOfDay();
 	}
 	
 	// Update is called once per frame

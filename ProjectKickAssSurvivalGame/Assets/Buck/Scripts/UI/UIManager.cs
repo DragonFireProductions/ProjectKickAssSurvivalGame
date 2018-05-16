@@ -59,19 +59,40 @@ public class UIManager : MonoBehaviour
 
     void CheckClock()
     {
-        if (dayRef.GetHour() < 10f && dayRef.GetMinute() <= 10f)
+        if (dayRef.GetMeridiem() == DayNightCycle.Meridiem.AM)
         {
-            uiText[5].text = "0" + Mathf.Abs(dayRef.GetHour()) + " : " + "0" + Mathf.Abs(dayRef.GetMinute()).ToString();
+            if (dayRef.GetHour() < 10f && dayRef.GetMinute() <= 10f)
+            {
+                uiText[5].text = "0" + Mathf.Abs(dayRef.GetHour()).ToString() + " : " + "0" + Mathf.Abs(dayRef.GetMinute()).ToString() + " AM";
+            }
+
+            if (dayRef.GetHour() < 10f && dayRef.GetMinute() >= 10f)
+            {
+                uiText[5].text = "0" + Mathf.Abs(dayRef.GetHour()).ToString() + " : " + Mathf.Abs(dayRef.GetMinute()).ToString() + " AM";
+            }
+
+            if (dayRef.GetHour() >= 10f && dayRef.GetMinute() >= 10f)
+            {
+                uiText[5].text = Mathf.Abs(dayRef.GetHour()) + " : " + Mathf.Abs(dayRef.GetMinute()).ToString() + " AM";
+            }
         }
 
-        if (dayRef.GetHour() < 10f && dayRef.GetMinute() >= 10f)
+        if (dayRef.GetMeridiem() == DayNightCycle.Meridiem.PM)
         {
-            uiText[5].text = "0" + Mathf.Abs(dayRef.GetHour()) + " : " + Mathf.Abs(dayRef.GetMinute()).ToString();
-        }
+            if (dayRef.GetHour() < 10f && dayRef.GetMinute() <= 10f)
+            {
+                uiText[5].text = "0" + Mathf.Abs(dayRef.GetHour()).ToString() + " : " + "0" + Mathf.Abs(dayRef.GetMinute()).ToString() + " PM";
+            }
 
-        if (dayRef.GetHour() >= 10f && dayRef.GetMinute() >= 10f)
-        {
-            uiText[5].text = Mathf.Abs(dayRef.GetHour()) + " : " + Mathf.Abs(dayRef.GetMinute()).ToString();
+            if (dayRef.GetHour() < 10f && dayRef.GetMinute() >= 10f)
+            {
+                uiText[5].text = "0" + Mathf.Abs(dayRef.GetHour()).ToString() + " : " + Mathf.Abs(dayRef.GetMinute()).ToString() + " PM";
+            }
+
+            if (dayRef.GetHour() >= 10f && dayRef.GetMinute() >= 10f)
+            {
+                uiText[5].text = Mathf.Abs(dayRef.GetHour()).ToString() + " : " + Mathf.Abs(dayRef.GetMinute()).ToString() + " PM";
+            }
         }
     }
 

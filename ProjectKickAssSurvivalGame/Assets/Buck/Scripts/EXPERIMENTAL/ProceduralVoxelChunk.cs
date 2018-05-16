@@ -5,7 +5,7 @@ using UnityEngine;
 public class ProceduralVoxelChunk : MonoBehaviour
 {
     public int xVoxels = 4;
-    public int yVoxels = 4;
+    //public int yVoxels = 4;
     public int zVoxels = 4;
 
     public Vector3 voxelSize = new Vector3(1f, 1f, 1f);
@@ -23,10 +23,10 @@ public class ProceduralVoxelChunk : MonoBehaviour
 
     void generateGrid()
     {
-        GameObject[] voxels = new GameObject[xVoxels * yVoxels * zVoxels];
+        GameObject[] voxels = new GameObject[xVoxels * zVoxels];
 
         //oPos = origin point that the voxel chunk is generated from
-        Vector3 oPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        Vector3 oPos = new Vector3(transform.position.x, transform.position.z);
 
         int i = -1;
 
@@ -38,7 +38,7 @@ public class ProceduralVoxelChunk : MonoBehaviour
                 i++;
 
                 voxels[i] = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                oPos = this.transform.position;
+                oPos = transform.position;
                 oPos.y = 0f;
                 oPos.x = xVoxels / 2 * voxelSize.x;
                 //oPos.y = yVoxels / 2 * voxelSize.y;
