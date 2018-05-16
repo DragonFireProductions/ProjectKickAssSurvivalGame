@@ -5,7 +5,7 @@ using UnityEngine;
 public class ProceduralVoxelChunk : MonoBehaviour
 {
     public int xVoxels = 4;
-    public int yVoxels = 4;
+    //public int yVoxels = 4;
     public int zVoxels = 4;
 
     public Vector3 voxelSize = new Vector3(1f, 1f, 1f);
@@ -23,7 +23,7 @@ public class ProceduralVoxelChunk : MonoBehaviour
 
     void generateGrid()
     {
-        GameObject[] voxels = new GameObject[xVoxels * yVoxels * zVoxels];
+        GameObject[] voxels = new GameObject[xVoxels * zVoxels];
 
         //oPos = origin point that the voxel chunk is generated from
         Vector3 oPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
@@ -32,21 +32,22 @@ public class ProceduralVoxelChunk : MonoBehaviour
 
         for (int x = 0; x < xVoxels; x++)
         {
-
             for (int z = 0; z < zVoxels; z++)
             {
                 i++;
 
                 voxels[i] = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                oPos = this.transform.position;
+
+                oPos = transform.position;
                 oPos.y = 0f;
-                oPos.x = xVoxels / 2 * voxelSize.x;
-                //oPos.y = yVoxels / 2 * voxelSize.y;
-                oPos.z = zVoxels / 2 * voxelSize.z;
+                oPos.x -= xVoxels / 2 * voxelSize.x;
+                oPos.z -= zVoxels / 2 * voxelSize.z;
+
+                oPos.x += x * voxelSize.x;
+                oPos.z += z * voxelSize.z;
 
                 //Snap to grid.
                 oPos.x = Mathf.Round(oPos.x);
-                //oPos.y = Mathf.Round(oPos.y);
                 oPos.z = Mathf.Round(oPos.z);
 
                 //PerlinNoise | dont believe I did my math right, still needs tremendous
@@ -82,10 +83,31 @@ public class ProceduralVoxelChunk : MonoBehaviour
         //Used to combine all of the voxels meshfilters into a singualr object
         CombineInstance[] combined = new CombineInstance[meshFilters.Length];
 
-        //
         for (int i = 0; i < meshFilters.Length; i++)
         {
+            //all of the meshes within combined then combine meshes
             combined[i].mesh = meshFilters[i].sharedMesh;
+            //Making sure the local position is relative to teh parent
+            combined[i].transform = meshFilters[i].transform.localToWorldMatrix;
+            //Once added to the combined mesh set them to false
+            meshFilters[i].gameObject.SetActive(false);
+        }
+
+        //If the gameobject this is on does not have a meshfilter 
+        //Then add one
+        if (gameObject.GetComponent<MeshFilter>() == null)
+        {
+            //adding the mesh filter to the game object
+            gameObject.AddComponent<MeshFilter>();
+
+            //Emptying out mesh filter of all meshes
+            transform.GetComponent<MeshFilter>().mesh = new Mesh();
+            transform.GetComponent<MeshFilter>().mesh.CombineMeshes(combined, true);
+            //Recalculating these makes sure teh colliders are set correctly
+            transform.GetComponent<MeshFilter>().mesh.RecalculateBounds();
+            transform.GetComponent<MeshFilter>().mesh.RecalculateNormals();
+
+            transform.gameObject.AddComponent<MeshCollider>();
         }
     }
 }
