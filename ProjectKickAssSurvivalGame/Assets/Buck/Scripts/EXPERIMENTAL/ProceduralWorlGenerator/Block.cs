@@ -11,74 +11,94 @@ public class Block
 
 	public BlockType bType;
 	public bool isSolid;
-	Chunk owner;
+	public Chunk owner;
 	GameObject parent;
-	Vector3 position;
+	public Vector3 position;
 
     public BlockType health;
-    int currenthealth;
+    int currentHealth;
     int[] blockHealthMax = { 3, 3, 4, -1, 4, 4, 0, 0, 0, 0, 0, 0 };
 
-	Vector2[,] blockUVs = { 
-		/*GRASS TOP*/		{ new Vector2(0.125f,0.375f),  new Vector2(0.1875f,0.375f),
-                                new Vector2(0.125f,0.4375f), new Vector2(0.1875f,0.4375f)},
-		/*GRASS SIDE*/		{ new Vector2(0.1875f,0.9375f),  new Vector2(0.25f,0.9375f),
-                                new Vector2(0.1875f,1f), new Vector2(0.25f,1f)},
-		/*DIRT*/			{ new Vector2(0.125f,0.9375f),  new Vector2(0.1875f,0.9375f),
-                                new Vector2(0.125f,1f), new Vector2(0.1875f,1f)},
-		/*STONE*/			{ new Vector2(0.0625f,0.9375f),  new Vector2(0.125f,0.9375f),
-                                new Vector2(0.0625f,1f), new Vector2(0.125f,1f)},
-		/*BEDROCK*/			{ new Vector2(0.0625f,0.875f),  new Vector2(0.125f,0.875f),
-                                new Vector2(0.0625f,0.9375f), new Vector2(0.125f,0.9375f)},
-		/*REDSTONE*/		{ new Vector2(0.1875f,0.75f),  new Vector2(0.25f,0.75f),
-                                new Vector2(0.1875f,0.8125f), new Vector2(0.25f,0.8125f)},
-		/*DIAMOND*/			{ new Vector2(0.125f,0.75f),  new Vector2(0.1875f,0.75f),
-                                new Vector2(0.125f,0.8125f), new Vector2(0.1875f,0.8125f)},
-        /*NOCRACK*/		    { new Vector2(0f,0.0625f),  new Vector2(0.0625f,0.0625f),
-                                new Vector2(0f,0.125f), new Vector2(0.0625f,0.125f)},
-        /*CRACK1*/		    { new Vector2(0f,0f),  new Vector2(0.0625f,0f),
-                                new Vector2(0f,0.0625f), new Vector2(0.0625f,0.0625f)},
-        /*CRACK2*/		    { new Vector2(0.0625f,0f),  new Vector2(0.125f,0f),
-                                new Vector2(0.0625f,0.0625f), new Vector2(0.125f,0.0625f)},
-        /*CRACK3*/		    { new Vector2(0.125f,0f),  new Vector2(0.1875f,0f),
-                                new Vector2(0.125f,0.0625f), new Vector2(0.1875f,0.0625f)},
-        /*CRACK4*/		    { new Vector2(0.1875f,0f),  new Vector2(0.25f,0f),
-                                new Vector2(0.1875f,0.0625f), new Vector2(0.25f,0.0625f)}
-                        }; 
+    Vector2[,] blockUVs = { 
+		/*GRASS TOP*/		{new Vector2( 0.125f, 0.375f ), new Vector2( 0.1875f, 0.375f),
+                                new Vector2( 0.125f, 0.4375f ),new Vector2( 0.1875f, 0.4375f )},
+		/*GRASS SIDE*/		{new Vector2( 0.1875f, 0.9375f ), new Vector2( 0.25f, 0.9375f),
+                                new Vector2( 0.1875f, 1.0f ),new Vector2( 0.25f, 1.0f )},
+		/*DIRT*/			{new Vector2( 0.125f, 0.9375f ), new Vector2( 0.1875f, 0.9375f),
+                                new Vector2( 0.125f, 1.0f ),new Vector2( 0.1875f, 1.0f )},
+		/*STONE*/			{new Vector2( 0, 0.875f ), new Vector2( 0.0625f, 0.875f),
+                                new Vector2( 0, 0.9375f ),new Vector2( 0.0625f, 0.9375f )},
+		/*BEDROCK*/			{new Vector2( 0.3125f, 0.8125f ), new Vector2( 0.375f, 0.8125f),
+                                new Vector2( 0.3125f, 0.875f ),new Vector2( 0.375f, 0.875f )},
+		/*REDSTONE*/		{new Vector2( 0.1875f, 0.75f ), new Vector2( 0.25f, 0.75f),
+                                new Vector2( 0.1875f, 0.8125f ),new Vector2( 0.25f, 0.8125f )},
+		/*DIAMOND*/			{new Vector2( 0.125f, 0.75f ), new Vector2( 0.1875f, 0.75f),
+                                new Vector2( 0.125f, 0.8125f ),new Vector2( 0.1875f, 0.8125f )},
+		/*NOCRACK*/			{new Vector2( 0.6875f, 0f ), new Vector2( 0.75f, 0f),
+                                new Vector2( 0.6875f, 0.0625f ),new Vector2( 0.75f, 0.0625f )},
+		/*CRACK1*/			{ new Vector2(0f,0f),  new Vector2(0.0625f,0f),
+                                 new Vector2(0f,0.0625f), new Vector2(0.0625f,0.0625f)},
+ 		/*CRACK2*/			{ new Vector2(0.0625f,0f),  new Vector2(0.125f,0f),
+                                 new Vector2(0.0625f,0.0625f), new Vector2(0.125f,0.0625f)},
+ 		/*CRACK3*/			{ new Vector2(0.125f,0f),  new Vector2(0.1875f,0f),
+                                 new Vector2(0.125f,0.0625f), new Vector2(0.1875f,0.0625f)},
+ 		/*CRACK4*/			{ new Vector2(0.1875f,0f),  new Vector2(0.25f,0f),
+                                 new Vector2(0.1875f,0.0625f), new Vector2(0.25f,0.0625f)}
+                        };
 
-	public Block(BlockType b, Vector3 pos, GameObject p, Chunk o)
-	{
-		bType = b;
-		owner = o;
-		parent = p;
-		position = pos;
-		if(bType == BlockType.AIR)
-			isSolid = false;
-		else
-			isSolid = true;
+    public Block(BlockType b, Vector3 pos, GameObject p, Chunk o)
+    {
+        bType = b;
+        owner = o;
+        parent = p;
+        position = pos;
+        if (bType == BlockType.AIR)
+            isSolid = false;
+        else
+            isSolid = true;
 
         health = BlockType.NOCRACK;
-        currenthealth = blockHealthMax[(int)bType];
+        currentHealth = blockHealthMax[(int)bType];
     }
 
-	public void SetType(BlockType b)
-	{
-		bType = b;
-		if(bType == BlockType.AIR)
-			isSolid = false;
-		else
-			isSolid = true;
+    public void SetType(BlockType b)
+    {
+        bType = b;
+        if (bType == BlockType.AIR)
+            isSolid = false;
+        else
+            isSolid = true;
 
         health = BlockType.NOCRACK;
-        currenthealth = blockHealthMax[(int)bType];
-	}
+        currentHealth = blockHealthMax[(int)bType];
+    }
+
+    public void Reset()
+    {
+        health = BlockType.NOCRACK;
+        currentHealth = blockHealthMax[(int)bType];
+        owner.ReDraw();
+    }
+
+    public bool BuildBlock(BlockType b)
+    {
+        SetType(b);
+        owner.ReDraw();
+        return true;
+    }
 
     public bool HitBlock()
     {
-        if (currenthealth == -1) return false;
-        currenthealth--;
+        if (currentHealth == -1) return false;
+        currentHealth--;
         health++;
-        if (currenthealth <= 0)
+
+        if (currentHealth == (blockHealthMax[(int)bType] - 1))
+        {
+            owner.mb.StartCoroutine(owner.mb.HealBlock(position));
+        }
+
+        if (currentHealth <= 0)
         {
             bType = BlockType.AIR;
             isSolid = false;

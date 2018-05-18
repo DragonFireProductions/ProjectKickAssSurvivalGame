@@ -36,8 +36,10 @@ public class Chunk
 	public GameObject chunk;
 	public enum ChunkStatus {DRAW,DONE,KEEP};
 	public ChunkStatus status;
+    public ChunkMB mb;
 	public float touchedTime;
     BlockData bd;
+    public bool changed = false;
 
     string BuildChunkFileName(Vector3 v)
     {
@@ -77,7 +79,7 @@ public class Chunk
         bd = new BlockData(chunkData);
         bf.Serialize(file, bd);
         file.Close();
-        Debug.Log("Saving chunk from file: " + chunkFile);
+        //Debug.Log("Saving chunk from file: " + chunkFile);
     }
 
         void BuildChunk()
@@ -171,6 +173,8 @@ public class Chunk
 		
 		chunk = new GameObject(World.BuildChunkName(position));
 		chunk.transform.position = position;
+        mb = chunk.AddComponent<ChunkMB>();
+        mb.SetOwner(this);
 		cubeMaterial = c;
 		BuildChunk();
 	}
