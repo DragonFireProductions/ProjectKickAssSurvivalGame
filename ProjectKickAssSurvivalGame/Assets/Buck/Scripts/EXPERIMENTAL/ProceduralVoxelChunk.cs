@@ -37,10 +37,7 @@ public class ProceduralVoxelChunk : MonoBehaviour
                 i++;
 
                 voxels[i] = GameObject.CreatePrimitive(PrimitiveType.Cube);
-<<<<<<< HEAD
 
-=======
->>>>>>> c1053c7821f4c13450d7531b36d3eed9929c81f1
                 oPos = transform.position;
                 oPos.y = 0f;
                 oPos.x -= xVoxels / 2 * voxelSize.x;
