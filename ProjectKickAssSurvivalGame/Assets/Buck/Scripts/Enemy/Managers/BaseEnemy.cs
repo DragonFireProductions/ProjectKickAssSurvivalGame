@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class BaseEnemy : EnemyTargetManager
+public class BaseEnemy : MonoBehaviour
 {
     [Header("EnemySettings")]
 
@@ -27,14 +27,19 @@ public class BaseEnemy : EnemyTargetManager
     [Header("UnitySettings")]
 
     PlayerController player;
+    BaseTurret turret;
     WaveSpawner waveSpawnerRef;
-    //EnemyTargetManager targetManager;
+    public EnemyTargetManager targetManager;
 
     public List<Transform> wayPoints;
     int wayPointIndex = 0;
 
     [SerializeField]
     Transform curTarget;
+
+    [SerializeField]
+    Transform closestTarget;
+
     //Must be populated within inspector
     public List<bool> targetsInRange;
 
@@ -56,7 +61,8 @@ public class BaseEnemy : EnemyTargetManager
     {
         health.SetValues();
         player = FindObjectOfType<PlayerController>();
-        //targetManager = FindObjectOfType<EnemyTargetManager>();
+        turret = FindObjectOfType<BaseTurret>();
+        targetManager = FindObjectOfType<EnemyTargetManager>();
         agent = GetComponent<NavMeshAgent>();
         myPos = transform;
         agent.speed = moveSpeed;
@@ -64,21 +70,37 @@ public class BaseEnemy : EnemyTargetManager
 
     void Start()
     {
-        //if (targetManager != null)
-        //{
-        //    targetManager.AddTarget(transform);
-        //}
-        AddAllTargets();
-        //AddTarget(transform);
+        targetManager.AddTarget(transform);
+        //targetManager.GetTargets();
     }
 
-    void OnDestroy()
+    public Transform FindClosestTarget()
     {
-        //if (targetManager != null)
-        //{
-        //    targetManager.RemoveTarget(transform);
-        //}
-        RemoveTarget(transform);
+        closestTarget = null;
+        float shortestDistance = Mathf.Infinity;
+        Vector3 position = transform.position;
+
+        foreach (Transform target in targetManager.targets)
+        {
+            float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
+
+            if (distanceToTarget < shortestDistance)
+            {
+                shortestDistance = distanceToTarget;
+                closestTarget = target;
+            }
+        }
+        return closestTarget;
+    }
+
+    public void MoveToTarget()
+    {
+        if (closestTarget != null)
+        {
+            curTarget = closestTarget;
+            agent.SetDestination(closestTarget.position);
+            agent.speed = moveSpeed;
+        }
     }
 
     public void CheckForDamage()
@@ -91,11 +113,6 @@ public class BaseEnemy : EnemyTargetManager
         {
             health.bar.gameObject.SetActive(true);
         }
-    }
-
-    public void CheckForTargets()
-    { 
-
     }
 
     public void TakeDamage(int amount, Vector3 hitPoint)
@@ -149,6 +166,21 @@ public class BaseEnemy : EnemyTargetManager
             if (player.health.CurValue > 0)
             {
                 player.TakeDamage(attackDamage, attackHit.point);
+            }
+        }
+        attackTimer = 0;
+    }
+
+    public void AttackTurret()
+    {
+        attackRay.origin = transform.position;
+        attackRay.direction = transform.forward;
+
+        if (Physics.Raycast(attackRay, out attackHit))
+        {
+            if (turret.health.CurValue > 0)
+            {
+                turret.TakeDamage(attackDamage, attackHit.point);
             }
         }
         attackTimer = 0;

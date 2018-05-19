@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     float loseStaminaTimer;
 
     [Header("UnitySettings")]
+    EnemyTargetManager enemyTM;
     Rigidbody playerRB;
     Vector3 movement;
     float camRayLength = 100f;
@@ -34,8 +35,14 @@ public class PlayerController : MonoBehaviour
     {
         floorMask = LayerMask.GetMask("Floor");
         playerRB = GetComponent<Rigidbody>();
+        enemyTM = FindObjectOfType<EnemyTargetManager>();
         health.SetValues();
         Stamina.SetValues();
+    }
+
+    void Start()
+    {
+        enemyTM.AddTarget(transform);
     }
 
 
@@ -131,5 +138,6 @@ public class PlayerController : MonoBehaviour
     void Die()
     {
         //PLAY DIE ANIMATION
+        enemyTM.RemoveTarget(transform);
     }
 }

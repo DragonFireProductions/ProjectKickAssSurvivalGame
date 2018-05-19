@@ -92,7 +92,7 @@ public class BlockInteraction : MonoBehaviour
                         Chunk c;
                         if (World.chunks.TryGetValue(cname, out c))
                         {
-                            c.ReDraw();
+                            c.Redraw();
                         }
                     }
                 }

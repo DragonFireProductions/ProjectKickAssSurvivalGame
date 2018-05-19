@@ -24,20 +24,15 @@ public class BaseTurret : MonoBehaviour
     EnemyTargetManager enemyTM;
 
     public Transform turretHead;
-
     public Transform partToRotate;
-
     public Transform firePoint;
 
     [HideInInspector]
     public Transform target;
 
     public LineRenderer turretLR;
-
     public Light turretLight;
-
     public GameObject turretSpotLight;
-
     public float effectsDisplayTime;
 
     public string enemytag = "Enemy";
@@ -58,9 +53,15 @@ public class BaseTurret : MonoBehaviour
         floorMask = LayerMask.GetMask("Floor");
         dayRef = FindObjectOfType<DayNightCycle>();
         turretLR = GetComponentInChildren<LineRenderer>();
+        enemyTM = FindObjectOfType<EnemyTargetManager>();
         turretLight = GetComponentInChildren<Light>();
         Light turretSpotLight = gameObject.GetComponent<Light>();
         health.SetValues();
+    }
+
+    void Start()
+    {
+        enemyTM.AddTarget(transform);
     }
 
     public void CheckTime()
@@ -182,7 +183,7 @@ public class BaseTurret : MonoBehaviour
 
         if (Physics.Raycast(shootRay, out shootHit, range, shootableMask))
         {
-            BaseEnemy enemyHealth = shootHit.collider.GetComponent<BaseEnemy>();
+            BaseEnemyV2 enemyHealth = shootHit.collider.GetComponent<BaseEnemyV2>();
             if (enemyHealth != null)
             {
                 enemyHealth.TakeDamage(damagePerShot, shootHit.point);
@@ -214,8 +215,20 @@ public class BaseTurret : MonoBehaviour
     {
         //PLAY BREAK ANIMATION DESTROY AFTER SO 
         //MANY SECONDS
-        Destroy(gameObject);
+        if (enemyTM != null)
+        {
+            enemyTM.RemoveTarget(transform);
+        }
 
+        Destroy(gameObject);
+    }
+
+    void OnDestroy()
+    {
+        if (enemyTM != null)
+        {
+            enemyTM.RemoveTarget(transform);
+        }
     }
 
     public void DisableEffects()
