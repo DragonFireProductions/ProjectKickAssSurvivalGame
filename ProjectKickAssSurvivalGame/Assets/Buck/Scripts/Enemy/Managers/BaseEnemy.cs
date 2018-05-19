@@ -4,55 +4,47 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class BaseEnemy : MonoBehaviour
+public class BaseEnemy : EnemyTargetManager
 {
     [Header("EnemySettings")]
 
     public Stat health;
 
     public int attackDamage;
-
     public float attackSpeed;
-
-    //Might be used later on
-    //public float attackRange;
-
     [HideInInspector]
     public float attackTimer;
+    //Might be used later on
+    //public float attackRange;
 
     public float moveSpeed;
 
     public int spawnCost;
 
     public int minCoins;
-
     public int maxCoins;
 
     [Header("UnitySettings")]
 
     PlayerController player;
+    WaveSpawner waveSpawnerRef;
+    //EnemyTargetManager targetManager;
+
+    public List<Transform> wayPoints;
+    int wayPointIndex = 0;
 
     [SerializeField]
-    Transform target;
-
-    //Retrieves targetsRefs locations at runtime
-    public List<Transform> targetLocations;
-
-    //Still dont know what im gonna do with this one
-    public List<string> targetTags;
-
+    Transform curTarget;
     //Must be populated within inspector
     public List<bool> targetsInRange;
 
     public GameObject coin;
 
+    Transform myPos;
     NavMeshAgent agent;
 
     Ray attackRay;
-
     RaycastHit attackHit;
-
-    WaveSpawner waveSpawnerRef;
 
     //Accessors
     public int GetSpawnCost()
@@ -64,12 +56,29 @@ public class BaseEnemy : MonoBehaviour
     {
         health.SetValues();
         player = FindObjectOfType<PlayerController>();
-        waveSpawnerRef = FindObjectOfType<WaveSpawner>();
+        //targetManager = FindObjectOfType<EnemyTargetManager>();
+        agent = GetComponent<NavMeshAgent>();
+        myPos = transform;
+        agent.speed = moveSpeed;
     }
 
     void Start()
     {
+        //if (targetManager != null)
+        //{
+        //    targetManager.AddTarget(transform);
+        //}
+        AddAllTargets();
+        //AddTarget(transform);
+    }
 
+    void OnDestroy()
+    {
+        //if (targetManager != null)
+        //{
+        //    targetManager.RemoveTarget(transform);
+        //}
+        RemoveTarget(transform);
     }
 
     public void CheckForDamage()
@@ -84,37 +93,8 @@ public class BaseEnemy : MonoBehaviour
         }
     }
 
-    public void LocateTarget()
-    {
-        target = GameObject.FindGameObjectWithTag("Player").transform;
-
-        agent = GetComponent<NavMeshAgent>();
-    }
-
-    public void Navigation()
-    {
-        agent.SetDestination(target.transform.position);
-
-        agent.speed = moveSpeed;
-    }
-
-    public void UpdateTarget()
+    public void CheckForTargets()
     { 
-
-        Transform player = GameObject.FindGameObjectWithTag(targetTags[0]).transform;
-        Transform fire = GameObject.FindGameObjectWithTag(targetTags[1]).transform;
-
-        //if the list doesn't have the player in it
-        //Add it once
-        if (!targetLocations.Contains(player))
-        {
-            targetLocations.Add(player);
-        }
-
-        if (!targetLocations.Contains(fire))
-        {
-            targetLocations.Add(fire);
-        }
 
     }
 

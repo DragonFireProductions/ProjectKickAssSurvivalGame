@@ -7,13 +7,11 @@ public class BasicEnemy : BaseEnemy
 
     void Start()
     {
-        LocateTarget();
     }
 
     void Update()
     {
-        UpdateTarget();
-        Navigation();
+        CheckForTargets();
         CheckForDamage();
 
         if (targetsInRange[0] == true)

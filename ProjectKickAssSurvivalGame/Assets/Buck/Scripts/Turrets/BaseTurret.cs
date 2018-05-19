@@ -8,6 +8,8 @@ public class BaseTurret : MonoBehaviour
     [Header("TurretSettings")]
 
     public float fireRate;
+    [HideInInspector]
+    public float fireTimer;
 
     public float range;
 
@@ -17,10 +19,9 @@ public class BaseTurret : MonoBehaviour
 
     public Stat health;
 
-    [HideInInspector]
-    public float fireTimer;
-
     [Header("UnitySettings")]
+
+    EnemyTargetManager enemyTM;
 
     public Transform turretHead;
 
@@ -39,16 +40,12 @@ public class BaseTurret : MonoBehaviour
 
     public float effectsDisplayTime;
 
-    SphereCollider turretRange;
-
     public string enemytag = "Enemy";
 
     Ray shootRay;
-
     RaycastHit shootHit;
 
     int shootableMask;
-
     int floorMask;
 
     float camRayLength = 100f;
@@ -218,6 +215,7 @@ public class BaseTurret : MonoBehaviour
         //PLAY BREAK ANIMATION DESTROY AFTER SO 
         //MANY SECONDS
         Destroy(gameObject);
+
     }
 
     public void DisableEffects()
