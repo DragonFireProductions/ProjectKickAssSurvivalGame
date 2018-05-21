@@ -5,25 +5,33 @@ using UnityEngine;
 public class ResourceNode : MonoBehaviour
 {
     public bool inRange;
-    bool isSpawned = true;
+    public bool isSpawned = true;
 
-    public int resourceHealth;
+    public int maxHealth;
+    public int curHealth;
 
     public int minResource, maxResource;
 
     public float respawnTime;
-    float respawnTimer;
+    public float respawnTimer;
 
     public GameObject resourcePrefab;
 
+    AudioSource resourceAudio;
+    public AudioClip[] resourceSounds;
+    public AudioClip[] resourceDestroyAudio;
 
-	// Use this for initialization
+    MeshRenderer[] childMR;
+    BoxCollider[] childCollider;
+
 	void Start ()
     {
-
-	}
+        resourceAudio = GetComponent<AudioSource>();
+        childMR = gameObject.GetComponentsInChildren<MeshRenderer>();
+        childCollider = gameObject.GetComponentsInChildren<BoxCollider>();
+        curHealth = maxHealth;
+    }
 	
-	// Update is called once per frame
 	void Update ()
     {
         DamageResource();
@@ -32,16 +40,24 @@ public class ResourceNode : MonoBehaviour
 
     void RespawnCheck()
     {
-        if (resourceHealth <= 0 && isSpawned)
+        if (curHealth <= 0 && !isSpawned)
         {
-            isSpawned = false;
             respawnTimer += Time.deltaTime;
 
             if (respawnTimer >= respawnTime && !isSpawned)
             {
-                gameObject.SetActive(true);
+                for (int r = 0; r < childMR.Length; r++)
+                    for (int c = 0; c < childCollider.Length; c++)
+                    {
+                        childMR[r].enabled = true;
+                        childCollider[c].enabled = true;
+                    }
+                curHealth = maxHealth;
+                respawnTimer = 0;
                 isSpawned = true;
             }
+            else
+                return;
         }
     }
 
@@ -49,10 +65,19 @@ public class ResourceNode : MonoBehaviour
     {
         if (inRange == true && Input.GetKeyDown(KeyCode.E))
         {
-            resourceHealth--;
+            curHealth--;
 
-            if (resourceHealth <= 0)
+            int chosenAudioClip = Random.Range(0, resourceSounds.Length);
+
+            resourceAudio.clip = resourceSounds[chosenAudioClip];
+
+            resourceAudio.Play();
+
+            curHealth = Mathf.Clamp(0, curHealth, maxHealth);
+
+            if (curHealth <= 0 && isSpawned)
             {
+
                 ResourceDestroyed();
             }
         }
@@ -64,14 +89,25 @@ public class ResourceNode : MonoBehaviour
     {
         int resourceReward = Random.Range(minResource, maxResource);
 
-        resourceHealth = 0;
+        int chosenDestroyClip = Random.Range(0, resourceDestroyAudio.Length);
 
-        gameObject.SetActive(false);
+        resourceAudio.clip = resourceDestroyAudio[chosenDestroyClip];
+
+        resourceAudio.Play();
+
+        for (int r = 0; r < childMR.Length; r++)
+            for (int c = 0; c < childCollider.Length; c++)
+            {
+                childMR[r].enabled = false;
+                childCollider[c].enabled = false;
+            }
 
         for (int r = 0; r < resourceReward; r++)
         {
             Instantiate(resourcePrefab, transform.position, transform.rotation);
         }
+
+        isSpawned = false;
     }
 
 

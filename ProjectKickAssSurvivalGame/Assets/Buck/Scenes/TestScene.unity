@@ -2002,6 +2002,11 @@ Prefab:
       propertyPath: m_Name
       value: Tree (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 114904434199503512, guid: 3403e5abe59c4a34abdec15885a9c4c5,
+        type: 2}
+      propertyPath: maxHealth
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3403e5abe59c4a34abdec15885a9c4c5, type: 2}
   m_IsPrefabParent: 0
