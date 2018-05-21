@@ -21,8 +21,11 @@ public class UIManager : MonoBehaviour
 
     PlayerController player;
 
+    Inventory invRef;
+
     void Awake()
     {
+        invRef = FindObjectOfType<Inventory>();
         dayRef = FindObjectOfType<DayNightCycle>();
         player = FindObjectOfType<PlayerController>();
         uiText[4].text = "DAYS: " + dayRef.GetDaysPassed().ToString();
@@ -46,11 +49,20 @@ public class UIManager : MonoBehaviour
         OpenInventoryScreen();
         OpenCraftingScreen();
         OpenDebugMenu();
+        CheckResources();
         CheckDaysPassed();
         CheckClock();
         CheckGameOver();
         CheckPartOfDay();
 	}
+
+    void CheckResources()
+    {
+        uiText[0].text = "COINS: " + invRef.coin_resource.ToString();
+        uiText[1].text = "WOOD: " + invRef.wood_resource.ToString();
+        uiText[2].text = "STONE: " + invRef.stone_resource.ToString();
+        uiText[3].text = "IRON: " + invRef.iron_resource.ToString();
+    }
 
     void CheckDaysPassed()
     {
