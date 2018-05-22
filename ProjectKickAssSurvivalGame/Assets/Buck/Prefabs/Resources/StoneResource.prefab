@@ -53,9 +53,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4274272312956074}
-  - component: {fileID: 114641339409804390}
   - component: {fileID: 54209647441042232}
   - component: {fileID: 65742894072728154}
+  - component: {fileID: 114004303878371688}
   m_Layer: 0
   m_Name: StoneResource
   m_TagString: Stone_Resource
@@ -288,7 +288,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.75, y: 0.75, z: 0.75}
   m_Center: {x: 0, y: 0.875, z: 0}
---- !u!114 &114641339409804390
+--- !u!114 &114004303878371688
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -296,8 +296,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1779443235329348}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44f80dd421620ab4cac03ea5fb11332a, type: 3}
+  m_Script: {fileID: 11500000, guid: 1497e50a83011644a80dd6f232558495, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   distanceFromPlayer: 10
   vaccumSpeed: 7.5
+  rotationSpeed: 30
+  height: 0.5
+  frequency: 0.75

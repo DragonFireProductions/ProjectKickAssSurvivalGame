@@ -36,7 +36,6 @@ public class ResourceNode : MonoBehaviour
         childCollider = gameObject.GetComponentsInChildren<BoxCollider>();
         pfiCanvas = GetComponentInChildren<Canvas>();
         pfiCanvas.enabled = false;
-        //curHealth = maxHealth;
         health.SetValues();
     }
 	

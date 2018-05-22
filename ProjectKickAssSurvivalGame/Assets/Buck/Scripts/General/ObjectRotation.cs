@@ -12,6 +12,14 @@ using UnityEngine;
 
 public class ObjectRotation : MonoBehaviour
 {
+    Transform player;
+
+    [SerializeField]
+    float distanceFromPlayer;
+
+    [SerializeField]
+    float vaccumSpeed;
+
     Vector3 newPosition = new Vector3();
     Vector3 curPosition = new Vector3();
 
@@ -19,28 +27,49 @@ public class ObjectRotation : MonoBehaviour
     public float height = 0.5f;
     public float frequency = 1f;
 
+    bool canFloat = true;
+
     void Start()
     {
-        curPosition = transform.position; 
+        curPosition = transform.position;
+        player = FindObjectOfType<PlayerController>().transform;
     }
 
     // Update is called once per frame
     void Update ()
     {
-        Float();
-        Rotate();
-	}
+        DoTheShit();
+    }
+
+    void DoTheShit()
+    {
+        if (canFloat && Vector3.Distance(player.position, transform.position) >= distanceFromPlayer)
+        {
+            newPosition = curPosition;
+            newPosition.y = curPosition.y + Mathf.Sin(Time.fixedTime * Mathf.PI * frequency) * height;
+            transform.position = newPosition;
+            Rotate();
+        }
+        else if (Vector3.Distance(player.position, transform.position) <= distanceFromPlayer)
+        {
+            canFloat = false;
+            transform.position = Vector3.MoveTowards(transform.position, player.position, vaccumSpeed * Time.deltaTime);
+
+            newPosition = transform.position;
+            curPosition = newPosition;
+        }
+        else
+        {
+            canFloat = true;
+
+            newPosition = transform.position;
+            curPosition = newPosition;
+        }
+    }
 
     void Rotate()
     {
         gameObject.transform.Rotate(new Vector3(0f, rotationSpeed * Time.deltaTime, 0f), Space.World);
-    }
-
-    void Float()
-    {
-        newPosition = curPosition;
-        newPosition.y = curPosition.y + Mathf.Sin(Time.fixedTime * Mathf.PI * frequency) * height;
-        transform.position = newPosition;
     }
 
 }
