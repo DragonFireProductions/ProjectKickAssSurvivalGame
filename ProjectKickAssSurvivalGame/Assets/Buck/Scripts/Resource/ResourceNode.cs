@@ -8,8 +8,10 @@ public class ResourceNode : MonoBehaviour
     bool inRange;
     bool isSpawned = true;
 
-    public int maxHealth;
-    int curHealth;
+    //public int maxHealth;
+    //int curHealth;
+
+    public Stat health;
 
     public int minResource, maxResource;
 
@@ -34,7 +36,8 @@ public class ResourceNode : MonoBehaviour
         childCollider = gameObject.GetComponentsInChildren<BoxCollider>();
         pfiCanvas = GetComponentInChildren<Canvas>();
         pfiCanvas.enabled = false;
-        curHealth = maxHealth;
+        //curHealth = maxHealth;
+        health.SetValues();
     }
 	
 	void Update ()
@@ -56,7 +59,7 @@ public class ResourceNode : MonoBehaviour
 
     void RespawnCheck()
     {
-        if (curHealth <= 0 && !isSpawned)
+        if (health.CurValue <= 0 && !isSpawned)
         {
             respawnTimer += Time.deltaTime;
 
@@ -68,7 +71,7 @@ public class ResourceNode : MonoBehaviour
                         childMR[r].enabled = true;
                         childCollider[c].enabled = true;
                     }
-                curHealth = maxHealth;
+                health.SetValues();
                 respawnTimer = 0;
                 resourceAudio.enabled = true;
                 isSpawned = true;
@@ -82,7 +85,7 @@ public class ResourceNode : MonoBehaviour
     {
         if (inRange == true && Input.GetKeyDown(KeyCode.E))
         {
-            curHealth--;
+            health.CurValue--;
 
             int chosenAudioClip = Random.Range(0, resourceSounds.Length);
 
@@ -90,11 +93,11 @@ public class ResourceNode : MonoBehaviour
 
             resourceAudio.Play();
 
-            curHealth = Mathf.Clamp(0, curHealth, maxHealth);
+            health.CurValue = Mathf.Clamp(0, health.CurValue, health.MaxValue);
 
-            if (curHealth <= 0 && isSpawned)
+            if (health.CurValue <= 0 && isSpawned)
             {
-
+                inRange = false;
                 ResourceDestroyed();
             }
         }
