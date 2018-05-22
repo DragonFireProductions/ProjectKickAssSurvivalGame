@@ -52,6 +52,11 @@ public class MainMenuManager : MonoBehaviour
         menuAudio.clip = menuClick;
         menuAudio.Play();
 
+        Invoke("QuitApplication", menuAudio.clip.length);
+    }
+
+    void QuitApplication()
+    {
         Application.Quit();
     }
 
