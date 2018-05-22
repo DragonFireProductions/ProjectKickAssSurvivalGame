@@ -54,6 +54,7 @@ public class ResourceNode : MonoBehaviour
                     }
                 curHealth = maxHealth;
                 respawnTimer = 0;
+                resourceAudio.enabled = true;
                 isSpawned = true;
             }
             else
@@ -107,10 +108,15 @@ public class ResourceNode : MonoBehaviour
             Instantiate(resourcePrefab, transform.position, transform.rotation);
         }
 
+        Invoke("DisableAudioSource", resourceAudio.clip.length);
+
         isSpawned = false;
     }
 
-
+    void DisableAudioSource()
+    {
+        resourceAudio.enabled = false;
+    }
 
     void OnTriggerEnter(Collider player)
     {
