@@ -27,6 +27,7 @@ public class BaseEnemy : MonoBehaviour
     [Header("UnitySettings")]
 
     PlayerController player;
+    FireManager fire;
     BaseTurret turret;
     WaveSpawner waveSpawnerRef;
     public EnemyTargetManager targetManager;
@@ -37,8 +38,8 @@ public class BaseEnemy : MonoBehaviour
     [SerializeField]
     Transform curTarget;
 
-    [SerializeField]
-    Transform closestTarget;
+    //[SerializeField]
+    public Transform closestTarget;
 
     //Must be populated within inspector
     public List<bool> targetsInRange;
@@ -61,6 +62,7 @@ public class BaseEnemy : MonoBehaviour
     {
         health.SetValues();
         player = FindObjectOfType<PlayerController>();
+        fire = FindObjectOfType<FireManager>();
         turret = FindObjectOfType<BaseTurret>();
         targetManager = FindObjectOfType<EnemyTargetManager>();
         agent = GetComponent<NavMeshAgent>();
@@ -71,7 +73,12 @@ public class BaseEnemy : MonoBehaviour
     void Start()
     {
         targetManager.AddTarget(transform);
-        //targetManager.GetTargets();
+        
+    }
+
+    void Update()
+    {
+        targetManager.GetTargets();
     }
 
     public Transform FindClosestTarget()
@@ -166,6 +173,21 @@ public class BaseEnemy : MonoBehaviour
             if (player.health.CurValue > 0)
             {
                 player.TakeDamage(attackDamage, attackHit.point);
+            }
+        }
+        attackTimer = 0;
+    }
+
+    public void AttackFire()
+    {
+        attackRay.origin = transform.position;
+        attackRay.direction = transform.forward;
+
+        if (Physics.Raycast(attackRay, out attackHit))
+        {
+            if (fire.health.CurValue > 0)
+            {
+                fire.TakeDamage(attackDamage, attackHit.point);
             }
         }
         attackTimer = 0;

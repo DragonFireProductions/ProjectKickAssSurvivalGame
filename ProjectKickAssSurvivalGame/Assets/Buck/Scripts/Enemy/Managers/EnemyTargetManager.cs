@@ -14,13 +14,9 @@ public class EnemyTargetManager : MonoBehaviour
 
     public void AddAllTargets()
     {
-        //GameObject player = GameObject.FindGameObjectWithTag("Player");
-        //GameObject fire = GameObject.FindGameObjectWithTag("Fire");
         GameObject[] turrets = GameObject.FindGameObjectsWithTag("Turret");
         //GameObject[] walls = GameObject.FindGameObjectsWithTag("Wall");
 
-        //AddTarget(player.transform);
-        //AddTarget(fire.transform);
 
         foreach (GameObject turret in turrets)
         {

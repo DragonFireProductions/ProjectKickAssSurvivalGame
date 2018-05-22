@@ -20,6 +20,16 @@ public class BasicEnemy : BaseEnemy
             }
         }
 
+        if (targetsInRange[1] == true)
+        {
+            attackTimer += Time.deltaTime;
+
+            if (attackTimer >= attackSpeed && health.CurValue > 0)
+            {
+                AttackFire();
+            }
+        }
+
         if (targetsInRange[2] == true)
         {
             attackTimer += Time.deltaTime;

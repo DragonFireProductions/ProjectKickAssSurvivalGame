@@ -17,7 +17,9 @@ public class BaseEnemyV2 : MonoBehaviour
 
     [Header("UnitySettings")]
     PlayerController player;
+    FireManager fire;
     BaseTurret turret;
+    //BaseWall wall;
     WaveSpawner waveSpawnerRef;
     DayNightCycle dayRef;
     public EnemyTargetManager targetManager;
@@ -52,7 +54,9 @@ public class BaseEnemyV2 : MonoBehaviour
     {
         health.SetValues();
         player = FindObjectOfType<PlayerController>();
+        fire = FindObjectOfType<FireManager>();
         turret = FindObjectOfType<BaseTurret>();
+        //wall = FindObjectOfType<BaseWall>();
         targetManager = FindObjectOfType<EnemyTargetManager>();
         dayRef = FindObjectOfType<DayNightCycle>();
         agent = GetComponent<NavMeshAgent>();
@@ -142,7 +146,7 @@ public class BaseEnemyV2 : MonoBehaviour
         attackRay.origin = transform.position;
         attackRay.direction = transform.forward;
 
-        if (targetsInRange[2] == true && health.CurValue > 0)
+        if (targetsInRange[0] == true && health.CurValue > 0)
         {
             if (Physics.Raycast(attackRay, out attackHit))
             {
@@ -150,22 +154,78 @@ public class BaseEnemyV2 : MonoBehaviour
 
                 if (attackTimer >= attackSpeed)
                 {
-                    if (turret.health.CurValue > 0)
+                    if (player.health.CurValue > 0)
                     {
-                        turret.TakeDamage(attackDamage, attackHit.point);
+                        player.TakeDamage(attackDamage, attackHit.point);
                     }
                     attackTimer = 0;
                 }
             }
         }
+
+        if (targetsInRange[1] == true && health.CurValue > 0)
+        {
+            if (Physics.Raycast(attackRay, out attackHit))
+            {
+                attackTimer += Time.deltaTime;
+
+                if (attackTimer >= attackSpeed)
+                {
+                    if (fire.health.CurValue > 0)
+                    {
+                        fire.TakeDamage(attackDamage, attackHit.point);
+                    }
+                    attackTimer = 0;
+                }
+            }
+        }
+
+        if (targetsInRange[2] == true && health.CurValue > 0)
+        {
+            if (Physics.Raycast(attackRay, out attackHit))
+            {
+                BasicTurret turretHealth = attackHit.collider.GetComponent<BasicTurret>();
+                attackTimer += Time.deltaTime;
+
+                if (attackTimer >= attackSpeed)
+                {
+                    if (turretHealth != null)
+                    {
+                        turretHealth.TakeDamage(attackDamage, attackHit.point);
+                    }
+                    attackTimer = 0;
+                }
+            }
+        }
+
+        //if (targetsInRange[3] == true && health.CurValue > 0)
+        //{
+        //    if (Physics.Raycast(attackRay, out attackHit))
+        //    {
+        //        attackTimer += Time.deltaTime;
+
+        //        if (attackTimer >= attackSpeed)
+        //        {
+        //            if (wall.health.CurValue > 0)
+        //            {
+        //                wall.TakeDamage(attackDamage, attackHit.point);
+        //            }
+        //            attackTimer = 0;
+        //        }
+        //    }
+        //}
     }
 
     public void CheckForDamage()
     {
         if (health.CurValue == health.MaxValue)
+        {
             health.bar.gameObject.SetActive(false);
+        }
         else
+        {
             health.bar.gameObject.SetActive(true);
+        }     
     }
 
     public void TakeDamage(int amount, Vector3 hitPoint)
@@ -208,6 +268,11 @@ public class BaseEnemyV2 : MonoBehaviour
         {
             targetsInRange[2] = true;
         }
+
+        //if (target.tag == "Wall")
+        //{
+        //    targetsInRange[3] = true;
+        //}
     }
 
     void OnTriggerExit(Collider target)
@@ -226,5 +291,10 @@ public class BaseEnemyV2 : MonoBehaviour
         {
             targetsInRange[2] = false;
         }
+
+        //if (target.tag == "Wall")
+        //{
+        //    targetsInRange[3] = false;
+        //}
     }
 }

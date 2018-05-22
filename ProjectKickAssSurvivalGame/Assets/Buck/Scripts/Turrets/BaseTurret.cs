@@ -88,7 +88,7 @@ public class BaseTurret : MonoBehaviour
         }
     }
 
-    public void CheckForDamage()
+    public virtual void CheckForDamage()
     {
         if (health.CurValue == health.MaxValue)
         {
@@ -211,7 +211,7 @@ public class BaseTurret : MonoBehaviour
         }
     }
 
-    public void Die()
+    public virtual void Die()
     {
         //PLAY BREAK ANIMATION DESTROY AFTER SO 
         //MANY SECONDS

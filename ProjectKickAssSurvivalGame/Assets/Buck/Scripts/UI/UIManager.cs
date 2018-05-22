@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class UIManager : MonoBehaviour
@@ -21,6 +22,8 @@ public class UIManager : MonoBehaviour
 
     PlayerController player;
 
+    FireManager fire;
+
     Inventory invRef;
 
     void Awake()
@@ -28,6 +31,7 @@ public class UIManager : MonoBehaviour
         invRef = FindObjectOfType<Inventory>();
         dayRef = FindObjectOfType<DayNightCycle>();
         player = FindObjectOfType<PlayerController>();
+        fire = FindObjectOfType<FireManager>();
         uiText[4].text = "DAYS: " + dayRef.GetDaysPassed().ToString();
         uiText[5].text = "0" + dayRef.GetHour() + "0" + dayRef.GetMinute().ToString();
     }
@@ -115,7 +119,7 @@ public class UIManager : MonoBehaviour
 
     void CheckGameOver()
     {
-        if (player.health.CurValue <= 0)
+        if (player.health.CurValue <= 0 || fire.health.CurValue <= 0)
         {
             foreach (GameObject menu in dynamicUI)
             {
@@ -206,5 +210,15 @@ public class UIManager : MonoBehaviour
                 menuChecks[2] = false;
             }
         }
+    }
+
+    public void OnClickRetry()
+    {
+        SceneManager.LoadScene(1);
+    }
+
+    public void OnClickMainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }

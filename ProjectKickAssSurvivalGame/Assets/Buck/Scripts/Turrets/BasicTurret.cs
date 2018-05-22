@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BasicTurret : BaseTurret
 {
+
     // Update is called once per frame
     void Update()
     {
