@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ResourceNode : MonoBehaviour
 {
@@ -23,12 +24,16 @@ public class ResourceNode : MonoBehaviour
 
     MeshRenderer[] childMR;
     BoxCollider[] childCollider;
+    Canvas pfiCanvas;
 
 	void Start ()
     {
         resourceAudio = GetComponent<AudioSource>();
+        resourceAudio.enabled = false;
         childMR = gameObject.GetComponentsInChildren<MeshRenderer>();
         childCollider = gameObject.GetComponentsInChildren<BoxCollider>();
+        pfiCanvas = GetComponentInChildren<Canvas>();
+        pfiCanvas.enabled = false;
         curHealth = maxHealth;
     }
 	
@@ -36,7 +41,18 @@ public class ResourceNode : MonoBehaviour
     {
         DamageResource();
         RespawnCheck();
+        LookAtCamera();
 	}
+
+    void LookAtCamera()
+    {
+        if (pfiCanvas.enabled)
+        {
+            pfiCanvas.transform.rotation = Camera.main.transform.rotation;
+        }
+        else
+            return;
+    }
 
     void RespawnCheck()
     {
@@ -109,7 +125,7 @@ public class ResourceNode : MonoBehaviour
         }
 
         Invoke("DisableAudioSource", resourceAudio.clip.length);
-
+        pfiCanvas.enabled = false;
         isSpawned = false;
     }
 
@@ -122,11 +138,16 @@ public class ResourceNode : MonoBehaviour
     {
         if (player.tag == "Player")
             inRange = true;
+        resourceAudio.enabled = true;
+        pfiCanvas.enabled = true;
+
     }
 
     void OnTriggerExit(Collider player)
     {
         if (player.tag == "Player")
             inRange = false;
+        resourceAudio.enabled = false;
+        pfiCanvas.enabled = false;
     }
 }
