@@ -9,11 +9,16 @@ public class PlayerController : MonoBehaviour
     public Stat health;
     public Stat Stamina;
 
+    [HideInInspector]
+    public int damageReduction;
+
 
     [SerializeField]
     float walkSpeed;
     [SerializeField]
     float runSpeed;
+    [SerializeField]
+    float jumpPower; 
 
     [SerializeField]
     float loseStamina;
@@ -31,6 +36,8 @@ public class PlayerController : MonoBehaviour
     float camRayLength = 100f;
     int floorMask;
 
+    bool isFalling;
+
     void Awake()
     {
         floorMask = LayerMask.GetMask("Floor");
@@ -42,6 +49,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        damageReduction = 0;
         enemyTM.AddTarget(transform);
     }
 
@@ -56,11 +64,26 @@ public class PlayerController : MonoBehaviour
 
         PlayerMovement(moveX, moveZ);
         PlayerTurning();
+        CheckJumpStatus();
+    }
+
+    void OnCollisionStay()
+    {
+        isFalling = false;
+    }
+
+    void CheckJumpStatus()
+    {
+        if (Input.GetKey(KeyCode.Space) && !isFalling)
+        {
+            playerRB.velocity = new Vector3(0f, jumpPower, 0f);
+            isFalling = true;
+        }
     }
 
     public void TakeDamage(int damage, Vector3 hitPoint)
     {
-        health.CurValue -= damage;
+        health.CurValue -= (damage) - damageReduction;
 
         if (health.CurValue <= 0)
         {

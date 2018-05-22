@@ -1,19 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ResourceNode : MonoBehaviour
 {
-    public bool inRange;
-    public bool isSpawned = true;
+    bool inRange;
+    bool isSpawned = true;
 
     public int maxHealth;
-    public int curHealth;
+    int curHealth;
 
     public int minResource, maxResource;
 
     public float respawnTime;
-    public float respawnTimer;
+    float respawnTimer;
 
     public GameObject resourcePrefab;
 
@@ -23,12 +24,16 @@ public class ResourceNode : MonoBehaviour
 
     MeshRenderer[] childMR;
     BoxCollider[] childCollider;
+    Canvas pfiCanvas;
 
 	void Start ()
     {
         resourceAudio = GetComponent<AudioSource>();
+        resourceAudio.enabled = false;
         childMR = gameObject.GetComponentsInChildren<MeshRenderer>();
         childCollider = gameObject.GetComponentsInChildren<BoxCollider>();
+        pfiCanvas = GetComponentInChildren<Canvas>();
+        pfiCanvas.enabled = false;
         curHealth = maxHealth;
     }
 	
@@ -36,7 +41,18 @@ public class ResourceNode : MonoBehaviour
     {
         DamageResource();
         RespawnCheck();
+        LookAtCamera();
 	}
+
+    void LookAtCamera()
+    {
+        if (pfiCanvas.enabled)
+        {
+            pfiCanvas.transform.rotation = Camera.main.transform.rotation;
+        }
+        else
+            return;
+    }
 
     void RespawnCheck()
     {
@@ -54,6 +70,7 @@ public class ResourceNode : MonoBehaviour
                     }
                 curHealth = maxHealth;
                 respawnTimer = 0;
+                resourceAudio.enabled = true;
                 isSpawned = true;
             }
             else
@@ -107,20 +124,30 @@ public class ResourceNode : MonoBehaviour
             Instantiate(resourcePrefab, transform.position, transform.rotation);
         }
 
+        Invoke("DisableAudioSource", resourceAudio.clip.length);
+        pfiCanvas.enabled = false;
         isSpawned = false;
     }
 
-
+    void DisableAudioSource()
+    {
+        resourceAudio.enabled = false;
+    }
 
     void OnTriggerEnter(Collider player)
     {
         if (player.tag == "Player")
             inRange = true;
+        resourceAudio.enabled = true;
+        pfiCanvas.enabled = true;
+
     }
 
     void OnTriggerExit(Collider player)
     {
         if (player.tag == "Player")
             inRange = false;
+        resourceAudio.enabled = false;
+        pfiCanvas.enabled = false;
     }
 }
