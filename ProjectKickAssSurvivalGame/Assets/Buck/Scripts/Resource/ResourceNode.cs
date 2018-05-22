@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class ResourceNode : MonoBehaviour
 {
-    public bool inRange;
-    public bool isSpawned = true;
+    bool inRange;
+    bool isSpawned = true;
 
     public int maxHealth;
-    public int curHealth;
+    int curHealth;
 
     public int minResource, maxResource;
 
     public float respawnTime;
-    public float respawnTimer;
+    float respawnTimer;
 
     public GameObject resourcePrefab;
 

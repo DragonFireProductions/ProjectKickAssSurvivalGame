@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     float walkSpeed;
     [SerializeField]
     float runSpeed;
+    [SerializeField]
+    float jumpPower; 
 
     [SerializeField]
     float loseStamina;
@@ -30,6 +32,8 @@ public class PlayerController : MonoBehaviour
     Vector3 movement;
     float camRayLength = 100f;
     int floorMask;
+
+    bool isFalling;
 
     void Awake()
     {
@@ -56,6 +60,21 @@ public class PlayerController : MonoBehaviour
 
         PlayerMovement(moveX, moveZ);
         PlayerTurning();
+        CheckJumpStatus();
+    }
+
+    void OnCollisionStay()
+    {
+        isFalling = false;
+    }
+
+    void CheckJumpStatus()
+    {
+        if (Input.GetKey(KeyCode.Space) && !isFalling)
+        {
+            playerRB.velocity = new Vector3(0f, jumpPower, 0f);
+            isFalling = true;
+        }
     }
 
     public void TakeDamage(int damage, Vector3 hitPoint)

@@ -393,14 +393,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c4e6804806a494448c5d790b6bd433a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inRange: 0
-  isSpawned: 1
-  maxHealth: 0
-  curHealth: 0
+  maxHealth: 5
   minResource: 1
   maxResource: 3
-  respawnTime: 5
-  respawnTimer: 0
+  respawnTime: 30
   resourcePrefab: {fileID: 1667898413950066, guid: cd6bb55b82caea44891830752b416da4,
     type: 2}
   resourceSounds:
