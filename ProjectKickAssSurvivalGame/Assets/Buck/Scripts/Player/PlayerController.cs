@@ -9,6 +9,9 @@ public class PlayerController : MonoBehaviour
     public Stat health;
     public Stat Stamina;
 
+    [HideInInspector]
+    public int damageReduction;
+
 
     [SerializeField]
     float walkSpeed;
@@ -46,6 +49,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        damageReduction = 0;
         enemyTM.AddTarget(transform);
     }
 
@@ -79,7 +83,7 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(int damage, Vector3 hitPoint)
     {
-        health.CurValue -= damage;
+        health.CurValue -= (damage) - damageReduction;
 
         if (health.CurValue <= 0)
         {
