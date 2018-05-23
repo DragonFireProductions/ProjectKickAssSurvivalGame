@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class BaseEnemy : MonoBehaviour
 {
     [Header("EnemySettings")]
-
     public Stat health;
 
     public int attackDamage;
