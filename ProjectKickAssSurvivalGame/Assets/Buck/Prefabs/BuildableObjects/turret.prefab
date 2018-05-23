@@ -222,7 +222,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1467705273496812}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.501, y: 0.971, z: 0.459}
+  m_LocalPosition: {x: 1.5, y: 1, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4337781344714354}
@@ -249,7 +249,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1558275356476384}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0006097555, y: 0.021183431, z: 0.3055464}
+  m_LocalPosition: {x: 0.0003902912, y: -0.007816553, z: 0.2645464}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children:
   - {fileID: 4593086443556844}
@@ -528,13 +528,13 @@ MonoBehaviour:
   damagePerShot: 1
   rotateSpeed: 10
   health:
-    bar: {fileID: 0}
-    maxValue: 0
+    bar: {fileID: 114426424301773808}
+    maxValue: 10
   turretHead: {fileID: 4337781344714354}
   partToRotate: {fileID: 4162259825621176}
-  firePoint: {fileID: 0}
+  firePoint: {fileID: 4856747451267572}
   target: {fileID: 0}
-  turretLR: {fileID: 0}
+  turretLR: {fileID: 120639283228075448}
   turretLight: {fileID: 108267874808797286}
   turretSpotLight: {fileID: 1750340359208456}
   effectsDisplayTime: 0.2

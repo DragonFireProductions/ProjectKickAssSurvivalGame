@@ -10,7 +10,6 @@ public class WaveSpawner : MonoBehaviour
     [SerializeField]
     List<Transform> spawnLocations;
 
-    [SerializeField]
     List<GameObject> spawnedEnemies;
 
     DayNightCycle dayRef;

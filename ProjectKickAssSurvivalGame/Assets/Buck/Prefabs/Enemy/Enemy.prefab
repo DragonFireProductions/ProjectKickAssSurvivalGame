@@ -129,7 +129,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1534094283284562}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_Children:
   - {fileID: 224074321250693128}
@@ -381,18 +381,17 @@ MonoBehaviour:
   health:
     bar: {fileID: 114956091370083200}
     maxValue: 20
-  attackDamage: 1
+  attackDamage: 5
   attackSpeed: 1
   attackTimer: 0
-  moveSpeed: 2.5
+  moveSpeed: 5
   spawnCost: 1
-  minCoins: 3
-  maxCoins: 5
-  targetLocations: []
-  targetTags:
-  - Player
-  - Fire
-  - Turret
+  minCoins: 2
+  maxCoins: 4
+  targetManager: {fileID: 0}
+  wayPoints: []
+  curTarget: {fileID: 0}
+  closestTarget: {fileID: 0}
   targetsInRange: 000000
   coin: {fileID: 1272052713922210, guid: 86dba87b002da2a46a94c7979891f2fe, type: 2}
 --- !u!114 &114721252622958120
