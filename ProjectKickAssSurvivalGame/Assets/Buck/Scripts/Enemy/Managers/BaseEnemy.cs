@@ -11,48 +11,46 @@ public class BaseEnemy : MonoBehaviour
     public Stat health;
 
     public int attackDamage;
-
     public float attackSpeed;
-
-    //Might be used later on
-    //public float attackRange;
-
     [HideInInspector]
     public float attackTimer;
+    //Might be used later on
+    //public float attackRange;
 
     public float moveSpeed;
 
     public int spawnCost;
 
     public int minCoins;
-
     public int maxCoins;
 
     [Header("UnitySettings")]
 
     PlayerController player;
+    FireManager fire;
+    BaseTurret turret;
+    WaveSpawner waveSpawnerRef;
+    public EnemyTargetManager targetManager;
+
+    public List<Transform> wayPoints;
+    int wayPointIndex = 0;
 
     [SerializeField]
-    Transform target;
+    Transform curTarget;
 
-    //Retrieves targetsRefs locations at runtime
-    public List<Transform> targetLocations;
-
-    //Still dont know what im gonna do with this one
-    public List<string> targetTags;
+    //[SerializeField]
+    public Transform closestTarget;
 
     //Must be populated within inspector
     public List<bool> targetsInRange;
 
     public GameObject coin;
 
+    Transform myPos;
     NavMeshAgent agent;
 
     Ray attackRay;
-
     RaycastHit attackHit;
-
-    WaveSpawner waveSpawnerRef;
 
     //Accessors
     public int GetSpawnCost()
@@ -64,12 +62,52 @@ public class BaseEnemy : MonoBehaviour
     {
         health.SetValues();
         player = FindObjectOfType<PlayerController>();
-        waveSpawnerRef = FindObjectOfType<WaveSpawner>();
+        fire = FindObjectOfType<FireManager>();
+        turret = FindObjectOfType<BaseTurret>();
+        targetManager = FindObjectOfType<EnemyTargetManager>();
+        agent = GetComponent<NavMeshAgent>();
+        myPos = transform;
+        agent.speed = moveSpeed;
     }
 
     void Start()
     {
+        targetManager.AddTarget(transform);
+        
+    }
 
+    void Update()
+    {
+        targetManager.GetTargets();
+    }
+
+    public Transform FindClosestTarget()
+    {
+        closestTarget = null;
+        float shortestDistance = Mathf.Infinity;
+        Vector3 position = transform.position;
+
+        foreach (Transform target in targetManager.targets)
+        {
+            float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
+
+            if (distanceToTarget < shortestDistance)
+            {
+                shortestDistance = distanceToTarget;
+                closestTarget = target;
+            }
+        }
+        return closestTarget;
+    }
+
+    public void MoveToTarget()
+    {
+        if (closestTarget != null)
+        {
+            curTarget = closestTarget;
+            agent.SetDestination(closestTarget.position);
+            agent.speed = moveSpeed;
+        }
     }
 
     public void CheckForDamage()
@@ -82,40 +120,6 @@ public class BaseEnemy : MonoBehaviour
         {
             health.bar.gameObject.SetActive(true);
         }
-    }
-
-    public void LocateTarget()
-    {
-        target = GameObject.FindGameObjectWithTag("Player").transform;
-
-        agent = GetComponent<NavMeshAgent>();
-    }
-
-    public void Navigation()
-    {
-        agent.SetDestination(target.transform.position);
-
-        agent.speed = moveSpeed;
-    }
-
-    public void UpdateTarget()
-    { 
-
-        Transform player = GameObject.FindGameObjectWithTag(targetTags[0]).transform;
-        Transform fire = GameObject.FindGameObjectWithTag(targetTags[1]).transform;
-
-        //if the list doesn't have the player in it
-        //Add it once
-        if (!targetLocations.Contains(player))
-        {
-            targetLocations.Add(player);
-        }
-
-        if (!targetLocations.Contains(fire))
-        {
-            targetLocations.Add(fire);
-        }
-
     }
 
     public void TakeDamage(int amount, Vector3 hitPoint)
@@ -169,6 +173,36 @@ public class BaseEnemy : MonoBehaviour
             if (player.health.CurValue > 0)
             {
                 player.TakeDamage(attackDamage, attackHit.point);
+            }
+        }
+        attackTimer = 0;
+    }
+
+    public void AttackFire()
+    {
+        attackRay.origin = transform.position;
+        attackRay.direction = transform.forward;
+
+        if (Physics.Raycast(attackRay, out attackHit))
+        {
+            if (fire.health.CurValue > 0)
+            {
+                fire.TakeDamage(attackDamage, attackHit.point);
+            }
+        }
+        attackTimer = 0;
+    }
+
+    public void AttackTurret()
+    {
+        attackRay.origin = transform.position;
+        attackRay.direction = transform.forward;
+
+        if (Physics.Raycast(attackRay, out attackHit))
+        {
+            if (turret.health.CurValue > 0)
+            {
+                turret.TakeDamage(attackDamage, attackHit.point);
             }
         }
         attackTimer = 0;

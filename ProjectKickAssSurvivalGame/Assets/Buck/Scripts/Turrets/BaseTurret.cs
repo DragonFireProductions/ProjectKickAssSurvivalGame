@@ -8,6 +8,8 @@ public class BaseTurret : MonoBehaviour
     [Header("TurretSettings")]
 
     public float fireRate;
+    [HideInInspector]
+    public float fireTimer;
 
     public float range;
 
@@ -17,38 +19,28 @@ public class BaseTurret : MonoBehaviour
 
     public Stat health;
 
-    [HideInInspector]
-    public float fireTimer;
-
     [Header("UnitySettings")]
 
+    EnemyTargetManager enemyTM;
+
     public Transform turretHead;
-
     public Transform partToRotate;
-
     public Transform firePoint;
 
     [HideInInspector]
     public Transform target;
 
     public LineRenderer turretLR;
-
     public Light turretLight;
-
     public GameObject turretSpotLight;
-
     public float effectsDisplayTime;
-
-    SphereCollider turretRange;
 
     public string enemytag = "Enemy";
 
     Ray shootRay;
-
     RaycastHit shootHit;
 
     int shootableMask;
-
     int floorMask;
 
     float camRayLength = 100f;
@@ -61,9 +53,15 @@ public class BaseTurret : MonoBehaviour
         floorMask = LayerMask.GetMask("Floor");
         dayRef = FindObjectOfType<DayNightCycle>();
         turretLR = GetComponentInChildren<LineRenderer>();
+        enemyTM = FindObjectOfType<EnemyTargetManager>();
         turretLight = GetComponentInChildren<Light>();
         Light turretSpotLight = gameObject.GetComponent<Light>();
         health.SetValues();
+    }
+
+    void Start()
+    {
+        enemyTM.AddTarget(transform);
     }
 
     public void CheckTime()
@@ -90,7 +88,7 @@ public class BaseTurret : MonoBehaviour
         }
     }
 
-    public void CheckForDamage()
+    public virtual void CheckForDamage()
     {
         if (health.CurValue == health.MaxValue)
         {
@@ -185,7 +183,7 @@ public class BaseTurret : MonoBehaviour
 
         if (Physics.Raycast(shootRay, out shootHit, range, shootableMask))
         {
-            BaseEnemy enemyHealth = shootHit.collider.GetComponent<BaseEnemy>();
+            BaseEnemyV2 enemyHealth = shootHit.collider.GetComponent<BaseEnemyV2>();
             if (enemyHealth != null)
             {
                 enemyHealth.TakeDamage(damagePerShot, shootHit.point);
@@ -213,11 +211,24 @@ public class BaseTurret : MonoBehaviour
         }
     }
 
-    public void Die()
+    public virtual void Die()
     {
         //PLAY BREAK ANIMATION DESTROY AFTER SO 
         //MANY SECONDS
+        if (enemyTM != null)
+        {
+            enemyTM.RemoveTarget(transform);
+        }
+
         Destroy(gameObject);
+    }
+
+    void OnDestroy()
+    {
+        if (enemyTM != null)
+        {
+            enemyTM.RemoveTarget(transform);
+        }
     }
 
     public void DisableEffects()

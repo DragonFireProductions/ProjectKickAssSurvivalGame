@@ -4,25 +4,39 @@ using UnityEngine;
 
 public class BasicEnemy : BaseEnemy
 {
-
-    void Start()
-    {
-        LocateTarget();
-    }
-
     void Update()
     {
-        UpdateTarget();
-        Navigation();
+        FindClosestTarget();
+        MoveToTarget();
         CheckForDamage();
 
         if (targetsInRange[0] == true)
         {
             attackTimer += Time.deltaTime;
 
-            if (attackTimer >= attackSpeed && targetsInRange[0] == true && health.CurValue > 0)
+            if (attackTimer >= attackSpeed && health.CurValue > 0)
             {
                 AttackPlayer();
+            }
+        }
+
+        if (targetsInRange[1] == true)
+        {
+            attackTimer += Time.deltaTime;
+
+            if (attackTimer >= attackSpeed && health.CurValue > 0)
+            {
+                AttackFire();
+            }
+        }
+
+        if (targetsInRange[2] == true)
+        {
+            attackTimer += Time.deltaTime;
+
+            if (attackTimer >= attackSpeed && health.CurValue > 0)
+            {
+                AttackTurret();
             }
         }
     }
