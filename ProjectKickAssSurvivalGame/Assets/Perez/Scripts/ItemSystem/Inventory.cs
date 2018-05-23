@@ -4,18 +4,16 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    #region//Resources_ Public Ints
+    #region//Resources
     
-    public int wood_resource, stone_resource, coin_resource, iron_resource, grass_resource, sand_resource, flint_resource,
+    [HideInInspector] public int wood_resource, stone_resource, coin_resource, iron_resource, grass_resource, sand_resource, flint_resource,
     stick_resource, honey_resource, hide_resource, rope_resource, leather_resource, charcoal_resource;
 
     #endregion
 
-
     #region//Crafted Item Count
 
-    public int craftedBurlapWall, craftedWoodFence, craftedStoneFence, craftedMetalFence, craftedWoodTurret, craftedStoneTurret, craftedMetalTurret, 
-    craftedBurlapArmor, craftedWoodArmor, craftedStoneArmor, craftedMetalArmor, craftedSpikeTrap, craftedBearTrap;
+    [HideInInspector] public int craftedBurlapWall, craftedWoodFence, craftedStoneFence, craftedMetalFence, craftedWoodTurret, craftedStoneTurret, craftedMetalTurret, craftedSpikeTrap, craftedBearTrap;
 
     #endregion
 
