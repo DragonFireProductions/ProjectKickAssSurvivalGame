@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 54874709763477354}
   - component: {fileID: 114138256548978908}
   - component: {fileID: 114536532057146308}
+  - component: {fileID: 114645151525845140}
   - component: {fileID: 114765235179405178}
   m_Layer: 0
   m_Name: Player
@@ -204,10 +205,6 @@ MonoBehaviour:
   craftedWoodTurret: 0
   craftedStoneTurret: 0
   craftedMetalTurret: 0
-  craftedBurlapArmor: 0
-  craftedWoodArmor: 0
-  craftedStoneArmor: 0
-  craftedMetalArmor: 0
   craftedSpikeTrap: 0
   craftedBearTrap: 0
 --- !u!114 &114536532057146308
@@ -234,6 +231,51 @@ MonoBehaviour:
   G_MetalArmor: {fileID: 0}
   G_SpikeTrap: {fileID: 0}
   G_BearTrap: {fileID: 0}
+  playerCraftingMenu: {fileID: 0}
+  item_BurlapWall: {fileID: 0}
+  item_WoodFence: {fileID: 0}
+  item_StoneFence: {fileID: 0}
+  item_MetalFence: {fileID: 0}
+  item_WoodTurret: {fileID: 0}
+  item_StoneTurret: {fileID: 0}
+  item_MetalTurret: {fileID: 0}
+  item_BurlapArmor: {fileID: 0}
+  item_WoodArmor: {fileID: 0}
+  item_StoneArmor: {fileID: 0}
+  item_MetalArmor: {fileID: 0}
+  item_SpikeTrap: {fileID: 0}
+  item_BearTrap: {fileID: 0}
+--- !u!114 &114645151525845140
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1956338513186380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 690bb0aefde528f439c0bee4901ff886, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemImages:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  items:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &114765235179405178
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -251,7 +293,9 @@ MonoBehaviour:
   Stamina:
     bar: {fileID: 0}
     maxValue: 100
+  damageReduction: 0
   walkSpeed: 5
   runSpeed: 10
+  jumpPower: 0
   loseStamina: 0.25
   recoverStamina: 0.25
