@@ -88,16 +88,9 @@ public class ResourceNode : MonoBehaviour
 
             int chosenAudioClip = Random.Range(0, resourceSounds.Length);
 
-            if (resourceSounds != null)
-            {
-                resourceAudio.clip = resourceSounds[chosenAudioClip];
-            }
+            resourceAudio.clip = resourceSounds[chosenAudioClip];
 
-            if (resourceAudio.clip != null)
-            {
-
-                resourceAudio.Play();
-            }
+            resourceAudio.Play();
 
             health.CurValue = Mathf.Clamp(0, health.CurValue, health.MaxValue);
 
@@ -117,13 +110,9 @@ public class ResourceNode : MonoBehaviour
 
         int chosenDestroyClip = Random.Range(0, resourceDestroyAudio.Length);
 
-        if(resourceAudio )
         resourceAudio.clip = resourceDestroyAudio[chosenDestroyClip];
 
-        if (resourceAudio.clip != null)
-        {
-            resourceAudio.Play();
-        }
+        resourceAudio.Play();
 
 
         for (int r = 0; r < childMR.Length; r++)
