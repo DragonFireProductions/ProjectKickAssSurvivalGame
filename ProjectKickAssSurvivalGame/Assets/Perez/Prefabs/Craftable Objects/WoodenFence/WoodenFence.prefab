@@ -22,9 +22,9 @@ GameObject:
   - component: {fileID: 33186633629201186}
   - component: {fileID: 23466961541357826}
   - component: {fileID: 65348856476923504}
-  - component: {fileID: 114685469071813408}
+  - component: {fileID: 114555497645574958}
   m_Layer: 0
-  m_Name: StoneFence
+  m_Name: WoodenFence
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,7 +58,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 8ab18fd128a88824d98a9da0b296be87, type: 2}
+  - {fileID: 2100000, guid: 3e5631d2c18cb384186cabf76e93f523, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -97,7 +97,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114685469071813408
+--- !u!114 &114555497645574958
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -108,3 +108,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 950d2de7ac000c74fafc0e2d8e7b2a88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 0
