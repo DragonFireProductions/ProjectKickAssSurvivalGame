@@ -27,14 +27,10 @@ public class BaseEnemyV2 : MonoBehaviour
     CapsuleCollider attackRadius;
 
     Vector3 targetWayPoint;
-    public Transform[] wayPoints;
+    public List<GameObject> wayPoints;
     int wayPointIndex = 0;
+    int chosenWayPoint;
     public float distanceThreshold;
-
-    //Transform target;
-
-    //[SerializeField]
-    //Transform curTarget;
 
     [SerializeField]
     Transform closestTarget;
@@ -64,17 +60,23 @@ public class BaseEnemyV2 : MonoBehaviour
         agent.speed = moveSpeed;
         attackRadius.radius = attackRange;
         attackRadius.height = attackRange;
-    }
 
-    void Start()
-    {
-        targetWayPoint = wayPoints[0].position;
+        foreach (GameObject waypoint in GameObject.FindGameObjectsWithTag("Waypoint"))
+        {
+            wayPoints.Add(waypoint);
+        }
+
+        chosenWayPoint = Random.Range(0, wayPoints.Count);
+
+        targetWayPoint = wayPoints[chosenWayPoint].transform.position;
     }
 
     void Update()
     {
-        CheckForDamage();
+
         FindClosestTarget();
+        CheckForTarget();
+        CheckForDamage();
     }
 
     void LateUpdate()
@@ -85,10 +87,19 @@ public class BaseEnemyV2 : MonoBehaviour
             MoveToTarget();
     }
 
+    public void CheckForTarget()
+    {
+        if (Vector3.Distance(transform.position, closestTarget.position) <= attackRange)
+        {
+            Attack();
+        }
+    }
+
     public void ChangeWayPoint()
     {
-        int chosenWayPoint = Random.Range(0, wayPoints.Length);
-        targetWayPoint = wayPoints[chosenWayPoint].position;
+        chosenWayPoint = Random.Range(0, wayPoints.Count);
+
+        targetWayPoint = wayPoints[chosenWayPoint].transform.position;
     }
 
     public void MoveToWayPoint()
@@ -96,7 +107,7 @@ public class BaseEnemyV2 : MonoBehaviour
         agent.SetDestination(targetWayPoint);
         agent.speed = moveSpeed;
 
-        if (Vector3.Distance(transform.position, targetWayPoint) < attackRange)
+        if (Vector3.Distance(transform.position, targetWayPoint) < distanceThreshold)
         {
             ChangeWayPoint();
         }
@@ -108,10 +119,7 @@ public class BaseEnemyV2 : MonoBehaviour
         agent.SetDestination(closestTarget.position);
         agent.speed = moveSpeed;
 
-        if (Vector3.Distance(transform.position, closestTarget.position) <= distanceThreshold)
-        {
-            Attack();
-        }
+
     }
 
     public void FindClosestTarget()
@@ -122,7 +130,7 @@ public class BaseEnemyV2 : MonoBehaviour
 
         foreach (Transform target in targetManager.targets)
         {
-            float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
+            float distanceToTarget = Vector3.Distance(transform.position, target.position);
 
             if (distanceToTarget < shortestDistance)
             {
@@ -132,18 +140,9 @@ public class BaseEnemyV2 : MonoBehaviour
         }
     }
 
-    //public void GetTargets()
-    //{
-    //    if (dayRef.GetMeridiem() == DayNightCycle.Meridiem.PM)
-    //        if (dayRef.GetHour() == 8)
-    //            targetManager.GetTargets();
-    //    else
-    //        return;
-    //}
-
     public void Attack()
     {
-        attackRay.origin = transform.position;
+        attackRay.origin = transform.position - new Vector3(0f, 0.5f, 0f);
         attackRay.direction = transform.forward;
 
         if (targetsInRange[0] == true && health.CurValue > 0)
@@ -184,12 +183,12 @@ public class BaseEnemyV2 : MonoBehaviour
         {
             if (Physics.Raycast(attackRay, out attackHit))
             {
-                BasicTurret turretHealth = attackHit.collider.GetComponent<BasicTurret>();
+                BaseTurret turretHealth = attackHit.collider.GetComponent<BaseTurret>();
                 attackTimer += Time.deltaTime;
 
                 if (attackTimer >= attackSpeed)
                 {
-                    if (turretHealth != null)
+                    if (turretHealth.health.CurValue > 0)
                     {
                         turretHealth.TakeDamage(attackDamage, attackHit.point);
                     }
@@ -215,6 +214,8 @@ public class BaseEnemyV2 : MonoBehaviour
                 }
             }
         }
+
+
     }
 
     public void CheckForDamage()
@@ -249,6 +250,17 @@ public class BaseEnemyV2 : MonoBehaviour
             Instantiate(coin, transform.position, transform.rotation);
         }
 
+        //List<GameObject> t = waveSpawnerRef.GetEnemies();
+
+        //for (int i = 0; i < t.Count; i++)
+        //{
+        //    if (gameObject.tag == "Enemy")
+        //    {
+        //        t.RemoveAt(i);
+        //        break;
+        //    }
+        //}
+        //Destroy that baddie
         Destroy(gameObject);
 
     }

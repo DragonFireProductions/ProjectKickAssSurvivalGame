@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class FireManager : MonoBehaviour
 {
-
+    Inventory inv;
     EnemyTargetManager enemyTM;
 
     public Stat health;
 
     public float burnTime;
+    float burnTimer;
 
     private void Awake()
     {
-        
         enemyTM = FindObjectOfType<EnemyTargetManager>();
+        inv = FindObjectOfType<Inventory>();
         health.SetValues();
     }
 
@@ -60,17 +61,25 @@ public class FireManager : MonoBehaviour
         }
 
         Destroy(gameObject);
-        
     }
 
     public void BurnOut()
     {
-        burnTime += Time.deltaTime;
+        burnTimer += Time.deltaTime;
 
-        if (burnTime >= 5f)
+        if (burnTimer >= burnTime)
         {
             health.CurValue -= 1;
-            burnTime = 0;
+            burnTimer = 0;
+        }
+    }
+
+    void OnTriggerStay(Collider player)
+    {
+        if (player.tag == "Player" && Input.GetKeyDown(KeyCode.E) && inv.wood_resource >= 1)
+        {
+            inv.wood_resource -= 1;
+            health.CurValue += 1;
         }
     }
 }

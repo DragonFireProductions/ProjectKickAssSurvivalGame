@@ -25,6 +25,7 @@ TagManager:
   - Undefined
   - Sun
   - Wall
+  - Waypoint
   layers:
   - Default
   - TransparentFX

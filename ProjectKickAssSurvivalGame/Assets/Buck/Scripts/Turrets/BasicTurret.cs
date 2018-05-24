@@ -29,5 +29,10 @@ public class BasicTurret : BaseTurret
         {
             DisableEffects();
         }
+
+        if(target == null)
+        {
+            DisableEffects();
+        }
     }
 }

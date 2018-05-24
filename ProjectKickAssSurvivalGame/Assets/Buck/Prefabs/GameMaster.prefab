@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 114945181225493750}
   - component: {fileID: 114410980497109870}
   - component: {fileID: 114974876357532718}
+  - component: {fileID: 114194851649549014}
   m_Layer: 0
   m_Name: GameMaster
   m_TagString: Untagged
@@ -42,6 +43,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114194851649549014
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1373263886214458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb52e04a8c568b24db402d305219f51e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyTypes:
+  - {fileID: 1534094283284562, guid: e09eacb92605a004db493d07bcd70f49, type: 2}
+  - {fileID: 1346470933905504, guid: 01d7cbbf4720e5f4facaa03fff95018e, type: 2}
+  spawnLocations:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  spawnCurrency: 0
+  spawnRate: 2
 --- !u!114 &114410980497109870
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -64,10 +90,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   uiText:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
