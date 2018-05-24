@@ -9,13 +9,11 @@ public class FireManager : MonoBehaviour
 
     public Stat health;
 
-    int shootableMask;
-    int floorMask;
+    public float burnTime;
 
     private void Awake()
     {
-        shootableMask = LayerMask.GetMask("Shootable");
-        floorMask = LayerMask.GetMask("Floor");
+        
         enemyTM = FindObjectOfType<EnemyTargetManager>();
         health.SetValues();
     }
@@ -29,6 +27,7 @@ public class FireManager : MonoBehaviour
 	void Update ()
     {
         CheckForDamage();
+        BurnOut();
     }
 
     public void CheckForDamage()
@@ -62,5 +61,16 @@ public class FireManager : MonoBehaviour
 
         Destroy(gameObject);
         
+    }
+
+    public void BurnOut()
+    {
+        burnTime += Time.deltaTime;
+
+        if (burnTime >= 5f)
+        {
+            health.CurValue -= 1;
+            burnTime = 0;
+        }
     }
 }

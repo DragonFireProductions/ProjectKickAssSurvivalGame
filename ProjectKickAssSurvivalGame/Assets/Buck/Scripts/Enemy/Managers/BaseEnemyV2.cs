@@ -19,7 +19,7 @@ public class BaseEnemyV2 : MonoBehaviour
     PlayerController player;
     FireManager fire;
     BaseTurret turret;
-    //BaseWall wall;
+    Durability wall;
     WaveSpawner waveSpawnerRef;
     DayNightCycle dayRef;
     public EnemyTargetManager targetManager;
@@ -56,7 +56,7 @@ public class BaseEnemyV2 : MonoBehaviour
         player = FindObjectOfType<PlayerController>();
         fire = FindObjectOfType<FireManager>();
         turret = FindObjectOfType<BaseTurret>();
-        //wall = FindObjectOfType<BaseWall>();
+        wall = FindObjectOfType<Durability>();
         targetManager = FindObjectOfType<EnemyTargetManager>();
         dayRef = FindObjectOfType<DayNightCycle>();
         agent = GetComponent<NavMeshAgent>();
@@ -198,22 +198,23 @@ public class BaseEnemyV2 : MonoBehaviour
             }
         }
 
-        //if (targetsInRange[3] == true && health.CurValue > 0)
-        //{
-        //    if (Physics.Raycast(attackRay, out attackHit))
-        //    {
-        //        attackTimer += Time.deltaTime;
+        if (targetsInRange[3] == true && health.CurValue > 0)
+        {
+            if (Physics.Raycast(attackRay, out attackHit))
+            {
+                Durability wallHealth = attackHit.collider.GetComponent<Durability>();
+                attackTimer += Time.deltaTime;
 
-        //        if (attackTimer >= attackSpeed)
-        //        {
-        //            if (wall.health.CurValue > 0)
-        //            {
-        //                wall.TakeDamage(attackDamage, attackHit.point);
-        //            }
-        //            attackTimer = 0;
-        //        }
-        //    }
-        //}
+                if (attackTimer >= attackSpeed)
+                {
+                    if (wallHealth != null)
+                    {
+                        wallHealth.TakeDamage(attackDamage, attackHit.point);
+                    }
+                    attackTimer = 0;
+                }
+            }
+        }
     }
 
     public void CheckForDamage()
@@ -269,10 +270,10 @@ public class BaseEnemyV2 : MonoBehaviour
             targetsInRange[2] = true;
         }
 
-        //if (target.tag == "Wall")
-        //{
-        //    targetsInRange[3] = true;
-        //}
+        if (target.tag == "Wall")
+        {
+            targetsInRange[3] = true;
+        }
     }
 
     void OnTriggerExit(Collider target)
@@ -292,9 +293,9 @@ public class BaseEnemyV2 : MonoBehaviour
             targetsInRange[2] = false;
         }
 
-        //if (target.tag == "Wall")
-        //{
-        //    targetsInRange[3] = false;
-        //}
+        if (target.tag == "Wall")
+        {
+            targetsInRange[3] = false;
+        }
     }
 }

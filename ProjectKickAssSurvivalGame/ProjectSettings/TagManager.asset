@@ -24,6 +24,7 @@ TagManager:
   - Bullet
   - Undefined
   - Sun
+  - Wall
   layers:
   - Default
   - TransparentFX

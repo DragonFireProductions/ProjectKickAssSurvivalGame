@@ -56,12 +56,13 @@ public class BaseTurret : MonoBehaviour
         enemyTM = FindObjectOfType<EnemyTargetManager>();
         turretLight = GetComponentInChildren<Light>();
         Light turretSpotLight = gameObject.GetComponent<Light>();
+        enemyTM.AddTarget(transform);
         health.SetValues();
     }
 
     void Start()
     {
-        enemyTM.AddTarget(transform);
+        
     }
 
     public void CheckTime()

@@ -15,7 +15,7 @@ public class EnemyTargetManager : MonoBehaviour
     public void AddAllTargets()
     {
         GameObject[] turrets = GameObject.FindGameObjectsWithTag("Turret");
-        //GameObject[] walls = GameObject.FindGameObjectsWithTag("Wall");
+        GameObject[] walls = GameObject.FindGameObjectsWithTag("Wall");
 
 
         foreach (GameObject turret in turrets)
@@ -26,13 +26,13 @@ public class EnemyTargetManager : MonoBehaviour
                 return;
         }
 
-        //foreach (GameObject wall in walls)
-        //{
-        //    AddTarget(wall.transform);
+        foreach (GameObject wall in walls)
+        {
+            AddTarget(wall.transform);
 
-        //    if (walls == null)
-        //        return;
-        //}
+            if (walls == null)
+                return;
+        }
     }
 
     public void AddTarget(Transform target)
