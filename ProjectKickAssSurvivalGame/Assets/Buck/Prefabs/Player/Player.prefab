@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 54874709763477354}
   - component: {fileID: 114138256548978908}
   - component: {fileID: 114536532057146308}
-  - component: {fileID: 114645151525845140}
+  - component: {fileID: 114319838266569894}
   - component: {fileID: 114765235179405178}
   m_Layer: 0
   m_Name: Player
@@ -84,7 +84,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1956338513186380}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 138.924, y: 1, z: 152.73628}
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_Children:
   - {fileID: 4476045019033024}
@@ -207,6 +207,59 @@ MonoBehaviour:
   craftedMetalTurret: 0
   craftedSpikeTrap: 0
   craftedBearTrap: 0
+  Text_WoodResource: {fileID: 0}
+  Text_StoneResource: {fileID: 0}
+  Text_IronResource: {fileID: 0}
+  Text_SandResource: {fileID: 0}
+  Text_CoinResource: {fileID: 0}
+  Text_GrassResource: {fileID: 0}
+  Text_FlintResource: {fileID: 0}
+  Text_StickResource: {fileID: 0}
+  Text_HoneyResource: {fileID: 0}
+  Text_HideResource: {fileID: 0}
+  Text_LeatherResource: {fileID: 0}
+  Text_RopeResource: {fileID: 0}
+  Text_CharcoalResource: {fileID: 0}
+  Text_BurlapWall: {fileID: 0}
+  Text_WoodFence: {fileID: 0}
+  Text_StoneFence: {fileID: 0}
+  Text_MetalFence: {fileID: 0}
+  Text_WoodTurret: {fileID: 0}
+  Text_StoneTurret: {fileID: 0}
+  Text_MetalTurret: {fileID: 0}
+  Text_SpikeTrap: {fileID: 0}
+  Text_BearTrap: {fileID: 0}
+--- !u!114 &114319838266569894
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1956338513186380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 690bb0aefde528f439c0bee4901ff886, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemImages:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  items:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &114536532057146308
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -245,37 +298,6 @@ MonoBehaviour:
   item_MetalArmor: {fileID: 0}
   item_SpikeTrap: {fileID: 0}
   item_BearTrap: {fileID: 0}
---- !u!114 &114645151525845140
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1956338513186380}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 690bb0aefde528f439c0bee4901ff886, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemImages:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  items:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &114765235179405178
 MonoBehaviour:
   m_ObjectHideFlags: 1
