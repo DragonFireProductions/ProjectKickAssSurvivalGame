@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e4d72e412904c1d469f5a8476aa70c90, type: 3}
-  m_Name: WoodenFence
+  m_Name: SpikeTrap
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300036, guid: 2cb027984b5398845a37ff51ff67e75e, type: 3}
-  gameobject: {fileID: 1049464750924372, guid: dbece2db71289964f90deaf9d0265111, type: 2}
+  sprite: {fileID: 0}
+  gameobject: {fileID: 0}

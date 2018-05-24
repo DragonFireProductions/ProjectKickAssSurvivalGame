@@ -10,7 +10,6 @@ public class WaveSpawner : MonoBehaviour
     [SerializeField]
     List<Transform> spawnLocations;
 
-    [SerializeField]
     List<GameObject> spawnedEnemies;
 
     DayNightCycle dayRef;
@@ -113,7 +112,6 @@ public class WaveSpawner : MonoBehaviour
     {
         nightComplete = true;
 
-        //Need to figure out the for loop for this
         if (spawnedEnemies.Count == 0)
         {
             if (dayRef.GetMeridiem() == DayNightCycle.Meridiem.PM)

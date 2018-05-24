@@ -79,7 +79,7 @@ GameObject:
   - component: {fileID: 23544839992499820}
   - component: {fileID: 195568428206197960}
   - component: {fileID: 54769569481653224}
-  - component: {fileID: 114446881197452936}
+  - component: {fileID: 114891008619258850}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Enemy
@@ -129,7 +129,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1534094283284562}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -2.2824707, y: 1.5, z: 21.595509}
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_Children:
   - {fileID: 224074321250693128}
@@ -189,7 +189,7 @@ Rigidbody:
   m_Drag: Infinity
   m_AngularDrag: Infinity
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
@@ -367,34 +367,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114446881197452936
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1534094283284562}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee01ea0c45475e349b237c8e865798a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health:
-    bar: {fileID: 114956091370083200}
-    maxValue: 20
-  attackDamage: 1
-  attackSpeed: 1
-  attackTimer: 0
-  moveSpeed: 2.5
-  spawnCost: 1
-  minCoins: 3
-  maxCoins: 5
-  targetLocations: []
-  targetTags:
-  - Player
-  - Fire
-  - Turret
-  targetsInRange: 000000
-  coin: {fileID: 1272052713922210, guid: 86dba87b002da2a46a94c7979891f2fe, type: 2}
 --- !u!114 &114721252622958120
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -438,6 +410,40 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114891008619258850
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1534094283284562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca76f47fc679be940a2e67b41c75ea43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health:
+    bar: {fileID: 114956091370083200}
+    maxValue: 20
+  attackDamage: 5
+  attackSpeed: 1
+  attackTimer: 0
+  attackRange: 1
+  moveSpeed: 5
+  spawnCost: 1
+  targetManager: {fileID: 0}
+  wayPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  distanceThreshold: 0
+  closestTarget: {fileID: 0}
+  targetsInRange: 
+  minCoins: 2
+  maxCoins: 4
+  coin: {fileID: 1272052713922210, guid: 86dba87b002da2a46a94c7979891f2fe, type: 2}
 --- !u!114 &114938539950535922
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -26,7 +26,6 @@ public class TurretTest : MonoBehaviour
     {
         if (enemyTM != null)
         {
-            Debug.Log("Being fuck all uselass");
             enemyTM.RemoveTarget(transform);
         }
     }

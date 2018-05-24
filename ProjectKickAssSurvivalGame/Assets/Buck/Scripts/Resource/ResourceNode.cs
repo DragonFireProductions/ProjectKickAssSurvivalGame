@@ -114,6 +114,7 @@ public class ResourceNode : MonoBehaviour
 
         resourceAudio.Play();
 
+
         for (int r = 0; r < childMR.Length; r++)
             for (int c = 0; c < childCollider.Length; c++)
             {

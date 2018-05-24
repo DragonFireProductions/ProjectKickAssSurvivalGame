@@ -24,8 +24,8 @@ GameObject:
   - component: {fileID: 54470769929677966}
   - component: {fileID: 65125058473315386}
   m_Layer: 0
-  m_Name: Stone Pickup
-  m_TagString: Stone_Resource
+  m_Name: IronPickup
+  m_TagString: Iron_Resource
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,7 +84,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1246789431957802}
-  m_Mesh: {fileID: 4300000, guid: 0943c44d2fa59a34d91aad8abe12efb4, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 9149b58d73a11824a9469dff6e45dfcb, type: 3}
 --- !u!54 &54470769929677966
 Rigidbody:
   m_ObjectHideFlags: 1

@@ -32,8 +32,8 @@ public class UIManager : MonoBehaviour
         dayRef = FindObjectOfType<DayNightCycle>();
         player = FindObjectOfType<PlayerController>();
         fire = FindObjectOfType<FireManager>();
-        uiText[4].text = "DAYS: " + dayRef.GetDaysPassed().ToString();
-        uiText[5].text = "0" + dayRef.GetHour() + "0" + dayRef.GetMinute().ToString();
+        uiText[0].text = "DAYS: " + dayRef.GetDaysPassed().ToString();
+        uiText[1].text = "0" + dayRef.GetHour() + "0" + dayRef.GetMinute().ToString();
     }
 
 	// Use this for initialization
@@ -70,7 +70,7 @@ public class UIManager : MonoBehaviour
 
     void CheckDaysPassed()
     {
-        uiText[4].text = "DAYS: " + dayRef.GetDaysPassed().ToString();
+        uiText[0].text = "DAYS: " + dayRef.GetDaysPassed().ToString();
     }
 
     void CheckClock()
@@ -79,17 +79,17 @@ public class UIManager : MonoBehaviour
         {
             if (dayRef.GetHour() < 10f && dayRef.GetMinute() <= 10f)
             {
-                uiText[5].text = "0" + Mathf.Abs(dayRef.GetHour()).ToString() + " : " + "0" + Mathf.Abs(dayRef.GetMinute()).ToString() + " AM";
+                uiText[1].text = "0" + Mathf.Abs(dayRef.GetHour()).ToString() + " : " + "0" + Mathf.Abs(dayRef.GetMinute()).ToString() + " AM";
             }
 
             if (dayRef.GetHour() < 10f && dayRef.GetMinute() >= 10f)
             {
-                uiText[5].text = "0" + Mathf.Abs(dayRef.GetHour()).ToString() + " : " + Mathf.Abs(dayRef.GetMinute()).ToString() + " AM";
+                uiText[1].text = "0" + Mathf.Abs(dayRef.GetHour()).ToString() + " : " + Mathf.Abs(dayRef.GetMinute()).ToString() + " AM";
             }
 
             if (dayRef.GetHour() >= 10f && dayRef.GetMinute() >= 10f)
             {
-                uiText[5].text = Mathf.Abs(dayRef.GetHour()) + " : " + Mathf.Abs(dayRef.GetMinute()).ToString() + " AM";
+                uiText[1].text = Mathf.Abs(dayRef.GetHour()) + " : " + Mathf.Abs(dayRef.GetMinute()).ToString() + " AM";
             }
         }
 
@@ -97,24 +97,24 @@ public class UIManager : MonoBehaviour
         {
             if (dayRef.GetHour() < 10f && dayRef.GetMinute() <= 10f)
             {
-                uiText[5].text = "0" + Mathf.Abs(dayRef.GetHour()).ToString() + " : " + "0" + Mathf.Abs(dayRef.GetMinute()).ToString() + " PM";
+                uiText[1].text = "0" + Mathf.Abs(dayRef.GetHour()).ToString() + " : " + "0" + Mathf.Abs(dayRef.GetMinute()).ToString() + " PM";
             }
 
             if (dayRef.GetHour() < 10f && dayRef.GetMinute() >= 10f)
             {
-                uiText[5].text = "0" + Mathf.Abs(dayRef.GetHour()).ToString() + " : " + Mathf.Abs(dayRef.GetMinute()).ToString() + " PM";
+                uiText[1].text = "0" + Mathf.Abs(dayRef.GetHour()).ToString() + " : " + Mathf.Abs(dayRef.GetMinute()).ToString() + " PM";
             }
 
             if (dayRef.GetHour() >= 10f && dayRef.GetMinute() >= 10f)
             {
-                uiText[5].text = Mathf.Abs(dayRef.GetHour()).ToString() + " : " + Mathf.Abs(dayRef.GetMinute()).ToString() + " PM";
+                uiText[1].text = Mathf.Abs(dayRef.GetHour()).ToString() + " : " + Mathf.Abs(dayRef.GetMinute()).ToString() + " PM";
             }
         }
     }
 
     void CheckPartOfDay()
     {
-        uiText[6].text = dayRef.GetPartOfDay().ToString();
+        uiText[2].text = dayRef.GetPartOfDay().ToString();
     }
 
     void CheckGameOver()
