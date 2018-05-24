@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 4637092542586602}
   - component: {fileID: 33231952844739830}
   - component: {fileID: 23174888365132848}
-  - component: {fileID: 65821515328325112}
   - component: {fileID: 54524215477011778}
+  - component: {fileID: 65754838775197224}
   m_Layer: 0
   m_Name: Rope Pickup
   m_TagString: Rope_Resource
@@ -38,7 +38,7 @@ Transform:
   m_GameObject: {fileID: 1995122241922590}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -84,7 +84,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1995122241922590}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: fe3a5e2c9383f5f43a40597124811cdf, type: 3}
 --- !u!54 &54524215477011778
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -100,7 +100,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &65821515328325112
+--- !u!65 &65754838775197224
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -110,5 +110,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 90.780945, y: 12.361832, z: 75.26443}
+  m_Center: {x: 0.000011920929, y: 2.8400877, z: 0}

@@ -24,8 +24,8 @@ GameObject:
   - component: {fileID: 54470769929677966}
   - component: {fileID: 65125058473315386}
   m_Layer: 0
-  m_Name: Stone Pickup
-  m_TagString: Stone_Resource
+  m_Name: CoinPickup
+  m_TagString: Coin_Resource
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58,7 +58,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 8ab18fd128a88824d98a9da0b296be87, type: 2}
+  - {fileID: 2100000, guid: 02b9865044b7b874cb48709f6dfe3354, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -84,7 +84,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1246789431957802}
-  m_Mesh: {fileID: 4300000, guid: 0943c44d2fa59a34d91aad8abe12efb4, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 7319f29f1bfd09844bcfd2cae5890751, type: 3}
 --- !u!54 &54470769929677966
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -110,5 +110,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 138.6818, y: 122.30025, z: 163.66162}
-  m_Center: {x: 0, y: -0.0000019073486, z: 0}
+  m_Size: {x: 65.056694, y: 59.926167, z: 44.24371}
+  m_Center: {x: -1.5953879, y: 0.7134809, z: -0.055948894}
