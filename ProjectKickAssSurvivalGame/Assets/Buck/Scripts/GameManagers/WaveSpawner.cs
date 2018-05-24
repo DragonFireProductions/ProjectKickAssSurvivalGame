@@ -98,7 +98,7 @@ public class WaveSpawner : MonoBehaviour
         //Create the baddie
         Instantiate(selectedEnemy, currentSpawnPosition, currentSpawnRotation);
 
-        spawnCurrency -= selectedEnemy.GetComponent<BaseEnemy>().spawnCost;
+        spawnCurrency -= selectedEnemy.GetComponent<BaseEnemyV2>().spawnCost;
 
         if (spawnCurrency >= 0)
         {

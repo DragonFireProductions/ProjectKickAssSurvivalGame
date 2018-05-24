@@ -65,7 +65,7 @@ public class BaseWeapon : MonoBehaviour
 
         if (Physics.Raycast(shootRay, out shootHit, range, shootableMask))
         {
-            BaseEnemy enemyHealth = shootHit.collider.GetComponent<BaseEnemy>();
+            BaseEnemyV2 enemyHealth = shootHit.collider.GetComponent<BaseEnemyV2>();
             if (enemyHealth != null)
             {
                 enemyHealth.TakeDamage(damagePerShot, shootHit.point);

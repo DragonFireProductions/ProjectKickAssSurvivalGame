@@ -50,23 +50,45 @@ public class UIManager : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+        PauseGame();
         OpenInventoryScreen();
         OpenCraftingScreen();
         OpenDebugMenu();
-        //CheckResources();
         CheckDaysPassed();
         CheckClock();
         CheckGameOver();
         CheckPartOfDay();
 	}
 
-    //void CheckResources()
-    //{
-    //    uiText[0].text = "COINS: " + invRef.coin_resource.ToString();
-    //    uiText[1].text = "WOOD: " + invRef.wood_resource.ToString();
-    //    uiText[2].text = "STONE: " + invRef.stone_resource.ToString();
-    //    uiText[3].text = "IRON: " + invRef.iron_resource.ToString();
-    //}
+    void PauseGame()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && !menuChecks[3])
+        {
+            dynamicUI[0].SetActive(false);
+            dynamicUI[1].SetActive(false);
+            dynamicUI[2].SetActive(false);
+            dynamicUI[3].SetActive(true);
+            dynamicUI[4].SetActive(false);
+            menuChecks[0] = false;
+            menuChecks[1] = false;
+            menuChecks[2] = false;
+            menuChecks[3] = true;
+            Time.timeScale = 0f;
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && menuChecks[3])
+        {
+            dynamicUI[0].SetActive(false);
+            dynamicUI[1].SetActive(false);
+            dynamicUI[2].SetActive(false);
+            dynamicUI[3].SetActive(false);
+            dynamicUI[4].SetActive(false);
+            menuChecks[0] = false;
+            menuChecks[1] = false;
+            menuChecks[2] = false;
+            menuChecks[3] = false;
+            Time.timeScale = 1f;
+        }
+    }
 
     void CheckDaysPassed()
     {
@@ -129,7 +151,7 @@ public class UIManager : MonoBehaviour
                 }
             }
 
-            dynamicUI[3].SetActive(true);
+            dynamicUI[5].SetActive(true);
             Time.timeScale = 0.0f;
         }
     }

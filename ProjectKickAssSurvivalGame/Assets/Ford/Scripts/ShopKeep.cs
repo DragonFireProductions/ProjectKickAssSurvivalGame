@@ -48,13 +48,13 @@ public class ShopKeep : MonoBehaviour
 
     void OpenShop()
     {
-        if (Input.GetKeyDown(KeyCode.O) && ShopKeepMenu.activeInHierarchy == false)
+        if (Input.GetKeyDown(KeyCode.E) && ShopKeepMenu.activeInHierarchy == false)
         {
             ShopKeepMenu.SetActive(true);
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.O) && ShopKeepMenu.activeInHierarchy == true)
+            if (Input.GetKeyDown(KeyCode.E) && ShopKeepMenu.activeInHierarchy == true)
             {
                 CloseShop();
             }

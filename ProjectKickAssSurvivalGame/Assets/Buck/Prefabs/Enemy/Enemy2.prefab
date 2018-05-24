@@ -79,7 +79,7 @@ GameObject:
   - component: {fileID: 23955178203373164}
   - component: {fileID: 195387897862116514}
   - component: {fileID: 54557254880343604}
-  - component: {fileID: 114561904227413906}
+  - component: {fileID: 114160604942681848}
   m_Layer: 8
   m_Name: Enemy2
   m_TagString: Enemy
@@ -238,6 +238,34 @@ MonoBehaviour:
   startColor: {r: 0.20784314, g: 0.74509805, b: 0.1882353, a: 1}
   endColor: {r: 0.8509804, g: 0.1254902, b: 0.1254902, a: 1}
   lerpColors: 1
+--- !u!114 &114160604942681848
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1346470933905504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca76f47fc679be940a2e67b41c75ea43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health:
+    bar: {fileID: 114956091370083200, guid: e09eacb92605a004db493d07bcd70f49, type: 2}
+    maxValue: 30
+  attackDamage: 10
+  attackSpeed: 0.75
+  attackTimer: 0
+  attackRange: 2.25
+  moveSpeed: 7.5
+  spawnCost: 2
+  targetManager: {fileID: 0}
+  wayPoints: []
+  distanceThreshold: 2
+  closestTarget: {fileID: 0}
+  targetsInRange: 00000000
+  minCoins: 2
+  maxCoins: 4
+  coin: {fileID: 1272052713922210, guid: 86dba87b002da2a46a94c7979891f2fe, type: 2}
 --- !u!114 &114185704431790662
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -310,34 +338,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114561904227413906
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1346470933905504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca76f47fc679be940a2e67b41c75ea43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health:
-    bar: {fileID: 114077453648785552}
-    maxValue: 30
-  attackDamage: 10
-  attackSpeed: 0.75
-  attackTimer: 0
-  attackRange: 1
-  moveSpeed: 7.5
-  spawnCost: 2
-  targetManager: {fileID: 0}
-  wayPoints: []
-  distanceThreshold: 0
-  closestTarget: {fileID: 0}
-  targetsInRange: 
-  minCoins: 2
-  maxCoins: 4
-  coin: {fileID: 1272052713922210, guid: 86dba87b002da2a46a94c7979891f2fe, type: 2}
 --- !u!114 &114775746911344880
 MonoBehaviour:
   m_ObjectHideFlags: 1

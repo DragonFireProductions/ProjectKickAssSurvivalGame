@@ -22,6 +22,8 @@ public class PlayerDrone : MonoBehaviour
 
     [Header("UnitySettings")]
 
+    ShopKeep shopKeepRef;
+
     [SerializeField]
     Vector3 offset;
 
@@ -76,34 +78,44 @@ public class PlayerDrone : MonoBehaviour
         droneLR = GetComponentInChildren<LineRenderer>();
         droneLight = GetComponentInChildren<Light>();
         droneRange = GetComponent<SphereCollider>();
+        shopKeepRef = FindObjectOfType<ShopKeep>();
 
         droneRange.radius = range;
     }
 	// Update is called once per frame
 	void Update ()
     {
-        fireTimer += Time.deltaTime;
-
-        UpdateDroneTarget();
-
-        LockOnTarget();
-
-        if (target == null)
+        if (shopKeepRef.dronePurchased)
         {
-            MoveToPlayer();
+            drone.gameObject.SetActive(true);
+
+            fireTimer += Time.deltaTime;
+
+            UpdateDroneTarget();
+
+            LockOnTarget();
+
+            if (target == null)
+            {
+                MoveToPlayer();
+            }
+            else
+            {
+                MoveToEnemy();
+            }
+
+            if (fireTimer >= fireRate && target != null)
+            {
+                Fire();
+            }
+            if (fireTimer >= fireRate * effectsDisplayTime)
+            {
+                DisableEffects();
+            }
         }
         else
         {
-            MoveToEnemy();
-        }
-
-        if (fireTimer >= fireRate && target != null)
-        {
-            Fire();
-        }
-        if (fireTimer >= fireRate * effectsDisplayTime)
-        {
-            DisableEffects();
+            drone.gameObject.SetActive(false);
         }
 	}
 
